@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\AutoProps\AutoProps\bin\Debug\AutoProps.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\AutoProps\AutoProps\bin\Debug\AutoProps.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\AutoProps\AutoProps\bin\Debug\AutoProps.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\AutoProps\AutoProps\obj\Debug\AutoProps.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\AutoProps\AutoProps\obj\Debug\AutoProps.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\AutoProps\AutoProps\obj\Debug\AutoProps.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\AutoProps\AutoProps\obj\Debug\AutoProps.pdb

@@ -1,0 +1,7 @@
+c:\users\ja0006284\documents\visual studio 2017\Projects\ValueAndReferenceTypes\ValueAndReferenceTypes\bin\Debug\ValueAndReferenceTypes.exe.config
+c:\users\ja0006284\documents\visual studio 2017\Projects\ValueAndReferenceTypes\ValueAndReferenceTypes\bin\Debug\ValueAndReferenceTypes.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\ValueAndReferenceTypes\ValueAndReferenceTypes\bin\Debug\ValueAndReferenceTypes.pdb
+c:\users\ja0006284\documents\visual studio 2017\Projects\ValueAndReferenceTypes\ValueAndReferenceTypes\obj\Debug\ValueAndReferenceTypes.csprojResolveAssemblyReference.cache
+c:\users\ja0006284\documents\visual studio 2017\Projects\ValueAndReferenceTypes\ValueAndReferenceTypes\obj\Debug\ValueAndReferenceTypes.csproj.CoreCompileInputs.cache
+c:\users\ja0006284\documents\visual studio 2017\Projects\ValueAndReferenceTypes\ValueAndReferenceTypes\obj\Debug\ValueAndReferenceTypes.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\ValueAndReferenceTypes\ValueAndReferenceTypes\obj\Debug\ValueAndReferenceTypes.pdb

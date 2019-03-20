@@ -1,0 +1,7 @@
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithStructures\FunWithStructures\bin\Debug\FunWithStructures.exe.config
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithStructures\FunWithStructures\bin\Debug\FunWithStructures.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithStructures\FunWithStructures\bin\Debug\FunWithStructures.pdb
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithStructures\FunWithStructures\obj\Debug\FunWithStructures.csprojResolveAssemblyReference.cache
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithStructures\FunWithStructures\obj\Debug\FunWithStructures.csproj.CoreCompileInputs.cache
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithStructures\FunWithStructures\obj\Debug\FunWithStructures.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithStructures\FunWithStructures\obj\Debug\FunWithStructures.pdb

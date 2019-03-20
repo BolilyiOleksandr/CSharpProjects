@@ -1,0 +1,6 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\RefTypeValTypeParams\RefTypeValTypeParams\bin\Debug\RefTypeValTypeParams.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\RefTypeValTypeParams\RefTypeValTypeParams\bin\Debug\RefTypeValTypeParams.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\RefTypeValTypeParams\RefTypeValTypeParams\bin\Debug\RefTypeValTypeParams.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\RefTypeValTypeParams\RefTypeValTypeParams\obj\Debug\RefTypeValTypeParams.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\RefTypeValTypeParams\RefTypeValTypeParams\obj\Debug\RefTypeValTypeParams.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\RefTypeValTypeParams\RefTypeValTypeParams\obj\Debug\RefTypeValTypeParams.pdb

@@ -1,0 +1,11 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\bin\Debug\netcoreapp2.1\ReceiveLogs.deps.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\bin\Debug\netcoreapp2.1\ReceiveLogs.runtimeconfig.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\bin\Debug\netcoreapp2.1\ReceiveLogs.runtimeconfig.dev.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\bin\Debug\netcoreapp2.1\ReceiveLogs.dll
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\obj\Debug\netcoreapp2.1\ReceiveLogs.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\obj\Debug\netcoreapp2.1\ReceiveLogs.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\obj\Debug\netcoreapp2.1\ReceiveLogs.AssemblyInfoInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\obj\Debug\netcoreapp2.1\ReceiveLogs.AssemblyInfo.cs
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\bin\Debug\netcoreapp2.1\ReceiveLogs.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\obj\Debug\netcoreapp2.1\ReceiveLogs.dll
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ReceiveLogs\ReceiveLogs\obj\Debug\netcoreapp2.1\ReceiveLogs.pdb

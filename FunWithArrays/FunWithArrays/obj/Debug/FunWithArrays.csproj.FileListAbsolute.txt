@@ -1,0 +1,7 @@
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithArrays\FunWithArrays\bin\Debug\FunWithArrays.exe.config
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithArrays\FunWithArrays\bin\Debug\FunWithArrays.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithArrays\FunWithArrays\bin\Debug\FunWithArrays.pdb
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithArrays\FunWithArrays\obj\Debug\FunWithArrays.csproj.CoreCompileInputs.cache
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithArrays\FunWithArrays\obj\Debug\FunWithArrays.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithArrays\FunWithArrays\obj\Debug\FunWithArrays.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithArrays\FunWithArrays\obj\Debug\FunWithArrays.csprojResolveAssemblyReference.cache

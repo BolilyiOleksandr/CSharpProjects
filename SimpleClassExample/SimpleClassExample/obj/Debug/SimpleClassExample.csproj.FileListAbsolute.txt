@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleClassExample\SimpleClassExample\bin\Debug\SimpleClassExample.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleClassExample\SimpleClassExample\bin\Debug\SimpleClassExample.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleClassExample\SimpleClassExample\bin\Debug\SimpleClassExample.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleClassExample\SimpleClassExample\obj\Debug\SimpleClassExample.csprojResolveAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleClassExample\SimpleClassExample\obj\Debug\SimpleClassExample.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleClassExample\SimpleClassExample\obj\Debug\SimpleClassExample.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleClassExample\SimpleClassExample\obj\Debug\SimpleClassExample.pdb

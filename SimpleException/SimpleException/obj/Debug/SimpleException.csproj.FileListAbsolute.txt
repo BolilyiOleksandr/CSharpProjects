@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleException\SimpleException\bin\Debug\SimpleException.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleException\SimpleException\bin\Debug\SimpleException.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleException\SimpleException\bin\Debug\SimpleException.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleException\SimpleException\obj\Debug\SimpleException.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleException\SimpleException\obj\Debug\SimpleException.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleException\SimpleException\obj\Debug\SimpleException.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleException\SimpleException\obj\Debug\SimpleException.pdb

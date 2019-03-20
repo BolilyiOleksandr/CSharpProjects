@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithMethods\FunWithMethods\bin\Debug\FunWithMethods.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithMethods\FunWithMethods\bin\Debug\FunWithMethods.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithMethods\FunWithMethods\bin\Debug\FunWithMethods.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithMethods\FunWithMethods\obj\Debug\FunWithMethods.csprojResolveAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithMethods\FunWithMethods\obj\Debug\FunWithMethods.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithMethods\FunWithMethods\obj\Debug\FunWithMethods.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\FunWithMethods\FunWithMethods\obj\Debug\FunWithMethods.pdb

@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ProcessMultipleExceptions\ProcessMultipleExceptions\bin\Debug\ProcessMultipleExceptions.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ProcessMultipleExceptions\ProcessMultipleExceptions\bin\Debug\ProcessMultipleExceptions.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ProcessMultipleExceptions\ProcessMultipleExceptions\bin\Debug\ProcessMultipleExceptions.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ProcessMultipleExceptions\ProcessMultipleExceptions\obj\Debug\ProcessMultipleExceptions.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ProcessMultipleExceptions\ProcessMultipleExceptions\obj\Debug\ProcessMultipleExceptions.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ProcessMultipleExceptions\ProcessMultipleExceptions\obj\Debug\ProcessMultipleExceptions.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ProcessMultipleExceptions\ProcessMultipleExceptions\obj\Debug\ProcessMultipleExceptions.pdb

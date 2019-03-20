@@ -1,0 +1,7 @@
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithEnums\FunWithEnums\obj\Debug\FunWithEnums.csprojResolveAssemblyReference.cache
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithEnums\FunWithEnums\obj\Debug\FunWithEnums.csproj.CoreCompileInputs.cache
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithEnums\FunWithEnums\bin\Debug\FunWithEnums.exe.config
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithEnums\FunWithEnums\bin\Debug\FunWithEnums.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithEnums\FunWithEnums\bin\Debug\FunWithEnums.pdb
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithEnums\FunWithEnums\obj\Debug\FunWithEnums.exe
+c:\users\ja0006284\documents\visual studio 2017\Projects\FunWithEnums\FunWithEnums\obj\Debug\FunWithEnums.pdb

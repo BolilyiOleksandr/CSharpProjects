@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleUtilityClass\SimpleUtilityClass\bin\Debug\SimpleUtilityClass.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleUtilityClass\SimpleUtilityClass\bin\Debug\SimpleUtilityClass.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleUtilityClass\SimpleUtilityClass\bin\Debug\SimpleUtilityClass.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleUtilityClass\SimpleUtilityClass\obj\Debug\SimpleUtilityClass.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleUtilityClass\SimpleUtilityClass\obj\Debug\SimpleUtilityClass.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleUtilityClass\SimpleUtilityClass\obj\Debug\SimpleUtilityClass.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\SimpleUtilityClass\SimpleUtilityClass\obj\Debug\SimpleUtilityClass.pdb

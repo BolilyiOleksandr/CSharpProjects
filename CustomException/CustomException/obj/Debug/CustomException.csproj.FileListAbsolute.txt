@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\CustomException\CustomException\bin\Debug\CustomException.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\CustomException\CustomException\bin\Debug\CustomException.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\CustomException\CustomException\bin\Debug\CustomException.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\CustomException\CustomException\obj\Debug\CustomException.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\CustomException\CustomException\obj\Debug\CustomException.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\CustomException\CustomException\obj\Debug\CustomException.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\CustomException\CustomException\obj\Debug\CustomException.pdb

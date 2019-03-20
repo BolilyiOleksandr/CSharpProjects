@@ -1,0 +1,8 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\bin\Debug\netcoreapp2.1\EmitLogTopic.deps.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\bin\Debug\netcoreapp2.1\EmitLogTopic.runtimeconfig.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\bin\Debug\netcoreapp2.1\EmitLogTopic.runtimeconfig.dev.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\bin\Debug\netcoreapp2.1\EmitLogTopic.dll
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\obj\Debug\netcoreapp2.1\EmitLogTopic.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\obj\Debug\netcoreapp2.1\EmitLogTopic.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\obj\Debug\netcoreapp2.1\EmitLogTopic.AssemblyInfoInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmitLogTopic\EmitLogTopic\obj\Debug\netcoreapp2.1\EmitLogTopic.AssemblyInfo.cs

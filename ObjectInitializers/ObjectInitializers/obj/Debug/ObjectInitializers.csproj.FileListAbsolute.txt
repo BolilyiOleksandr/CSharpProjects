@@ -1,0 +1,6 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ObjectInitializers\ObjectInitializers\bin\Debug\ObjectInitializers.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ObjectInitializers\ObjectInitializers\bin\Debug\ObjectInitializers.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ObjectInitializers\ObjectInitializers\bin\Debug\ObjectInitializers.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ObjectInitializers\ObjectInitializers\obj\Debug\ObjectInitializers.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ObjectInitializers\ObjectInitializers\obj\Debug\ObjectInitializers.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\ObjectInitializers\ObjectInitializers\obj\Debug\ObjectInitializers.pdb

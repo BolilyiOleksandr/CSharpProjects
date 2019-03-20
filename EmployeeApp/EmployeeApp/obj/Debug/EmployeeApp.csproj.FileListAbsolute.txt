@@ -1,0 +1,7 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmployeeApp\EmployeeApp\bin\Debug\EmployeeApp.exe.config
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmployeeApp\EmployeeApp\bin\Debug\EmployeeApp.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmployeeApp\EmployeeApp\bin\Debug\EmployeeApp.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmployeeApp\EmployeeApp\obj\Debug\EmployeeApp.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmployeeApp\EmployeeApp\obj\Debug\EmployeeApp.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmployeeApp\EmployeeApp\obj\Debug\EmployeeApp.exe
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\EmployeeApp\EmployeeApp\obj\Debug\EmployeeApp.pdb

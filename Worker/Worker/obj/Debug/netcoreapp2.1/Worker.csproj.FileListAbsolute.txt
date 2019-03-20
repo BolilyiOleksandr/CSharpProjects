@@ -1,0 +1,11 @@
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\bin\Debug\netcoreapp2.1\Worker.deps.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\bin\Debug\netcoreapp2.1\Worker.runtimeconfig.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\bin\Debug\netcoreapp2.1\Worker.runtimeconfig.dev.json
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\bin\Debug\netcoreapp2.1\Worker.dll
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\obj\Debug\netcoreapp2.1\Worker.csproj.CoreCompileInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\obj\Debug\netcoreapp2.1\Worker.AssemblyInfoInputs.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\obj\Debug\netcoreapp2.1\Worker.AssemblyInfo.cs
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\bin\Debug\netcoreapp2.1\Worker.pdb
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\obj\Debug\netcoreapp2.1\Worker.csprojAssemblyReference.cache
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\obj\Debug\netcoreapp2.1\Worker.dll
+C:\Users\ja0006284\Documents\Visual Studio 2017\Projects\Worker\Worker\obj\Debug\netcoreapp2.1\Worker.pdb
