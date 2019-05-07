@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Trades>
+  <Trade>
+    <Id>TROO1X</Id>
+    <Type>Bond</Type>
+    <Date>2019-04-16</Date>
+    <Value>13.5</Value>
+  </Trade>
+  <Trade>
+    <Id>TROO2X</Id>
+    <Type>Bond</Type>
+    <Date>2019-04-17</Date>
+    <Value>14.5</Value>
+  </Trade>
+  <Trade>
+    <Id>TROO3X</Id>
+    <Type>Equity</Type>
+    <Date>2019-04-18</Date>
+    <Value>15.5</Value>
+  </Trade>
+  <Trade>
+    <Id>TROO4X</Id>
+    <Type>Equity</Type>
+    <Date>2019-04-19</Date>
+    <Value>16.5</Value>
+  </Trade>
+</Trades>
