@@ -23,6 +23,8 @@ namespace CPR.Reader
             var data = _reader.ReadDataFromComPortUsingDllFile(PathToDllFile);
 
             Console.WriteLine($"Data from Com Port: {data}");
+
+            Console.ReadLine();
         }
     }
 

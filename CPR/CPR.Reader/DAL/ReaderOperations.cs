@@ -19,12 +19,12 @@ namespace CPR.Reader.DAL
                 var assembly = Assembly.LoadFile(pathToDllFile);
                 var type = assembly.GetType("CPR.ComPort.DAL.ComPortOperations");
                 var comPortOperations = Activator.CreateInstance(type);
-                var comPortMethod = type.GetMethod("InitializeComPort");
-                var dataFromComPortMethod = type.GetMethod("ReadDataFromComPort");
 
+                var comPortMethod = type.GetMethod("InitializeComPort");
                 if (comPortMethod != null)
                     comPortMethod.Invoke(comPortOperations, new object[] { ConfigurationManager.AppSettings["ComPort"], ConfigurationManager.AppSettings["BaudRate"] });
 
+                var dataFromComPortMethod = type.GetMethod("ReadDataFromComPort");
                 if (dataFromComPortMethod != null)
                     result = dataFromComPortMethod.Invoke(comPortOperations, new object[] { Convert.ToInt32(ConfigurationManager.AppSettings["ReadTimeOut"]) }).ToString();
             }
