@@ -14,6 +14,7 @@ namespace CarDelegate
 
             var c1 = new Car("SlugBug", 100, 10);
             c1.RegisterWithCarEngine(new Car.CarEngineHandler(OnCarEngineEvent));
+            c1.RegisterWithCarEngine(new Car.CarEngineHandler(OnCarEngineEvent2));
 
             Console.WriteLine("***** Speeding up *****");
             for (var i = 0; i < 6; i++)
@@ -30,6 +31,11 @@ namespace CarDelegate
             Console.WriteLine("=> {0}", msg);
             Console.WriteLine("*****************************************************\n");
         }
+
+        public static void OnCarEngineEvent2(string msg)
+        {
+            Console.WriteLine("=> {0}", msg.ToUpper());
+        }
     }
 
     public class Car
@@ -40,7 +46,7 @@ namespace CarDelegate
 
         public void RegisterWithCarEngine(CarEngineHandler methodToCall)
         {
-            listOfHandlers = methodToCall;
+            listOfHandlers += methodToCall;
         }
         public int CurrentSpeed { get; set; }
         public int MaxSpeed { get; set; } = 100;
