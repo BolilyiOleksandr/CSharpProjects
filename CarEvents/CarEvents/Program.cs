@@ -13,10 +13,10 @@ namespace CarEvents
             Console.WriteLine("***** Fun with Events *****\n");
             var c1 = new Car("SlugBug", 100, 10);
 
-            c1.AboutToBlow += new Car.CarEngineHandler(CarIsAlmostDoomed);
-            c1.AboutToBlow += new Car.CarEngineHandler(CarAboutToBlow);
+            c1.AboutToBlow += CarIsAlmostDoomed;
+            c1.AboutToBlow += CarAboutToBlow;
 
-            Car.CarEngineHandler d = new Car.CarEngineHandler(CarExploded);
+            EventHandler<CarEventArgs> d = new EventHandler<CarEventArgs>(CarExploded);
             c1.Exploded += d;
 
             Console.WriteLine("***** Speeding up *****");
@@ -36,19 +36,23 @@ namespace CarEvents
             Console.ReadLine();
         }
 
-        public static void CarAboutToBlow(string msg)
+        public static void CarAboutToBlow(object sender, CarEventArgs e)
         {
-            Console.WriteLine(msg);
+            if (sender is Car)
+            {
+                var c = (Car)sender;
+                Console.WriteLine("Critical Message from {0}: {1}", c.PetName, e.msg);
+            }
         }
 
-        public static void CarIsAlmostDoomed(string msg)
+        public static void CarIsAlmostDoomed(object sender, CarEventArgs e)
         {
-            Console.WriteLine("=> Critical Message from Car: {0}", msg);
+            Console.WriteLine("=> Critical Message from Car: {0}", e.msg);
         }
 
-        public static void CarExploded(string msg)
+        public static void CarExploded(object sender, CarEventArgs e)
         {
-            Console.WriteLine(msg);
+            Console.WriteLine(e.msg);
         }
     }
 }
