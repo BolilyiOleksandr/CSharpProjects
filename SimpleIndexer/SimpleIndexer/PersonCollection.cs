@@ -9,20 +9,27 @@ namespace SimpleIndexer
 {
     internal class PersonCollection : IEnumerable
     {
-        private ArrayList arPeople = new ArrayList();
+        private Dictionary<string, Person> listPeople = new Dictionary<string, Person>();
 
-        public Person this[int index]
+        public Person this[string name]
         {
-            get { return (Person)arPeople[index]; }
-            set { arPeople.Insert(index, value); }
+            get { return (Person)listPeople[name]; }
+            set { listPeople[name] = value; }
+        }
+
+        public void ClearPeople()
+        {
+            listPeople.Clear();
+        }
+
+        public int Count
+        {
+            get { return listPeople.Count; }
         }
 
         public IEnumerator GetEnumerator()
         {
-            foreach (var people in arPeople)
-            {
-                yield return people;
-            }
+            return listPeople.GetEnumerator();
         }
     }
 }
