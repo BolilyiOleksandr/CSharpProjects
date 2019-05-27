@@ -1,0 +1,1494 @@
+				PART II - Core C# Programming
+
+		Chapter 3 - Core C# Programming Constructs, Part I
+
+Type is a general term referring to a member of the set {class, interface, structure, enumeration, delegate}.
+In C# it is not possible to create global functions or global points of data.
+Every executable C# application (console program, Windows desktop program, or Windows service) must contain 
+a class defining a Main() method, which is used to signify the entry point of the application.
+
+Be aware that all C# keywords are lowercase (e.g., public, lock, class, dynamic), while namespaces, types,
+and member names begin (by convention) with an initial capital letter and have capitalized the first
+letter of any embedded words (e.g. System.Windows.MessageBox).
+
+By convention, returning the value 0 indicates the program has terminated successfully, while another value
+(such as -1) represents an error condition.
+
+Console.WriteLine() pumps a text string (including a carriage return) to the output stream.
+Console.Write() method pumps text to the output stream without a carriage return.
+Console.ReadLine() allows you to receive information from the input stream up until the Enter key is pressed.
+Console.Read() is used to capture a single character from the input stream.
+
+The C# data type keywords are actually shorthand notations for full-blown types in the System namespace.
+
+All intrinsic data types support what is known as a default constructor. This feature allows you to create
+a variable using the new keyword, which automatically sets the variable to its default value:
+- bool variables are set to false
+- numeric data is set to 0 (or 0.0 in the case of floating-point data types)
+- char variables are set to a single empty character
+- biginteger variables are set to 0
+- datetime variables are set to 1/1/0001 12:00:00 AM
+- object references (including strings) are set to null
+
+If you have more uniquely numbered curly-bracket placeholders than fill arguments, you will receive a format
+exception at runtime. However, if you have more fill arguments than placeholders, the unused fill arguments
+are ignored.
+
+It is possible to position each placeholder in any location within a string literal, and it need not follow
+an increasing sequence.
+
+It is a compiler error to make use of a local variable before assigning an initial value.
+
+It is also permissible to declare multiple variables of the same underlying type on a single line of code.
+
+Default values of the variables:
+- bool variables are set to false
+- numeric data is set to 0 (or 0.0 in the case of float-point data types)
+- char variables are set to a single empty character
+- BigInteger variables are set to 0.
+- DateTime variables are set to 1/1/0001 12:00:00 AM
+- Object reference (including strings) are set to null
+
+Many members of System.Char have two calling conventions: a single character or a string with a numerical index that
+specifies the position of the character to test.
+
+The DateTime type contains data that represents a specific date (month, day, year) and time value, both of which
+may be formatted in a variety of ways using the supplied members. The TimeSpan structure allows you to easily
+define and transform units of time using various members.
+
+string variables can be connected together to build larger strings via the C# + (as well as +=) operator.
+This techique is formally termed string concatenation.
+
+C# string literals may contain various escape characters, which qualify how the character data should be printed
+to the output stream.
+
+---------------------------------------------------------------------------------------------------------------------
+Character	|	Meaning in Life										     |
+---------------------------------------------------------------------------------------------------------------------
+\'		|	Inserts a single quote into a string literal.						     |
+\"		|	Inserts a double quote into a string literal.						     |
+\\		|	Inserts a backslash into a string literal. This can be quite helpful when defining file or   |
+		|	network path.										     |
+\a		|	Triggers a system alert (beep). For console programs, this can be an audio clue to the user. |
+\n		|	Inserts a new line (on Windows platforms).						     |
+\r		|	Inserts a carriage return.								     |
+\t		|	Inserts a horizontal tab into the string literal.					     |
+---------------------------------------------------------------------------------------------------------------------
+
+When you prefix a string literal with the @ symbol, you have created what is termed a verbatim string.
+Using verbatim string, you disable the processing of a literal's escape characters and print out a string as is.
+
+A reference type is an object allocated on the garbage-collected managed heap.
+
+The string data type is indeed a reference type, the equality operators have been redefined to compare the values
+of string objects, not the object in memory to which ther refer.
+
+The C# equality operators perform a case-sensitive, character-by-character equality test on string objects.
+
+One of the interesting aspects of System.String is that after you assign a string object with its initial value,
+the character data cannot be changed (strings are immutable). If you look more closely at what is happening
+behind the scenes, you will notice the methods of the string type are, in fact, returning you a new string object
+in a modified format.
+
+Widening is the term used to define an implicit upward cast that does not result in a loss of data.
+
+Narrowing is the logical opposite of widening, in that a larger value is stored within a smaller data type variable.
+
+When you wrap a statement (or a block of statements) within the scope of the checked keyword, the C# compiler
+emits additional CIL instrunctions that test for overflow conditions that may result when adding, multiplying,
+subtracting, or dividing two numerical data types.
+
+C# provides the unchecked keyword to disable the throwing of an overflow exception on a case-by-case basis.
+
+The C# language does provide for implicitly typing of local variables using the var keyword. The compiler will
+automatically infer the underlying data type based on the initial value used to initialize the local
+data point. There are various restrictions regarding the use of the var keyword. First, implicit typing applies
+only to local variables in a method or property scope. It is illegal to use the var keyword to define return 
+values, parameters, or field data of a custom type. Also, local variables declared with the var keyword
+must be assigned an initial value at the exact time of declaration and cannot be assigned the initial value
+of null. This last restriction should make sense, given that the compiler cannot infer what sort of type
+in memory the variable would be pointing to based only to null. It is permissible, however, to assing 
+an inferred local variable to null after its initial assignment (provided it is a reference type). Futhermore,
+it is permissible to assign the value of an implicitly typed local variable to the value of other variables,
+implicitly typed or not. Also, it is permissible to return an implicitly typed local variable to the caller, 
+provided the method return type is the same underlying type as the var-defined data point.
+
+Be aware that implicit typing of local variales results in strongly typed data. Therefore, use of the var keyword
+is not the same technique used with scripting languages (such as JavaScript or Perl) or the COM Variant data type,
+where a variable can hold values of different types over its lifetime in a program (often termed dynamic typing).
+
+C# does allow for dynamic typing in C# using a keyword called dynamic.
+
+C# provides the following four iteration constructs:
+- for
+- foreach/in
+- while
+- do/while
+
+For - when you need to iterate over a block of code a fixed number of times, the for statement provides a good deal
+of flexibility. In essence, you are able to specify how many times a block of code repeats itself, as well as the 
+terminating condition. You can create complex terminating conditions, build endless loops, loop in reverse (via the
+-- operator), and use the goto, continue, and break jump keywords.
+
+Foreach - allows you to iterate over all items in a container without the need to test for an upper limit.
+Unlike a for loop, however, the foreach loop will walk the container only in a linera (n+1) fashion.
+
+While - the looping construct is useful should you want to execute a block of statements until some terminating
+condition has been reached. Within the scope of a while loop, you will need to ensure this terminating event is 
+indeed established; otherwise, you will be stuck in an endless loop.
+
+Do/while - is used when you need to perform some action an undetermined number of times. The difference is that 
+do/while loops are guaranteed to execute the corresponding block of code at least once. In contrast, it is possible
+that a simple while loop may never execute if the terminating condition is false from onset.
+
+		Chapter 4 - Core Programming Constructs, Part II
+
+C# Parameter Modifiers
+---------------------------------------------------------------------------------------------------------------------------
+Parameter	|	Meaning in Life											  |
+Modifier	|													  |
+--------------------------------------------------------------------------------------------------------------------------
+(None)		|	If a parameter is not marked with a parameter modifier, it is assumed to passed by value,	  |
+		|	meaning the called method receives a copy of the original data.					  |
+out		|	Output parameters must be assigned by the method being called and, therefore, are passed	  |
+		|	by reference. If the called method fails to assign output parameters, you are issued 		  |
+		|	a compiled error.										  |
+ref		|	The value is initially assigned by the caller and may be optionally modified by the called	  |
+		|	method (as the data is also passed by reference). No compiler error is generated if 		  |
+		|	the called method fails to assign a ref parameter.						  |
+params		|	This parameter modifier allows you to send in a variable number of arguments as a single 	  |
+		|	logical parameter. A method can have only a single params modifier, and it must be the final	  |
+		|	parameter of the method. In reality, you might not need to use the params modifier all too often; |
+		|	however, be aware that numerous methods within the base class libraries do make use of this	  |	
+		|	C# language feature										  |
+--------------------------------------------------------------------------------------------------------------------------
+
+The default manner in which a parameter is sent into a function is by value.
+
+Methods that have been defined to take output parameters (via the out keyword) are under obligation to assign them
+to an appropriate value before exiting the method scope (if you fail to do so, you will receive compiler errors).
+Calling a method with output parameters also requires the use of the out modifier.
+However, the logical variables that are passed as output variables are not required to be assigned before 
+passing them in as output parameters (if you do so, the original value is lost after the call). The reason the compiler
+allows you to send in seemingly unassigned data is because the method being called must take an assignment.
+Finally, always remember that a method that defines output parameters must assign the parameter to a valid value
+before exiting the method scope.
+
+Reference (ref) parameters are necessary when you want to allow a method to operate on (and usually change the values of)
+various data points declared in the caller's scope (such as a sorting or swapping routine). Note the distinction 
+between output and reference parameters:
+- output parameters do not need to be initialized before they passed to the method. The reason for this is that
+the method must assign output parameters before exiting.
+- reference parameters must be initilized before they are passed to the method. The reason for this is that you are passing
+a reference to an existing variable. If you don't assign it to an initial value, that would be the equivalent of operating on an
+unassigned local variable.
+
+C# supports the use of parameter arrays using the params keyword. If you were to prototype a method to take an array 
+of doubles, this would force the caller to first define the array, then fill the array, and finally pass it into the method.
+
+To avoid any ambiguity, C# demands a method support only a single params argument, which must be the final argument
+in the parameter list.
+
+C# allows you to create methods that can take optional arguments. This technique allows the caller to invoke a single method
+while omitting arguments deemed unnecessary, provided the caller is happy with the specific defaults.
+One important thing to be aware of is that the value assigned to an optional parameter must be known at compile time 
+and cannot be resolved at runtime (if you attempt to do so, you'll receive compile-time errors!).
+To avoid ambiguity, optional parameters must always be packed onto the end of a method signature. It is a compiler error
+to have optional parameters listed before nonoptional parameters.
+
+Like other modern object-oriented languages, C# allows a method to be overloaded.Simply put, when you define a set of
+identically named methods that differ by the number (or type) of parameters, the method in question is said to be
+overloaded.
+
+It is possible to build generic methods that take the concept of overloading to the next level. Using generics, you can 
+define type placeholders for a method implementation that are specified at the time you invoke the member in question.
+
+Do be aware that if you declare an array but do not explicitly fill each index, each item will be set to the default value
+of the data type (e.g., an array of bools will be set to false or an array of ints will be set to 0).
+In addition to filling an array element by element, you are also able to fill the items of an array using C# array
+initialization syntax. To do so, specify each array item within the scope of curly brackets ({}).
+Notice that when you make use of this "curly-bracket" syntax, you do not need to specify the size of the array,
+given that this will be inferred by the number of items within the scope of the curly brackets.
+Also notice that the use of the new keyword is optional.
+
+The var keyword allows you to define a variable, whose underlying type is determined by the compiler.
+
+In addition to the single-dimension arrays you have been seen thus far, C# also supports two varieties of
+multidimensional arrays:
+1) a rectangular array, which is simply an array of multiple dimensions, where each row is of the same length
+2) a jagged array, which contains some number of inner arrays, each of which may have a different upper limit
+
+After you have created an array, you are free to pass it as an argument ot receive it as a member return value.
+
+An enum is a custom data type of name-value pairs. An enumerator is a class of structure that implements
+a .NET interface named IEnumerable.
+
+The first element in the enum is set to the value zero (0), followed by an n + 1 progression.
+Elements of an enumeration need not be sequential!
+
+Once you have established the range and storage type of your enumeration, you can use it in place of so-called
+magic numbers. Because enumerations are nothing more than a user-defined data type, you are able to use them as 
+function return values, method parameters, local variables, and so forth.
+
+Structure types are well suited for modeling mathematical, geometrical, and other "atomic" entities
+in your application. A structure (such as an enumeration) is a used-defined type; however, 
+structures are not simply a collection of name-value pairs. Rather, structures are types that can contain
+any number of data fields and members that operate on these fields.
+
+You can think of a structure as a "lightweight class type", given that structures provide a way to define a type
+that supports encapsulation but cannot be used to build a family of related types. When you need to build a family
+of related types through inheritance, you will need to make use of class types.
+
+In C#, structures are defined using the struct keyword.
+
+You can create structure variables using the C# new keyword, which will invoke the structure's default constructor.
+By definition, a default constructor does not take any arguments. The benefit of invoking the default constructor of a structure
+is that each piece of field data is automatically set to its default value.
+
+It is also possible to design a structure with a custom constructor. This allows you to specify the values of field data
+upon variable creation rather than having to set each data member field by field.
+
+Unlike arrays, strings, or enumerations, C# structures do not have an identically named representation in the .NET library
+(that is, there is no System.Structure class) but are implicitly derived from System.ValueType. Simply put, the role of
+System.ValueType is to ensure that the derived type (e.g., any structure) is allocated on the stack, rather than
+the garbage-collected heap. Simply put, data allocated on the stack can be created and destroyed quickly, as its lifetime
+is determined by the defining scope. Heap-allocated data, on the other hand, is monitored by the .NET garbage collector and 
+has a lifetime that is determined by a large number of factors.
+Functionally, the only purpose of System.ValueType is to override the virtual methods defined by System.Object to use
+value-based, versus reference-based, semantics.
+
+// Structures and enumerations are implicitly extend System.ValueType.
+public abstract class ValueType: object
+{
+   public virtual bool Equals(object obj);
+   public virtual int GetHashCode();
+   public Type GetType();
+   public virtual string ToString();
+}
+
+Given that value types are using value-based semantics, the lifetime of a structure (which includes all numerical
+data types [int, float], as well as any enum or structure) is predictable. When a structure variable falls out
+of the defining scope, it is removed from memory immediately.
+
+When you assign one value type to another, a member-by-member copy of the field data is achieved.
+
+The golden rule to keep in mind when passing reference types is the following:
+- if a reference type is passed by reference, the caller may change the values of the object's state data, 
+  as well as the object it is referencing
+- if a reference type is passed by value, the caller may change the value of the object's state data
+  but not the object it is referencing
+
+Value Types and Reference Types Comparison
+----------------------------------------------------------------------------------------------------------------------------------------
+Intriguing Question				Value Type					Reference Type				|
+---------------------------------------------------------------------------------------------------------------------------------------	|
+Where are objects allocated?		Allocated on the stack.				Allocated on the managed heap.			|
+																	|
+How is a variable represented?		Value type variables are local copies.		Reference type variables are pointing to the 	|
+											memory occupied by the allocated instance.	|
+																	|
+What is the base type?			Implicitly extends System.ValueType.		Can derive from any other (except		|
+											System.ValueType), as long as that type		|
+											is not "sealed".				|
+																	|
+Can this type function as a base	No. Value types are always sealed		Yes. If the type is not sealed, it may		|
+to other types?				and cannot be inherited from.			function as a base to other types.		|
+																	|
+What is the default parameter		Variables are passed by value (i.e.,		For reference types, the reference is copied	|
+passing behavior?			a copy of the variable is passed		by value.					|
+					into the called function).									|
+																	|
+Can this type override			No.						Yes, indirectly.				|
+System.Object.Finalize()?														|
+																	|
+Can I define constructors		Yes, but the default constructor		But, of course!					|
+for this type?				is reserved (i.e., your custom									|
+					constructors must all have									|
+					arguments).											|
+																	|
+When do variables of this		When they fall out of the defining 		When the object is garbage collected.		|
+type die?				scope.												|
+----------------------------------------------------------------------------------------------------------------------------------------
+
+C# supports the concept of nullable data types. Simply put, a nullable type can represent all the values of its underlying type,
+plus the value null. Thus, if you declare a nullable bool, it could be assigned a value from the set {true, false, null}.
+This can be extremely helpful when working with the relational databases, given that it is quite common to encounter undefined columns
+in database tables. Without the concept of a nullable data types, there is no convenient manner in C# to represent a numerical
+data point with no value.
+To define a nullable variable type, the question mark symbol (?) is suffixed to the inderlying data type. Do note that this syntax
+is legal only when applied to value types. If you attempt to create a nullable reference type (including strings), you are issued
+a compile-time error. Like a non-nullable variable, local nullable variables must be assigned an initial value before you can 
+use them.
+
+In C#, the ? suffix notation is a shorthand for creating an instance of the generic System.Nullable<T> structure type.
+The System.Nullable<T> type provides a set of members that all nullable types can make use of.
+
+The next aspect to be aware of is any variable that might have a null value (i.e., a reference-type variable or a nullable 
+value-type variable) can make use of the C# ?? operator, which is formally termed the null coalescing operator. This operator
+allows you to assign a value to a nullable type if the retrieved value is in fact null.
+
+The benefit of using the ?? operator is that it provides a more compact version of a traditional if/else condition.
+
+				PART III Object-Oriented Programming with C#
+
+		Chapter 5 Understanding Encapsulation
+
+As far as the .NET platform is concerned, the most fundamental programming construct is the class type. Formally, a class is a user-defined
+type that is composed of field data (often called member variables) and members that operate on this data (such as constructors, properties,
+methods, events, and so forth). Collectively, the set of field data represents the "state" of a class instance (otherwise known as an object).
+The power of object-oriented languages, such as C#, is that by grouping data and related functionality in a unified class definition, 
+you are able to model your software after entities in the real world.
+
+Public members of a class are directly accessible once an object of this type has been created. Recall the term of object is used
+to describe an instance of a given class type created using the new keyword.
+
+Field data of a class should seldom (if ever) be defined as public. To preserve the integrity of your state data, it is a far better design
+to define data as private (or possibly protected) and allow controlled access to the data via properties.
+
+A constructor is a special method of a class that is called indirectly when creating an object using the new keyword.
+However, unlike a "normal" method, constructors never have a return value (not even void) and are always named identically
+to the class they are constructing.
+
+Every C# class is provided with a "freebie" default constructor that you can redefine if need be. By definition, a default constructor
+never takes arguments. After allocating the new object into memory, the default constructor ensures that all field data of the class is
+set to an appropriate default value.
+
+If you are not satisfied with these default assignments, you may redefine the default constructor to suit your needs.
+
+Typically, classes define additional constructors beyond the default. In doing so, you provide the object user with a simple and
+consistent way to initialize the state of an object directly at the time of creation.
+
+When you define a method of the same name that differs by the number or type of arguments, you have overloaded the method.
+
+C# supplies a this keyword that provides access to the current class instance. One possible use of the this keyword is to resolve scope ambiguity, which can arise
+when an incoming parameter is named identically to a data field of the class.
+
+Another using of the this keyword is to design a class using a technique termed constructor chanining. This desing pattern is helpful when you have a class that
+defines multiple constructors. Given that constructors often validate the incoming arguments to enforce various business rules, it can be quite common to find
+redundant validation logic within a class's constructor set.
+
+A cleaner approach is to designate the constructor that takes the greatest number of arguments as the "master constructor" and have its implementation perform the
+required validation logic. The remaining constructors can make use of the this keyword to forward the incoming arguments to the master constructor and provide
+any additional parameters as necessary. In this way, you need to worry out only about maintaining a single constructor for the entire class, while the remaining
+constructors are basically empty.
+
+On a final note, do know that once a constructor passes arguments to the designated master constructor (and that constructor has processed the data),
+the constructor invoked originally by the caller will finish executing any remaining code statements.
+
+A C# class may define any number of static members, which are declared using the static keyword. When you do so, the member in question must be invoked
+directly from the class level, rather than from an object reference variable.
+
+Simply put, static members are items that are deemed (by the class designer) to be so commonplace that there is no need to create an instance of the class
+before invoking the member. While any class can define static members, they are quite commonly found within utility classes. By definition,
+a utility class is a class that does not maintain any object-level stats and is not created with the new keyword. Rather, a utility class exposes all functionality
+as class-level (aka static) members.
+
+The static keyword cam be appliedto the following:
+- data of a class
+- methods of a class
+- properties of a class
+- a constructor
+- the entire class definition
+- in conjunction with the C# using keyword
+
+When you define static data of a class, the memory is shared by all objects of that category.
+
+It is a compiler error for a static member to reference nonstatic members in its implementation. On a related note, it is an error to use the this keyword
+on a static member because this implies an object!
+
+Simply put, a static constructor os a special constructor that is an ideal place to initialize the values of static data when the value is not known
+at compile time (e.g., you need to read in the value from an external file, read in the values from a database, generate a random, or whatnot).
+
+Here are a few points of interest regarding static constructors:
+- A given class may define only a single static constructor. In other words, the static constructor cannot be overloaded.
+- A static constructor does not take an access modifier and cannot take any parameters
+- A static constructor executes exactly one time, regardless of how many objects of the type are created
+- The runtime invokes the static constructor when it creates an instance of the class or before accessing the first static member invoked by the caller
+- The static constructor executes before any instance-level constructors
+
+It is also possible to apply the static keyword directly on the class level. When a class has been defined as static, it is not creatable using the 
+new keyword, and it can contain only members or data fields marked with the static keyword. If this is not the case, you receive compiler error.
+
+It is now possible to define a C# using directive, which will import all static members into the declaring code.
+
+All object-oriented languages must contend with three core principles, often called the pillars of object-oriented programming (OOP).
+
+1) Encapsulation - how does this language hide an object's internal implementation details and preserve data integrity?
+
+2) Inheritance - how does this language promote code reuse?
+
+3) Polymorphism - how does this language let you treat related objects in a similar way?
+
+A class's polymorphic interface is constructed using any number of virtual or abstract members.
+In a nutshell, a virtual member is a member in a base class that defines a default implementation that may be changed (or more formally speaking, overriden)
+by a derived class. In contrast, an abstract method is a member in a base class that does not provide a default implementation but does provide a signature.
+When a class derives from a base class defining an abstract method, it must be overriden by a derived type. In either case, when derived types override
+the members defined by a base class, they are essentially redefining how they respond to the same request.
+
+C# Access Modifiers
+----------------------------------------------------------------------------------------------------------------------------------------------------	
+C# Access Modifier	May Be Applied To		Meaning in Life										    |
+----------------------------------------------------------------------------------------------------------------------------------------------------|
+public 			Types or type members		Public items have no access restrictions. A public member can be accessed from an object,   |
+							as well as any derived class. A public type can be accessed from other external 	    |
+							assemblies.										    |
+private 		Type members or 		Private items can be accessed only by the class (or structure) that defines the item.	    |
+			nested types														    |
+protected		Type members or			Protected items can be used by the class that defines it and any child class. However,	    |
+			nested types			protected items cannot be accessed from the outside world using C# dot operator.            |
+internal		Types or type members		Internal items are accessible only within the current assembly. Therefore, if you define    |
+							a set of internal types within a .NET class library, other assemblies 			    |
+							are not able to use them.								    |
+protected internal	Type members or			When the protected and internal keywords are combined on an item, the item is accessible    |
+			nested types			within the defining assembly, within the defining class, and by derived classes.	    |
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+By default, type members are implicitly private while types are implicitly internal.
+
+A nested type is a type declared directly within the scope of class or structure.
+
+The concept of encapsulation revolves around the notion that an object's data should not be directly accessible from an object instance.
+Rather, class data is defined as private. If the object user wants to alter the state of an object, it does so indirectly using public members.
+
+You should get in the habit of defining private data, which is indirectly manipulated using one of two main techniques:
+
+a) you can define a pair of public accessor (get) and mutator (set) methods
+
+b) you can define a public .NET property
+
+Although you can encapsulate a piece of field data using traditional get and set methods, .NET languages prefer to enforce 
+data encapsulation state data using properties.
+
+Within a set scope of a property, you can use a token named value, which is used to represent the incoming value used to assign the property by the caller.
+This token is not a true C# keyword but is what is known as a contextual keyword. When the token value is within the set scope of the property, 
+it always represent the value being assigned by the caller, and it will always be the same underlying data type as the property itself.
+
+Properties, specifically the set portion of a property, are common places to package up the business rules of your class.
+
+When encapsulating data, you might want to configure a read-only property. To do so, simply omit the set block. Likewise, 
+if you want to have a write-only property, omit the get block.
+
+To streamline the process of providing simple encapsulation of field data, you may use automatic property syntax.
+When defining automatic properties, you simply specify the access modifier, underlying data type, property name, and empty get/set scopes.
+At compile time, your type will be provided with an autogenerated private backing field and a fitting implementation of the get/set logic.
+With the current version of C#, it is now possible to define a "read-only automatic property" by omitting the set scope. 
+However, it is not possible to define a write-only property.
+
+To help streamline the process of getting up and running, C# offers object initializer syntax. Using this technique, it is possible to create
+a new object variable and assign a slew of properties and/or public fields in a few lines of code. Syntactically, an object initializer consists
+of a comma-delimited list of specified values, enclosed by { and } tokens. Each member in the initialization list maps to the name of a public field
+or public property of the object being initialized.
+
+C# offers the const keyword to define constant data, which can never change after the initial assignment. As you might guess, this can be helpful
+when you are defining a set of known values for use in your applications that are logically connected to a given class or structure.
+The constant fields of a class are implicitly static. Regardless of where you define a constant piece of data, the one point to always
+remember is that the initial value assigned to the constant must be specified at the time you define the constant. 
+The reason for this restriction has to do with the fact the value of constant data must be known at compile time.
+Constructors (or any other method), as you know, are invoked at runtime.
+
+Closely related to constant data is the notion of read-only field data (which should not be confused with a read-only property).
+Like a constant, a read-only field cannot be changed after the initial assignment. However, unlike a constant, the value assigned to a read-only field
+can be determined at runtime and, therefore, can legaly be aassigned within the scope of a constructor but nowhere else.
+This can be helpful when you don't know the value of a field until runtime, perhaps because you need to read an external file to obtain the value,
+but want to ensure that the value willnot change after that point.
+Unlike a constant field, read-only fields are not implicitly static. Thus, if you want to expose PI from the class level, you must explicitly
+use the static keyword. If you know the value of a static read-only field at compile time, the initial assignment looks similar to that of a constant
+(however, in this case, it would be easier to simply use the const keyword in the first place, as you are assigning the data field at the time of
+declaration).
+
+It is important to understand the role of the C# partial keyword. A production-level class could easily consist of hundreds and hundreds (if not thousands)
+of lines of code within a single *.cs file. As it turns out, when you are creating your classes, it is often the case that much of the boilerplate code
+can be basically ignored after it is accounted for. For example, field data, properties, and constructors tend to remain as is during production,
+while methods tend to be modified quite often to account for updated algorithm and so forth.
+In C#, you can partition a single class across multiple code files to isolate the boilerplate code from more readily useful (and complex) members.
+Remember that every aspect of a partial class definition must be marked with the partial keyword!
+The whole idea of a partial class is realized only during design time. After the application has been compiled, there is just a single, unified class
+within the assembly. The only requirement when defining partial types is that the type's name is identical and defined within the same .NET namespace.
+
+		Chapter 6 Understanding Inheritance and Polymorphism
+
+Specifically speaking, code reuse comes in two flavors: inheritance (the "is-a" relationship) and the containment/delegation model (the "has-a") relationship.
+When you establish "is-a" relantionship between classes, you are building a dependency between two or more class types. The basic idea behind classical
+inheritance is that new classes can be created using existing classes as a starting point.
+
+The existing class that will serve as the basis for the new class is termed a base class, superclass, or parent class. The role of a base class is to define
+all the common data and members for the classes that extend it. The extending classes are formally termed derived or child classes. In C#, you make use
+of the colon operator on the class definition to establish an "is-a" relantionship between classes. 
+
+Although constructors are typically defined as public, a derived class never inherits the constructors of a parent class. 
+Constructors are used to construct only the class that they are defined within.
+
+Remember, private members can be accessed only by the class that defines it.
+
+Speaking of base classes, it is important to keep in mind that C# demands that a given class have exactly one direct base class 
+(the technique is known as multiple inheritance, or simple MI). It is not possible to create a class type that directly derives 
+from two or more base classes. If you attempted to create a class that specifies two direct parent classes, you would receive compiler errors.
+
+C# supplies another keyword, sealed, that prevents inheritance from occuring. When you mark a class as sealed, the compiler will not allow you
+to derive from this type. Most often, sealing a class makes the best sense when you are designing a utility class.
+
+C# structures are always implicitly sealed. Therefore, you can never derive one structure from another structure, a class from a structure,
+or a structure from a class. Structures can be used to model only stand-alone, atomic, user-defined data types. If you want to leverage
+the is-a relationship, you must use classes.
+
+The base keyword is hanging off the constructor signature, which always indicates a derived constructor is passing data to the immediate parent constructor.
+You may use the base keyword whenever a subclass wants to access a public or protected member defined by a parent class.
+Finally, recall that once you add a custom constructor to a class definition, the default constructor is silently removed.
+
+The benefit of defining protected members in a base class is that derived types no longer have to access the data indirectly using public methods or properties.
+The possible downfall, of course, is that when a derived type has direct access to its parent's intenal data, it is possible to accidentally bypass existing
+business rules found within public properties. When you define protected members, you are creating a level of trust between the parent class ad the child class,
+as the compiler will not catch any violation of your type's business rules.
+Although protected field data can break encapsulation, it is quite safe (and useful) to define protected methods. When building class hierarchies, 
+it is common to define a set of methods that are only for use by derived types and are not intended for use by the outside world.
+
+Recall that a sealed class cannot be extended by other classes. As mentioned, this technique is most often used when you are designing a utility class.
+
+The "has-a" relationship is also known as the containment / delegation model or aggregation.
+
+Exposing the functionality of the contained object to the outside world requires delegation.
+Delegation is simply the act of adding public members to the containing class that use the contained object's functionality.
+
+The followinf traits of nesting types are:
+- nested types allow you to gain complete control over the access level of the inner type because they may be declared privately 
+  (recall that non-nested classes cannot be declared using the private keyword)
+- because a nested type is a member of the containing class, it can access private members of the containing class
+- often, a nested type is useful only as helper for the outer class and is not intended for use by the outside world
+
+Polymorphism provides a way for a subclass to define its own version of a method defined by its base class, using the process termed method overriding.
+If a base class wants to define a method that may be (but does not have to be) overriden by a subclass, it must mark the method with the virtual keyword.
+Methods that have been marked with the virtual keyword are termed virtual methods.
+When a subclass wants to change the implementation details of a virtual method, it does so using the override keyword.
+
+The sealed keyword can be applied to the method in order to prohibit override it.
+
+You can use the abstract keyword in the class definition to create an abstract base class.
+At first glance, it might seem strange to define a class that you cannot directly create an instance of. Recall, however, that base classes (abstract or not)
+are useful, in that they contain all the common data and functionality of derived types. Also understand that although you cannnot directly create an 
+instance of an abstract class, it is still assembled in memory when derived classes are created. Thus, it is perfectly fine (and common) for abstract
+classes to define any number of constructors that are called indirectly when derived classes are allocated.
+
+When a class has been defined as an abstract base class (via the abstract keyword), it may define any number of abstract members. Abstract members can be used
+whenever you want to define a member that does not supply a defalt implementation but must be accounted for by each derived class. By doing so, you enforce a
+polymorphic interface on each descendant, leaving them to contend with the task of providing the details behind your abstract methods.
+The usefulness of abstract methods becomes crystal clear when you once again remember that subclasses are never required to override virtual methods.
+Abstract methods can be defined only in abstract classes. If you attempt to do otherwise, you will be issued a compiler error.
+Methods marked with abstract are pure protocol. They simply define the name, return type (if any), and parameter set (if required).
+Although it is not possible to directly create an instance of an abstract base class, you are able to freely store references to any subclass with 
+an abstract base variable.
+
+C# provides a facility that is the logical opposite of method overriding, termed shadowing. Formally speaking, if a derived class defines a member 
+that is identical to a member defined in a base class, the derived class has shadowed the parent's version.
+In the real world, the possibility of this occuring is the greatest when you are subclassing from a class you (or your team) did not create yourself
+(such as when you purchase a third-party .NET software package).
+You can include the new keyword to the method declaration. Doing so explicitly states that the derived type's implementation is intentionally designed
+to effectively ignore the parent's version (again, in the real world, this can be helpful if external .NET software somehow conflicts with your current software).
+You can also apply the new keyword to any member type inherited from a base class (field, constant, static member, or property).
+Finally, be aware that it is possible to trigger the base class implementation of a shadowed member using an explicit cast.
+ 
+The ultimate base class in the system is System.Object. Therefore, everything 'is-an" Object and can be treated as such. Given this fact, it is legal
+to store an instance of any type within an object variable.
+The first law of casting between class types is that when two classes are related by an "is-a" relantionship, it is always safe to store a derived object
+within a base class reference. Formally, this is called an implicit cast, as "it just works", given the laws of inheritance.
+You can satisfy the compiler by performing an explicit cast. This is the second law of casting: you can, in such cases, explicitly downcast using 
+the C# casting operator. The basic template to follow when performing an explicit cast looks something like the following: (ClassIWantToCastTo) referenceIHave
+
+Be aware that explicit casting is evaluated at runtime, not compile time.
+C# provides the as keyword to quickly determine at runtime whether a given type is compatible with another. When you use as keyword, you are able to determine
+compatibility by checking against a null return value.
+In addition to the as keyword, the C# language provides the is keyword to determine whether two items are compatible. Unlike the as keyword, however,
+the is keyword returns false, rather than a null reference if the types are incompatible. In other words, the is keyword does not perform any sort of cast;
+it just checks compatibility. If things are compatible, you can perform a safe cast.
+
+In the .NET universe, every type ultimately derives from a base class named System.Object, which can be presented by the C# object keyword (lowercase o).
+The Object class defines a set of common members for every type in the framework. In fact, when you do build a class that does not explicitly define its parent,
+the compiler automatically derives your type from Object.
+Like any class, System.Object defines a set of members.
+
+public class Object
+{
+   // Virtual members
+   public virtual bool Equals(object obj);
+   protected virtual void Finalize();
+   public virtual int GetHashCode();
+   public virtual string ToString();
+
+   // Instance-level, nonvirtual members.
+   public Type GetType();
+   protected object MemberwiseClone();
+   
+   // Static members.
+   public static bool Equals(object objA, object objB);
+   public static bool ReferenceEquals(object objA, object objB);
+}
+
+Core Members of System.Object
+---------------------------------------------------------------------------------------------------------------------------------------------
+Instance Method of		Meaning in Life												     |
+Object Class																     |
+---------------------------------------------------------------------------------------------------------------------------------------------
+Equals()			By default, this method returns true only if the items beig compared refer to the same item in memory.	     |
+				Thus, Equals() is used to compare object references, not the state of the object. Typically, this method is  |	
+				overriden to return true only if the objects being compared have the same internal state values		     |
+				(that is, value-based semantics).									     |
+				Be aware that if you override Equals(), you should also override GetHashCode(), as these methods are used    |
+				internally by Hashtable types to retrieve subobjects from the container.				     |
+				The ValueType class overrides this method for all structures, so they work with value-based comparisons.     |
+GetHashCode()			This method returns an int that identifies a specific object instance.					     |
+ToString()			This method returns a string representation of this object, using the <namespace>.<type name> format	     |
+				(termed the fully qualified name). This method will often be overriden by a subclass to return a tokenized   |
+				string or name/value pairs that represent the object's internal state, rather than its fully qualified name. |
+GetType()			This method returns a Type object that fully describes the object you are currently referencing.	     |
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+A hash code is a numerical value that represents an object as a particular state.
+To be more specific, the System.Collections.Hasttable class calls GetHashCode() internally to gain a general idea where the object is located, 
+but a subsequent (internal) call to Equals() determines the exact match.
+
+		Chapter 7 Understanding Structured Exception Handling
+
+Three commonly used anomaly-centric terms:
+1) bugs - errors made by the programmer
+2) user errors - are typically caused by the individual running your application
+3) exceptions - are typically regarded as runtime anomalies that are difficult, if not impossible, to account for while programming the application
+
+.NET structured exception handling is a technique for dealing with runtime exceptions.
+Within the .NET nomenclature, an exception accounts for bugs, bugs user input, and runtime errors, even though programmers may view each of these
+as a distinct issue.
+
+Programming with structured exception handling involves the use of four interrelated entities:
+- a class type that represents the details of the exception
+- a member that throws an instance of the exception class to the caller under the correct circumstances
+- a block of code on the caller's side that invokes the exception-prone member
+- a block of code on the caller's side that will process (or catch) the exception, should it occur
+
+The C# programming language offers five keywords (try, catch, throw, finally, and when) that allow you to throw and handle exceptions.
+All exceptions ultimately derive from the System.Exception base class, which in turn derives from System.Object.
+The Exception class implements two .NET interfaces. _Exception interface allows a .NET exception to be processed by an unmanaged code base 
+(such as a COM application), while the ISerializable interface allows an exception object to be persisted across boundaries (such as a machine boundary).
+
+Core Members of the System.Exception Type
+------------------------------------------------------------------------------------------------------------------------------------------------
+System.Exception Property			Meaning in Life											|
+------------------------------------------------------------------------------------------------------------------------------------------------
+Data					This read-only property retrieves a collection of key/value pairs 					|
+					(represented by an object implemented IDictionary) that provide additional, 				|
+					programmer-defined information about the exception. By default, this collection is empty.		|
+HelpLink				This property gets or sets a URL to a help file or web site describing the error in full detail.	|
+InnerException				This read-only property can be used to obtain information about the previous exception(s)		|
+					that caused the current exception to occur. The previous exception(s) are recorded by passing		|
+					them into the constructor of the most current exception.						|
+Message					This read-only property returns the textual description of a given error. The error message itself	|
+					is set as a constructor parameter.									|
+Source					This property gets or sets the name of the assembly, or the object, that threw the current exception.	|
+StackTrace				This read-only property contains a string that identifies the sequence of calls that triggered 		|
+					the exception. As you might guess, this property is useful during debugging or if you want to dump	|
+					the error to an external error log.									|
+TargetSite				This read-only property returns a MethodBase object, which describes numerous details about the method  |
+					that threw the exception (invoking ToString() will identify the method by name).			|
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+When you are invoking a method that may throw an exception, you make use of a try/catch block. After you have caught the exception object,
+you are able to invoke the members of the exception object to extract the details of the problem.
+
+Exceptions that are thrown by the .NET platform are (appropriately) called system exceptions. These exceptions are generally regarded as nonrecoverable,
+fatal errors. System exceptions derive directly from a base class named System.SystemException, which in turn derives from System.Exception
+(which derives from System.Object).
+
+By convention, all exception classes end with the Exception suffix; in fact, this is a .NET best practice.
+As a rule, all custom exception classes should be defined as public classes (recall, the default access modifier of a non-nested type is internal).
+The reason is that exceptions are often passes outside of assembly boundaries and should therefore be accessible to the calling code base.
+
+If you want to build a truly prim-and-proper custom exception class, you would want to make sure your type adheres to .NET best practices:
+1) derives from Exception/ApplicationException
+2) is marked with the [System.Serializable] attribute
+3) defines a default constuctor
+4) defines a constructor that sets the inherited Message property
+5) defines a constructor to handle "inner exceptions"
+6) defines a constructor to handle the serialization of your type
+
+In its simplest form, a try block has a single catch block. In reality, though, you often run into situations where the statements within a try block
+could trigger numerous possible exceptions.
+
+When you are authoring multiple catch blocks, you must be aware that when an exceptions is thrown, it will be processed by the first appropriate catch.
+The rule of thumb to keep in mind is to make sure your catch blocks are structured such that the first catch is the most specific exception
+(i.e., the most derived type in an exception-type inheritance chain), leaving the final catch for the most general (i.e., the base clase of a given
+exception inheritance chain).
+Where at all possible , always favor catching specific exception classes, rather than a general System.Exception.
+Remember, a final catch block that deals with System.Exception tends to be very general indeed.
+C# also supports a "general" catch scope that does not explicitly receive the exception object thrown by a given member.
+
+When you catch an exception, it is permissible for the logic in a try block to rethrow the exception up the call stack to the previous caller.
+To do so, simply use the throw keyword within a catch block.
+It is entirely possible to trigger an exception at the time you are handling another exception.
+
+When you encounter an exception while processing another exception, best practice states that you should record the new exception object as an
+"inner exception" within a new object of the same type as the initial exception.
+
+A try/catch scope may also define an optional finally block. The purpose of a finally block is to ensure that a set of code statements will always execute,
+exception (of any type) or not. When you need to dispose an object, close a file, or detach from a database (or whatever), a finally block ensures
+a location for proper cleanup.
+
+The current release of C# introduce a new (and completely optional) clause that can be placed on a catch scope, via the when keyword.
+When you add this clause, you have the ability to ensure that the statements within a catch block are executed only if some condition in your code
+holds true.
+
+		Chapter 8 Working with Interfaces
+
+An interface is nothing more than a named set of abstract members. The abstact methods are pure protocol in that they do not provide 
+a default implemmentation. An interface expresses a behavior that a given class or structure may choose to support. A class or structure
+can support as many interfaces as necessary.
+
+By covention, .NET interfaces are prefixed with a capital letter I. 
+When you are creating your own custom interfaces, it is considered a best practice to do the same.
+
+When a class is marked as abstract, it may define any number of abstract members to provide polymorphic interface to all derived types.
+However, even when a class does define a set of abstract members, it is also free to define any number of constructors, field data, 
+nonabstract members (with implementation), and so on. 
+Interfaces contain only member definitions.
+The polymorphic interface established by an abstract parent class suffers from one major limitation in that only derived types support the members
+defined by the abstract parent. C# does not support multiple inheritance for classes.
+
+After an interface has been defined, it can be implemented by any class or structure, in any hierarchy, and within any namespace
+or any assembly (written in any .NET programming language). Interface are highly polymorphic.
+
+Another limitation of abstract base classes is that each derived type must contend with the set of abstract members and provide an implementation.
+
+At a syntactic level, an interface is defined using the C# interface keyword.
+Unlike a class, interfaces never specify a base class (not even System.Object). Moreover, the members of an interface never specify an access modifier
+(as all interface members are implicitly public and abstract).
+
+Remember that when you define interface members, you do not define an implementation scope for the members in question. Interfaces are pure protocol and,
+therefore, never define an implementation (that is up to the supporting class or structure). Interface cannot have data fields, constructors,
+and don't provide an implementation of members! However, .NET interface types are also able to define any number of property prototypes.
+Interface types can also contain event and indexer definitions.
+You can't allocate interface types as you would a class or structure.
+
+When a class (or structure) chooses to extend its functionality by supporting interfaces, it does so using a comma-delimited list in the type definition.
+Be aware that the direct base class must be the first item listed after the colon operator. When your class type derives directly from System.Object,
+you are free to simply list the interface (or interfaces) supported by the class, as the C# compiler will extend your types from System.Object
+if you do not say otherwise.
+
+Understand that implementing an interface is an all-or-nothing proposition. The supporting types is not able to selectively choose which members it will
+implement.
+
+One way to determine at runtime whether a type supports a specific interface is to use an explicit cast. 
+If the type does not support the requested interface, you receive an InvalidCastException.
+
+You can determine whether a given type supports an interface by using the as keyword. If the object can be treated as the specified interface,
+you are returned a reference to the interface in question. If not, you receive a null reference.
+
+Notice that when you use the as keyword, you have no need to use try/catch logic, given that if the reference is not null,
+you know you are calling on a valid interface reference.
+
+You may also check for an implemented interface using the is keyword. If the object in question is not compatible with the specified interface,
+you are returned the value false. On the other hand, if the type is compatible with the interface in question, you can safely call the members
+without needing to use try/catch logic.
+
+You may construct methods that take interfaces as parameters.
+
+If you attempt to pass in a type not supporting th necessary interface, you receive a compile-time error.
+Interfaces can also be used as method return values.
+The same interface can be implemented by numerous types, even if they are not within the same class hierarchy and do not hace a common parent class
+beyond System.Object.
+
+When you have an array of a given interface, the array can contain any class or structure that implements that interface.
+
+When you implement several interfaces that have identical members, you can resolve this sort of name clash using explicit interface
+implementation syntax.
+
+When explicitly implementing an interface member, the general pattern breaks down to this:
+
+returnType InterfaceName.MethodName(params){}
+
+Note that when using this syntax, you do not supply an access modifier; explicitly implemented members are automatically private.
+
+Interfaces can be arranged in an interface hierarchy. Like a class hierarchy, when an interface extends an existing interface, it inherits the 
+abstract members defined by the parent (or parents). Of course, unlike class-based inheritance, derived interfaces never inherit true implementation.
+Rather, a derived interface simply extends its own definition with additional abstract members.
+Interface hierarchies can be useful when you want to extend the functionality of an existing interface without breaking existing code base.
+
+The yield keyword is used to specify the value (or values) to be returned the caller's foreach construct. When the yield return statement is reached,
+the current location in the container is stored, and execution is restarted from this location the next time the iterator is called.
+It is also interesting to note that the yield keyword can technically be used within any method, regardless of its name. These methods (which are technically
+called named iterators) are also unique in that they can take any number of arguments. When building a named iterator, be aware that the method
+will return the IEnumerable interface, rather than the expected IEnumerator-compatible type.
+
+So, to wrap up your look at building enumerable objects, remember that for your custom types to work with the C# foreach keyword, the container must define
+a method named GetEnumerator(), which has been formalized by the IEnumerable interface type. The implementation of this method is typically achieved
+by simply delegating it to the internal member that is holding onto the subobjects; however, it is also possible to use the yield return syntax to provide
+multiple "named iterator" methods.
+
+When you want to give your custom type the ability to return an identical copy of itself to the caller, you may implement the standard ICloneable interface.
+This type defines a single method named Clone().
+
+public interface ICloneable
+{
+	object Clone();
+}
+
+Obviously, the implementation of the Clone() method varies among your classes. However, the basic functionality tends to be the same: copy the values
+of your member variables into a new object instance of the same type and return it to the user.
+
+The System.IComparable interface specifies a behavior that allows an object to be sorted based on some specified key.
+
+public interface IComparable
+{
+	int CompareTo(object o);
+}
+
+The generic version of this interface (IComparable<T>) provides a more type-safe manner to hangle comparisons between objects.
+
+CompareTo() Return Values
+-----------------------------------------------------------------------------------------------------------
+CompareTo() Return Value			Description						   |
+-----------------------------------------------------------------------------------------------------------
+Any number less than zero		This instance comes before the specified object in the sort order  |
+Zero 					This instance is equal to the specified object 			   |
+Any number greater than zero		This instance comes after the specified object in the sort order   |	
+------------------------------------------------------------------------------------------------------------
+
+The System.IComparer interface specifies a behavior that allows two objects to be sorted on some specified keys.
+
+public interface IComparer
+{
+	int Compare(object o1, object o2);
+}
+
+The generic version of this interface (IComparer<T>) provides a more type-safe manner to handle comparisons between objects.
+Unlike the IComparable interface, IComparer is typically not implemented on the type you are trying to sort. Rather, you implement this interface
+on any number of helper classes, one for each sort order.
+
+				PART IV Advanced C# Programming
+
+		Chapter 9 Collections and Generics
+
+The most primitive container you could use to hold application data is undoubtedly the array. C# arrays allow you to define a set of identically typed
+items (including an array of System.Objects, which essentially represents an array of any type of data) of a fixed upper limit.
+While basic arrays can be useful to manage small amounts of fixed-size data, there are many other times where you require a more flexible data structure,
+such as a dynamically growing and shrinking container or a container that can hold objects that meet only a specific criteria (e.g., only objects deriving
+from a specific base class or only objects implementing a particular interface). When you make use of a simple array, always remember they are "fixed size".
+It is actually possible to change the size of an array using the generic Resize()<T> method. However, this will result in a copy of the data into a new 
+array object and could be inefficient.
+To help overcome the limitations of a simple array, the .NET base class libraries ship with a number of namespaces containing collection classes.
+Unlike a simple C# array, collection classes are built to dynamically resize themselves on the fly as you insert or remove items. Moreover, many of the
+collection classes offer increased type safety and are highly optimized to process the contained data in a memory-efficient manner.
+A collection class can belong to one of two broad categories:
+
+- Nongeneric collectios (primarily found in the System.Collections namespace)
+- Generic collections (primarily found in the System.Collections.Generic namespace)
+
+Nongeneric collections are typically designed to operate on System.Object types and are, therefore, loosely typed containers (however, some nongeneric
+collections do operate only on a specific data type of data, such as string objects). In contrast, generic collections are much more type safe, given that
+you must specify the "type of type" they contain upon creation. The telltale sign of any generic item is the "type parameter" marked with angled brackets
+(for example, List<T>).
+
+Useful Types of System.Collections
+-----------------------------------------------------------------------------------------------------------------------------------	   
+System.Collections Class			Meaning in Life					Key Implemented Interfaces	   |
+-----------------------------------------------------------------------------------------------------------------------------------|
+ArrayList			Represents a dynamically sized collection of		IList, ICollection, IEnumerable,	   |
+				objects listed in sequential order			ICloneable				   |
+BitArray			Manages a compact array of bit values, which are	ICollection, IEnumerable, 		   |
+				represented as Booleans, where true indicates		ICloneable				   |
+				that the bit is on (1) and false indicates							   |
+				the bit is off (0)										   |
+Hashtable			Represents a collection of key-value pairs that are	IDictionary, ICollection, IEnumerable,	   |
+				organized based on the hash code of the key		ICloneable				   |
+Queue				Represents a standard first-in, first-out (FIFO)	ICollection, IEnumerable,		   |
+				collection of objects					ICloneable				   |
+SortedList			Represents a collection of key-value pairs that are	IDictionary, ICollection, IEnumerable,	   |
+				sorted by the keys and are accessible by key and	ICloneable				   |
+				by index											   |
+Stack				A last-in, first-out (LIFO) stack providing push and 	ICollection, IEnumerable, and		   |
+				pop (and peek) functionality				ICloneable				   |
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Key Interfaces Supported by Classes of System.Collections
+------------------------------------------------------------------------------------------------------------------------------------
+System.Collections Interface				Meaning in Life								    |
+------------------------------------------------------------------------------------------------------------------------------------|
+ICollection				Defines general characteristics (e.g., size, enumeration, and thread safety) for all 	    |
+					nongeneric collection types								    |
+ICloneable				Allows the implementing object to return a copy of itself to the caller			    |
+IDictionary				Allows a nongeneric collection object to represent its contents using key-value pairs	    |
+IEnumerable				Returns an object implementing the IEnumerator interface				    |
+IEnumerator				Enables foreach style iteration of collection items					    |
+IList					Provides behavior to add, remove, and index items in a sequential list of objects	    |
+------------------------------------------------------------------------------------------------------------------------------------
+
+Boxing is a mechanism to store the data in a value type within a reference variable. Boxing can be formally defined as the proess
+of explicitly assigning a value type to a System.Object variable. When you box a value, the CLR allocates a new object on the heap
+and copies the value type's value into that instance. What is returned to you is a reference to the newly allocated heap-based object.
+
+The opposite operation is also permitted through unboxing. Unboxing is the process of converting the value held in the object
+reference back into a corresponding value type on the stack. The CLR begins by verifying that the receiving data type is equivalent 
+to the boxed type, and if so, it copies the value back into a local stack-based variable. You must unbox into an appropriate data type.
+If you attempt to unbox a piece of data into the incorrect data type, an InvalidCastException exception will be thrown.
+
+The boxing/unboxing process is quite helpful because it allows you to assume everything can be be treated as a System.Object, while the CLR
+takes care of the memory-related details on your behalf.
+
+Boxing and unboxing are convenient from a programmer's viewpoint, but this simplified approach to stack/heap memory transfer comes with the 
+baggage of performance issues (in both speed of execution and code size) and a lack of type safety. To understand the performance issues,
+ponder the steps that must occur to box and unbox a simple integer.
+	1. A new object must be allocated on the managed heap
+	2. The value of the stack-based data must be transfered into that memory location
+	3. When unboxed, the value stored on the heap-based object must be transferred back to the stack
+	4. The now unused object on the heap will (eventually) be garbage collected
+
+However, there is another aspect of type safety you must keep in mind in a generic-free world: the fact that a majority of the classes of
+System.Collections can typically hold anything whatsoever because their members are prototyped to operate on System.Objects.
+
+Here is a short list of the benefits generic containers provide over their nongeneric counterparts:
+
+	1. Generics provide better performance because they do not result in boxing or unboxing penalties when storing value types
+	2. Generics are type safe because they can contain only the type of type you specify
+	3. Generics greatly reduce the need to build custom collection types because you specify the "type of type" when creating
+	   the generic container
+
+Only classes, structures, interfaces, and delegates can be written generically; enum types cannot.
+
+Typically T is used to represen types, TKey or K is used for keys, and TValue or V is used for values.
+
+Key Interfaces Supported by Classes of System.Collections.Generic
+------------------------------------------------------------------------------------------------------------
+System.Collections.Generic Interface			Meaning in Life					    |
+------------------------------------------------------------------------------------------------------------      
+ICollection<T>					Defines general characteristics (e.g., size, enumeration,   |
+						and thread safety) for all generic collection types	    |
+IComparer<T>					Defines a way to compare to objects			    |
+IDictionary<TKey, TValue>			Allows a generic collection object to represent its	    |
+						contents using key-value pairs				    |
+IEnumerable<T>					Returns the IEnumerator<T> interface for a given object     |
+IEnumerator<T>					Enables foreach-style iteration over a generic collection   |
+IList<T>					Provides behavior to add, remove, and index items in a 	    |
+						sequential list of objects				    |
+ISet<T>						Provides the base interface for the abstraction of sets	    |
+------------------------------------------------------------------------------------------------------------
+
+Classes of System.Collections.Generic
+-------------------------------------------------------------------------------------------------------------
+Generic Class				Supported Key Interfaces		Meaning in Life		     |
+-------------------------------------------------------------------------------------------------------------
+Dictionary<TKey, TValue>		ICollection<T>,			This represents a generic collection |	
+					IDictionary<TKey, TValue>,	of keys and values 		     |
+					IEnumerable<T>							     |
+LinkedList<T>				ICollection<T>, 		This represents a double	     |
+					IEnumerable<T>			linked list.			     |
+List<T>					ICollection<T>,			This is a dynamically resizable	     |
+					IEnumerable<T>, IList<T>	sequential list of items.	     |
+Queue<T>				ICollection (nongeneric),	This is a generic implementation     |
+					IEnumerable<T>			of a first-in, first-out (FIFO) list.|
+SortedDictionary<TKey, TValue>		ICollection<T>,			This is a generic implementation     |
+					IDictionary<TKey, TValue>,	of a sorted set of key-value pairs.  |
+					IEnumerable<T>							     |
+SortedSet<T>				ICollection<T>,			This represents a collection of	     |
+					IEnumerable<T>, ISet<T>		objects that is maintained in sorted |
+									order with no duplication.	     |
+Stack<T>				ICollection (nongeneric),	This is a generic implementation     |
+					IEnumerable<T>			of a last-in, first-out (LIFO) list. |
+-------------------------------------------------------------------------------------------------------------
+
+With the introduction of generics, the C# default keyword has been given a dual identity. In addition to its use within a switch construct,
+it can also be used to set a type parameter to its default value. This is helpful because a generic type does not know the actual
+placeholders up front, which means it cannot safety assume what the default value will be. The defaults for a type parameter
+are as follows:
+- Numeric values have a default value of 0
+- Reference types have a default value of null
+- Fields of a structure are set to 0 (for value types) or null (for reference types)
+
+The .NET platform allows you to use the where keyword to get extremely specific about what a given type parameter must look like.
+
+Possible Constraints for Generic Type Parameter
+------------------------------------------------------------------------------------------------------------------------
+Generic Constraint				Meaning in Life								|
+------------------------------------------------------------------------------------------------------------------------
+where T : struct			The type parameter <T> must have System.ValueType in its chain			|
+					of inheritance (i.e., <T> must be a structure).					|
+where T : class				The type parameter <T> must not have System.ValueType in its chain		|
+					of inheritance (i.e., <T> must be a reference type).				|
+where T : new()				The type parameter <T> must have a default constructor.				|
+					This is helpful if your generic type must create an instance of the type	|
+					parameter because you cannot assume you know the format of custom		|
+					constructors. Note that this constraint must be listed last on a 		|
+					multiconstrained type.								|
+where T : NameOfBaseClass		The type parameter <T> must be derived from the class specified by 		|
+					NameOfBaseClass.								|
+where T : NameOfInterface		The type parameter <T> must implement the interface specified by		|
+					NameOfInterface. You can separate multiple interfaces as a			|
+					comma-delimited list.								|
+------------------------------------------------------------------------------------------------------------------------
+
+
+		Chapter 10 Delegates, Events, and Lambda Expressions
+
+In the .NET Framework, callbacks are accomplished in a type-safe and object-oriented manner using delegates. In essence,
+a delegate is a type-safe object that points to another method (or possibly a list of methods) in the application, which can be
+invoked at a later time. Specifically, a delegate maintains three important pieces of information:
+- the address of the method on which it makes call
+- the parameters (if any) of this method
+- the return type (if any) of this method
+
+.NET delegates can point to either static or instance methods. After a delegate object has been created and given the necessary
+information, it may dynamically invoke the method(s) it points to at runtime. Every delegate in the .NET Framework
+(including your custom delegates) is automatically endowed with the ability to call its methods, synchronously or
+asynchronously. This fact greatly simplifies programming tasks, given that you can call a method on a secondary thread
+of execution without creating and managing a Thread object.
+
+When you want to create a delegate type in C#, you use the delegate keyword. The name of your delegate type can be
+whatever you desire. However, you must define the delegate to match the signature of the method(s) it will point to.
+When the C# compiler processes delegate types, it automatically generates a sealed class deriving 
+from System.MulticastDelegate. This class (in conjunction with its base class, System.Delegate) provides the necessary
+infrastructure for the delegate to hold onto a list of methods to be invoked at a later time.
+
+The delegate defines three public methods during the run-time. Invoke() is perhaps the key method, as it is used to invoke
+each method maintained by the delegate object in a synchronous manner, meaning the caller must wait for the call
+to complete before continuing on its way. 
+BeginInvoke() and EndInvoke() provide the ability to call the current method asynchronously on a separate thread of execution.
+The most common reasong developers create secondary threads of execution is to invoke methods that require time to complete.
+
+C# delegate type definition results in a sealed class with three compiler-generated methods whose parameter and return types
+are based on the delegate's declaration.
+
+Select Members of System.MulticastDelegate/System.Delegate
+--------------------------------------------------------------------------------------------------------------------------------
+Member						Meaning in Life									|
+--------------------------------------------------------------------------------------------------------------------------------
+Method					This property returns a System.Reflection.MethodInfo object that represents		|
+					details of a static method maintained by the delegate.					|
+Target					If the method to be called is defined at the object level				|
+					(rather than a static method), Target returns an object that represents			|
+					the method maintained by the delegate. If the value returned from Target equals null,	|
+					the method to be called is a static member.						|
+Combine()				This static method adds a method to the list maintained by the delegate.		|
+					In C#, you trigger this method using the overloaded += operator as a shorthand		|
+					notation.										|
+GetInvokationList()			This method returns an array of System.Delegate objects, each representing a particular	|
+					method that may be invoked.								|
+Remove() RemoveAll() 			These static methods remove a method (or all methods) from the delegate's invocation 	|
+					list. In C#, Remove() method can be called indirectly using 				|
+					the overloaded -= operator.								|
+--------------------------------------------------------------------------------------------------------------------------------
+					
+Strictly speaking, you could have define your delegate member variable as public, therefore avoiding the need to create additional
+registration methods. However, by defining the delegate member variable as private, you are enforcing encapsulation services
+and providing a more type-safe solution.
+
+When you use the += operator on a delegate object, the compiler resolves this to a call on the static Delegate.Combine() method.
+
+C# provides a shortcut termed method group conversion. This feature allows you to supply a direct method name, 
+rather than a delegate object, when calling methods that take delegates as arguments.
+
+In many cases, you simply want "some delegates" that takes a set of arguments and possibly has a return value other than void.
+In these cases, you can use the framework's built-in Action<> and Func<> delegate types.
+
+You can use the generic Action<> delegate to "point to" a method that takes up to 16 arguments (that ought to be enough!)
+and returns void. Now recall, because Action<> is a generic delegate, you will need to specify the underlying types of 
+each parameter as well.
+
+The generic Func<> delegate can point to methods that (like Action<>) take up to 16 parameters and a custom return value.
+The final type parameter is always the return value of the method.
+
+Delegates are fairly interesting constructs in that way they enable objects in memory to engage in a two-way conversation.
+However, working with the delegates in the raw can entail the creation of some boilerplate code (defining the delegate,
+declaring necessary member variables, and creating custom registration and unregistration methods to preserve
+encapsulation, etc.).
+Moreover, when you use delegates in the raw as your application's callback mechanism, if you do not define a class's
+delegate member variables as private, the caller will have direct access to the delegate objects. In this case,
+the caller could reassign the variable to a new delegate object (effectively deleting the current list of fuctions
+to call), and, worse yet, the caller would be able to directly invoke the delegate's invocation list.
+
+As a shortcut, so you don't have to build custom methods to add or remove methods to a delegate's invocation list,
+C# provides the event keyword. When the compiler process the event keyword, you are automatically provided with the
+registration and unregistration methods, as well as any necessary member variables for your delegate types. 
+These delegate member variables are always declared private, and, therefore, they are not directly exposed from the 
+object firing the event. To be sure, the event keyword can be used to simplify how a custom class sends out 
+notification to external objects.
+Defining event is a two-step process. First, you need to define a delegate type (or reuse an existing one) that
+will hold the list of methods to be called when the event is fired. Next, you declare an event
+(using the C# event keyword) in terms of the related delegate type.
+
+When the compiler processes the C# event keyword, it generates two hidden methods, one having an add_ prefix and
+the other having a remove_ prefix. Each prefix is followed by the name of the C# event.
+
+C# events also simplify the act of registering the caller-side event handlers. Rather than having to specify
+custom helper methods, the caller simplify uses the += and -= operations directly (which triggers the 
+correctly add_XXX() or remove_XXX() method in the background).
+
+Before you fire an event to any listener, you make sure to check for null. This is important given that
+if nobody is listening for your event but you fire it anyway, you will receive a null reference exception
+at runtime.
+Thankfully, with the current release of C#, you can leverage the null conditional operator (?) which essentially
+performs this sort of check automatically. Be aware, when using this new simplified syntax, you must manually
+call the Invoke() method of the underlying delegate.
+
+As you begin to explore the events sent by a given type in the base class libraries, you will find that the first
+parameter of the underlying delegate is a System.Object, while the second parameter is a descendant of 
+System.EventArgs.
+
+It is possible to associate an event directly to a block of code statements at the time of event registration.
+Formally, such code is termed an anonymous method. The final curly bracket of an anonymous method must be
+terminated by a semicolon. If you fail to do so, you are issued a compilation error.
+
+SomeType t = new SomeType();
+t.SomeEvent += delegate(optionallySpecifiedDelegateArgs){/* statements */};
+
+Anonymous methods are interesting in that they are able to access the local variables of the method that
+defines them. Formally speaking, such variables are termed outer variables of the anonymous method.
+A few important points about the interaction between an anonymous method scope and the scope of the 
+defining method should be mentioned:
+- an anonymous method cannot access ref or out parameters of the defining method
+- an anonymous method cannnot have a local variable with the same name as a local variable in the outer method
+- an anonymous method can access instance variables (or static varibles, as appropriate) in the outer class scope
+- an anonymous method can declare local variables with the same name as outer class member variables 
+(the local variables have a distinct scope and hide the outer class member variables)
+
+C# supports the ability to handle events "inline" by assigning a block of code statements directly to an event
+using anonymous methods, rather than building a stand-alone method to be called by the underlying delegate.
+Lambda expression are nothing more than a concise way to author anonymous methods and ultimately simplify
+how you work with the .NET delegate type.
+
+The lambda expressions can be used anywhere you would have used an anonymous method or a strongly typed
+delegate. A lambda expression is written first defining a parameter list, followed be the => token
+(C#'s token for the lambda operator found in the lambda calculus), followed by a set of statement
+(or a single statement) that will process these arguments. From a high level, a lambda expression 
+can be understood as follows:
+
+ArgumentsToProcess => StatementsToProcessThem
+
+		Chapter 11 Advanced C# Language Features
+
+C# language provides the capability to design custom classes and structures that may be indexed just like a
+standard array, by defining an indexer method. This particular feature is most useful when you are creating
+custom collection classes (generic or nongeneric).
+
+Indexers allow you to manipulate the internal collection of subobjects like a standard array. An indexer
+is represented as a slightly modified C# property definition. In a simplest form, an indexer is created
+using the this[] syntax. Apart from using the this keyword, the indexer look just like any other C# property
+declaration.
+
+Understand that indexer methods may be overloaded on a single class or structure. Thus, if it makes sense
+to allow the caller to access subitems using a numerical index or a string value, you might define 
+multiple indexers for a single type.
+
+Overloadability of C# Operators
+----------------------------------------------------------------------------------------------------------
+C# Operator					Overloadability						  |
+----------------------------------------------------------------------------------------------------------
++,-,!,~,++,--,true,false		These unary operators can be overloaded.			  |
++,-,*,/,%,&,|,^,<<,>>			These binary operators can be overloaded.			  |
+==,!=,<,>,<=,>=				These comparison operators can be overloaded. C# demands that	  |
+					"like" operators (i.e., <= and >=, == and !=) are overloaded	  |
+					together.							  |
+[]					The [] operator cannot be overloaded. However, the indexer	  |
+					construct provides the same functionality.			  |
+()					The () operator cannot be overloaded. However, custom conversion  |
+					methods provide the same functionality.				  |
++=,-=,*=,/=,%=,&=,|=,^=,		Shorthand assignment operators cannot be overloaded; however,	  |
+<<=,>>=					you receive them as a freebie when you overload the related	  |
+					binary operator.						  |
+----------------------------------------------------------------------------------------------------------
+
+To equip a custom type to respond uniquely to intrinsic operators, C# provides the operator keyword,
+which you can use only in conjunction with the static keyword. When you overload a binary operator
+(such as + and -), you will most often pass in two arguments that are the same type as the defining class.
+
+C# also allows you to overload various unary operators, such as ++ and --. When you overload a unary operator,
+you also must use the static keyword with the operator keyword; however, in this case you simply pass in a
+single parameter that is the same type as the defining class/structure.
+
+C# provides two keywords, explicit and implicit, that you can use to control how your types respong during
+an attempted conversion.
+
+The structure constructor should be chained to the default constructor. The reason is that if you have a 
+structure, which makes use of automatic property syntax, the default constructor must be explicitly called
+(from all custom constructors) to initialize the private backing fields (for example, if the structure
+had any additional fields/properties, this default contructor would initialize these fields to default
+values). Yes, this is a quirly rules of C#, but after all, this is an advanced topics chapter.
+
+Like the process of overloading an operator, conversion routines make use of the C# operator keyword,
+in conjunction with the explicit or implicit keyword, and must be defined as static.
+The incoming parameter is the entity you are converting from, while the operator type is the entity
+you are converting to.
+
+It is illegal to define explicit and implicit conversion functions on the same type if they do not differ
+by their return type or parameter set. This might seem like a limitation; however, the second catch is that
+when a type defines an implicit conversion routine, it is legal for the caller to make use of the explicit
+cast syntax!
+
+.NET 3.5 introduced the concept of extension methods, which allow you to add new methods or properties to
+a class or structure, withour modifying the original type in any direct manner.
+
+When you define extension methods, the first restriction is that they must be defined within a static class
+and, therefore, each extension method must be declared within the static keyword. The second point is that
+all extension methods are marked as such by using this keyword as modifier on the first (and only the first)
+parameter of the method in question. The "list qualified" parameter represents the item being
+extended.
+
+The reflection allows you to discover the structure of assemblies, types, and type members at runtime.
+Understand that a given extension method can have multiple parameters, but only the first parameter can be
+qualified with this. The additional parameters would be treated as normal incoming parameters for use
+by the method.  In effect, although it can appear on the surface that extension methods are global in nature,
+they are in fact limited to the namespaces that define them or the namespaces that import them.
+
+It is common practice to not only isolate extension methods into a dedicated .NET namespace but into a 
+dedicated class library. In this way, new applications can "opt in" to extensions by explicitly
+referencing the correct library and importing the namespace.
+
+It is also possible to define an extension method that can only extend a class or structure that
+implements the correct interface.
+
+Remember that this particular language feature can be useful whenever you want to extend the
+functionality of a type but do not want to subclass (or cannot subclass if the type is sealed), for the
+purposes of polymorphism.
+
+You would never want to abandon the use of strongly typed classes/structures simply for the sake of doing so,
+given anonymous types' numerous limitations, which include the following:
+- you don't control the name of the anonymous type
+- anonymous types always extend System.Object
+- the fields and properties of an anonymous type are always read-only
+- anonymous types cannot support events, custom methods, custom operators, or custom overrides
+- anonymous types are always implicitly sealed
+- anonymous types are always created using the default constructor
+
+However, when programming with the LINQ technology set, you will find that in many cases this syntax can be
+helpful when you want to quickly model the overall shape of an entity rather than its functionality.
+
+.NET platform defines two major categories of data: value types and reference types. Truth be told, however,
+there is a third category: pointer types. To work with pointer types, you get a specific operators and
+keywords that allow you to bypass the CLR's memomy-management scheme and take matters into your own hands.
+
+Pointer-Centric C# Operators and Keywords
+----------------------------------------------------------------------------------------------------------------
+Operator/Keyword				Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+* 					This operator is used to create a pointer variable (i.e., a variable 	|
+					that represents a direct location in memory). As in C++, this same	|
+					operator is used for pointer indirection.				|
+&					This operator is used to obtain the address of a variable in memory.	|
+->					This operator is used to access fields of a type that is		|
+					represented by a pointer (the unsafe version of the C# dot operator).	|
+[]					This operator (in an unsafe context) allows you to index the slot	|
+					pointed to by a pointer variable (if you're a C++ programmer, you	|
+					will recall the interplay between a pointer variable and the 		|
+					[] operator).								|
+++,--					In an unsafe context, the increment and decrement operators can		|
+					be applied to pointer types.						|
++,-					In an unsafe context, the addition and subtraction operators can be 	|
+					applied to pointer types.						|
+==,!=,<,>,<=,=>				In an unsafe context, the comparison and equality operators can be	|
+					applied to pointer types.						|
+stackalloc				In an unsafe context, the stackalloc keyword can be used to allocate	|
+					C# arrays directly on the stack.					|
+fixed					In an unsafe context, the fixed keyword can be used to temporarily fix	|
+					a variable so that its address can be found.				|
+----------------------------------------------------------------------------------------------------------------
+
+When you want to work with pointers in C#, you must specifically declare a block of "unsafe code" using 
+the unsafe keyword (any code that is not marked with the unsafe keyword is considered "safe"
+automatically).
+
+The final unsafe-centric C# keyword to consider is sizeof. As in C++, the C# sizeof keyword is used to obtain
+the size in bytes of an intrinsic data type, but not a custom type, unless within an unsafe context.
+
+		Chapter 12 LINQ to Objects
+
+The Language Integrated Query (LINQ) technology set, introduced initially in .NET 3.5, provides a concise,
+symmetrical, and strongly typed manner to access a wide variety of data stores.
+
+The key C# programming constructs that enable LINQ:
+- implicitly typed local variable
+- object/collection initialization syntax
+- lambda expressions
+- extension methods
+- anonymous types
+
+From a high level, LINQ can be understood as a strongly typed query language, embedded directly into the grammar of C#.
+Using LINQ, you can build any number of expressions that have a look and feel similar to that of a database SQL query.
+However, a LINQ query can be applied to any number of data stores, including stores that have nothing to do with
+a literal relational database.
+Although LINQ queries look similar to SQL queries, the syntax is not identical. In fact, many LINQ queries seem
+to be the exact opposite format of a similar database query! If you attempt to map LINQ directly to SQL,
+you will surely become frustrated. To keep your sanity, I recommend you try your best to regard LINQ queries
+as unique statements, which just "happen to look" similar to SQL.
+
+The LINQ API is an attempt to provide a consistent, symmetrical manner in which programmers can obtain and manipulate
+"data" in the broad sense of the term. Using LINQ, you are able to create directly within the C# programming language
+constructs called query expressions. These query expressions are based on numerous query operators that have been
+intentionally designed to look and feel similar (but not quite identical) to a SQL expression.
+
+Strictly speaking, "LINQ" is the term used to describe the overall approach to data access:
+- LINQ to Object - this term refers to the act of applying LINQ queries to arrays and collections
+- LINQ to XML - this term refers to the act of using LINQ to manipulate and query XML documents
+- LINQ to DataSet - this term refers to the act of applying LINQ queries to ADO.NET Dataset objects
+- LINQ to Entities - this aspect of LINQ allows you to make use of LINQ queries within ADO.NET Entity Framework (EF) API
+- Parallel LINQ (aka PLINQ) - this allows for parallel processing of data returned from a LINQ query
+
+It is also important to point out that a LINQ query expression (unlike a traditional SQL statement) is strongly typed.
+
+Core LINQ-Centric Assemblies
+-----------------------------------------------------------------------------------------------------------------------------
+Assembly							Meaning in Life						     |
+----------------------------------------------------------------------------------------------------------------------------- 
+System.Core.dll						Defines the types that represents the core LINQ API.		     |
+							This is the one assembly you must have access to if you want	     |
+							to use any LINQ API, including LINQ to Objects.			     |
+System.Data.DataSetExtensions.dll			Defines a handful of types to integrate ADO.NET types into	     |
+							the LINQ programming paragigm (LINQ to DataSet).		     |
+System.Xml.Linq.dll					Provides functionality for using LINQ with XML document		     |
+							data (LINQ to XML).						     |
+-----------------------------------------------------------------------------------------------------------------------------
+
+Another important point regarding LINQ query expressions is that they are not actually evaluated until you iterate over the
+sequence. Formally speaking, this is termed deferred execution. The benefit of this approach is that you are able to apply
+the same LINQ query multiple times to the same container and rest assured you are obtaining the latest and greatest results.
+
+When you need to evaluate a LINQ expression from outside the confines of foreach logic, you are able to call any number
+of extension methods defined by the Enumerable type such as ToArray<T>(), ToDictionary<TSource, TKey>(), and ToList<T>().
+These methods will cause a LINQ query to execute at the exact moment you call them, to obtain a snapshot of the data.
+The usefulness of immediate execution is obvious when you need yo return the results of a LINQ query to an external caller.
+
+It is possible to define a field within a class (or structure) whose value is the result of a LINQ query.
+To do so, however, you cannot make use of implicit target (as the var keyword cannot be used for fields), and the target
+of the LINQ query cannot be intstance-level data; therefore, it must be static.
+
+Applying a LINQ query to a generic container is no different from doing so with a simple array, as LINQ to Objects
+can be used on any item implementing IEnumerable<T>.
+
+Recall that the query operations of LINQ are designed to work with any type implementing IEnumerable<T> (either directly
+or via extension methods). Given that System.Array has been provided with such necessary infrastructure, it might surprise
+you that the legacy (nongeneric) containers within System.Collections have not. Thankfully, it is still possible to iterate
+over data contained within nongeneric collections using the generic Enumerable.OfType<T>() extension method.
+When calling OfType<T>() from a nongeneric collection object (such as the ArrayList), simply specify the type of item within
+the container to extract a compatible IEnumerable<T> object. In code, you can store this data point using an implicitly
+typed variable.
+
+As you know, nongeneric types are capable of containing any combinations of items, as the members of these containers
+(again, such as ArrayList) are prototypes to receive System.Objects.
+
+
+Common LINQ Query Operators
+-----------------------------------------------------------------------------------------------------------------------------
+Query Operators							Meaning in Life						     |
+-----------------------------------------------------------------------------------------------------------------------------
+from, in						Used to define the backbone for any LINQ expression, which allows    |
+							you to extract a subset of data from a fitting container.	     |
+where							Used to define a restriction for which items to extract from	     |
+							a container.							     |
+select							Used to select a sequence from the container.			     |
+join, on, equals, into					Performs joins based on specified key. Remember, these "joins"	     |
+							do not need to have anything to do with data in a		     |
+							relational database.						     |
+orderby, ascending, descending				Allows the resulting subset to be ordered in ascending or	     |
+							descending order.						     |
+group,by						Yields a subset with data grouped by a specified value.		     |
+-----------------------------------------------------------------------------------------------------------------------------
+
+The syntactical correctness of a LINQ query expression is validated at compile time, and you need to remember that the ordering
+of these operators is critical. In the simplest terms, every LINQ query expression is build using the from, in, and select
+operators. Here is the general template to follow:
+
+var result = from matchingItem in container select matchingItem;
+
+The item after the from operator represents an item that matches the LINQ query criteria, which can be named anything you choose.
+The item adter the in operator represents the data container to search (an array, collection, XML document, etc.).
+
+To obtain a specific subset from a container, you can use the where operator. When doing so, the general template now becomes
+the following code:
+
+var result = from item in container where BooleanExpression select item;
+
+Notice that the where operator expects an expression that resolves to a Boolean.
+
+When you need to return projected data to a caller, one approach is to transform the query result into a .NET System.Array
+object using the ToArray() extension method. Note that you must use a literal System.Array object and cannot make use
+of the C# array declaration syntax, given that you don't know the underlying type of type because you are operating 
+on a compiler-generated anonymous class!
+When you need to return a LINQ result set that is the result of a project operation, transformation the data into an
+Array type (or another suitable container via other members of the Enumerable type) is mandatory.
+
+When you are projecting new batches of data, you may need to discover exactly how many items have been returned into the 
+sequence. Any time you need to determine the number of items returned from a LINQ expression, simply use the Count()
+extension method of the Enumerable class.
+You can reverse the items within a result set quite simply using the Reverse<>() extension method of the Enumerable class.
+A query expression can take an orderby operator to sort items in the subset by a specific value. By default, the order
+will be ascending; thus, ordering by a string would be alphabetical, ordering by numerical data would be lowes to highest,
+and so forth. If you need to view the results in a descending order, simply include the descending operator.
+
+The Enumerable class supports a set of extension methods that allows you to use two (or more) LINQ queries as the basis
+to find unions, differences, concatenations, and intersections of data. 
+First, consider the Except() extension method, which will return a LINQ result set that contains the difference 
+between two containers. 
+The Intersect() method will return a result set that contains the common data items in a set of containers.
+The Union() method returns a result set that includes all members of a batch of LINQ queries. You will not find repeating
+values if a common member appears more than once.
+The Concat() extension method returns a result set that is a direct concatenation of LINQ result sets.
+When you call the Concat() extension method, you could very well end up with redundant entries in the fetched result,
+which could be exactly what you want in some cases. However, in other cases, you might want to remove duplicate entries
+in your data. To do so, simply call the Distinct() extension method.
+
+LINQ queries can also be designed to perform various aggregation operations on the result set. The Count() extension
+method is one such aggregation example. Other possibilities include obtaining an average, maximum, minumum, or sum
+of values using the Max(), Min(), Average(), or Sum() members of the Enumerable class.
+
+Keep the following points in mind regarding how LINQ query expressions are represented under the covers:
+- Query expressions are created using various C# query operators.
+- Query operators are simply shorthand notations for invoking extension methods defined by the System.Linq.Enumerable type.
+- Many methods of Enumerable require delegates (Func<> in particular) as parameters.
+- Any method requiring a delegate parameter can instead be passed a lambda expression.
+- Lambda expressions are simply anonymous methods in disguise (which greatly improve readability).
+- Anonymous methods are shorthand notations for allocating a raw delegate and manually building a delegate target method.
+
+		Chapter 13 Understanding Object Lifetime	
+
+A class is nothing more than a blueprint that describes how an instance of this type will look and feel in memory. Classes, of
+course, are defined within a code file (which in C# takes a *.cs extension by convention).
+After a class has been defined, you may allocate any number of objects using the C# new keyword. Understand, however, that the
+new keyword returns a reference to the object on the heap, not the actual object. If you declare the reference variable as
+a local variable in a method scope, it is stored on the stack for further use in your application. When you want to invoke
+members on the object, apply the C# dot operator to the stored reference.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.699
+
+
+
+
+
+
+
+
