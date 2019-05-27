@@ -1449,6 +1449,126 @@ new keyword returns a reference to the object on the heap, not the actual object
 a local variable in a method scope, it is stored on the stack for further use in your application. When you want to invoke
 members on the object, apply the C# dot operator to the stored reference.
 
+The structures are value types that are always allocated directly on the stack abd are never placed on the .NET managed heap.
+Heap allocation occurs only when you are creating instances of classes.
+
+When you are building your C# application, you are correct to assume that the .NET runtime environment (aka the CLR) will
+take care of the managed heap withour your direct intervention. In fact, the golden rule of .NET memory management is
+simple. Allocate a class instance onto the managed heap using the new keyword and forget about it. Once instantiated, 
+the garbage collector will destroy an object when it is no longer needed. The next obvious question, of course, is, 
+"How does the garbage collector determine when an object is no longer needed?" The short (i.e., incomplete) answer is that
+the garbage collector removes an object from the heap only if it is unreachable by any part of your code base.
+
+In fact, tracking down memory leaks in one of the most time-consuming (and tedious) aspects of programming in unmanaged
+environments. By allowing the garbage collector to take charge of destroying objects, the burden of memory management has
+been lifted from your shoulders and placed onto those of the CLR.
+
+First, understand that the managed heap is more than just a random chunk of memory accessed by the CLR.
+The .NET garbage collector is quite a tidy housekeeper of the heap, given that it will compact empty blocks of memory
+(when necessary) for the purposes of optimization.
+To aid in this endeavor, the managed heap maintains a pointer (commonly referred to as the next object pointer or new object
+pointer) that identifies exactly where the next object will be located. That said, the newobj instruction tells the CLR
+to perform the following core operations:
+1) Calculate the total amount of memory required for the object to be allocated (including the memory required by the data 
+members and the base classes).
+2) Examine the managed heap to ensure that there is indeed enough room to host the object to be allocated. If there is, 
+the specified constructor is called, and the caller is ultimately returned a reference to the new object in memory,
+whose address just happens to be identical to the last position of the next object pointer.
+3) Finally, before returning the reference to the caller, advance the next object pointer to point to the next available
+slot on the managed heap.
+
+When processing the newobj instruction, if the CLR determines that the managed heap does not have sufficient memory to 
+allocate the requested type, it will perform a garbage collection in an attempt to free up memory. Thus, the next rule 
+of garbage collection is also quite simple. If the managed heap does not have sufficient memory to allocate the requested
+object, a garbage collection will occur.
+
+When you assign object reference to null, the compiler generates CIL code that ensures the reference no longer points
+to any object. What you must understand, however, is that assigning a refernce to null does not in any way force the 
+garbage collector to fire up at that exact moment and remove the object from the heap. The only thing you have 
+accomplished is explicitly clipping the connection between the reference and the object it previously pointed to.
+Given this point, setting reference to null under C# is far less consequential that doing so in other C-based
+languages; however, doing so will certainly not cause any harm.
+
+An application root (or simply root) is a storage location containing a reference to an object on the managed heap.
+Strictly speaking, a root can fall into any of the following categories:
+- references to global objects (though these are not allowed in C#, CIL code does permit allocation of global objects)
+- references to any static objects/static fields
+- references to local objects within an application's code base
+- references to object parameters passed into a method
+- references to objects waiting to be finalized
+- any CPU register that references an object
+
+During a garbage collection process, the runtime will investigate objects on the managed heap to determine whether they 
+are still reachable (i.e., rooted) by the application. To do so, the CLR will build an object graph, which represents
+each reachable object on the heap. The garbage collector will never graph the same object twice.
+
+Strictly speaking, the garbage collector uses two distinct heaps, one of which is specifically used to store large objects.
+This heap is less frequently consulted during the collection cycle, givem possible performance penalties involved with
+relocation large objects. Regardless, it is safe to consider the managed heap as a single region of memory.
+
+When the CLR is attempting to locate unreachable objects, it does not literally examine every object places on the 
+managed heap. Doing so, obviously, would involve considerable time, especially in larger (i.e., real-world)
+applications.
+To help organize the process, each object on the heap is assigned to a specific "generation". The idea behind generations
+is simple: the longer an object has existed on the heap, the more likely it is to stay there. For example, the class
+that defined the main window of a desktop application will be in memory until the program terminates. Conversely, objects
+that have only recently been placed on the heap (such as an object allocated within a method scope) are likely to be
+unreachable rather quickly. Given these assumptions, each object on the heap belongs to one of the following generations:
+- Generation 0 - identifies a newly allocated object that has never been marked for collection
+- Generation 1 - identifies an object that has survived a garbage collection (i.e., it was marked for collection but was
+removed because the sufficient heap space was acquired)
+- Generation 2 - identifies an object that has survived more that one sweep of the garbage collector	
+
+If all generation 0 objects have been evaluated but additional memory is still required, generation 1 objects are then
+investgated for reachability and collected accordingly. Surviving generation 1 objects are then promoted to generation 2.
+If the garbage collector still requires additional memory, generation 2 objects are evaluated. At this point, if a 
+generation 2 object survices a garbage collection, it remains a generation 2 object, given the predefined upper limit
+of object generations.
+The bottom line is that by assigning a generation value to objects on the heap, newer objects (such as a local variables)
+will be removed quickly, while older objects (such as a program's main window) are not "bothered" as often.
+
+Prior to .NET 4.0, the runtime would clean up unused objects using a technique termed concurrent garbage collection.
+Under this model, when a collection takes place for any generation 0 or generation 1 objects (recall these are 
+ephemeral generations), the garbage collector temporarily suspends all active threads within the current process to ensure
+that the application does not access the managed heap during the collection process.
+Moreover, concurrent garbage collection allowed your program to continue allocating objects on the heap during the
+collection of nonephemeral generations.
+
+Beginning with .NET 4.0, the garbage collector is able to deal with thread suspension when it cleans up objects on the 
+managed heap, using background garbage collection. Despite its name, this does not mean that all garbage collection now
+takes place on additional background threads of execution. Rather, if a background garbage collection is taking place
+for objects living in a nonephemeral generation, the .NET runtime is now able to collect objects on the ephemeral
+generations using a dedicated background thread.
+The .NET 4.0 and higher garbage collection has been improved to further reduce the amount of time a given thread involved
+with garbage collection details must be suspended. The end result of these changes is that the process of cleaning up
+unused objects living in generation 0 or generation 1 has been optimized and can result in better runtime performance of 
+your programs (which is really important for real-time systems that require small, and predictable, GC stop time).
+
+The mscorlib.dll assembly provides a class type named System.GC that allows you to programmatically interact with the 
+garbage collector using a set of static members. Now, do be aware that you will seldom (if ever) need to make use of this 
+class directly in your code. Typically, the only time you will use the members of System.GC is when you are creating 
+classes that make internal use of unmanaged resources (call into the Windows C-based API, COM interop logic, etc.).
+
+Select Members of the System.GC Type
+-----------------------------------------------------------------------------------------------------------------------------
+System.GC Member							Description
+-----------------------------------------------------------------------------------------------------------------------------
+AddMemoryPressure()					Allows you to specify a numerical value that represents the calling
+RemoveMemoryPressure()					object's "urgency level" regarding the garbage collection process.
+							Be aware that these methods should alter pressure in tandem, and,
+							thus, never remove more pressure that the total amount you
+							have added.
+Collect()						Forces the GC to perform a garbage collection. This method has been
+							overloaded to specify a generation to collect, as well as the mode
+							of collection (via the GCCollecionMode enumeration).
+CollectionCount()					Returns a numerical value representing how many times a given
+							generation has been swept.
+GetGeneration()						Returns the generation to which an object currently belongs.
+GetTotalMemory()					Returns the estimated amount of memory (in bytes) currently
+							allocated on the managed heap. A Boolean parameter specifies
+							whether the call should wait for garbage collection to occur before
+							returning.
+						
 
 
 
@@ -1474,16 +1594,7 @@ members on the object, apply the C# dot operator to the stored reference.
 
 
 
-
-
-
-
-
-
-
-
-
-p.699
+p.711
 
 
 
