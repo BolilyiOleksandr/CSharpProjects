@@ -1550,25 +1550,93 @@ class directly in your code. Typically, the only time you will use the members o
 classes that make internal use of unmanaged resources (call into the Windows C-based API, COM interop logic, etc.).
 
 Select Members of the System.GC Type
------------------------------------------------------------------------------------------------------------------------------
-System.GC Member							Description
------------------------------------------------------------------------------------------------------------------------------
-AddMemoryPressure()					Allows you to specify a numerical value that represents the calling
-RemoveMemoryPressure()					object's "urgency level" regarding the garbage collection process.
-							Be aware that these methods should alter pressure in tandem, and,
-							thus, never remove more pressure that the total amount you
-							have added.
-Collect()						Forces the GC to perform a garbage collection. This method has been
-							overloaded to specify a generation to collect, as well as the mode
-							of collection (via the GCCollecionMode enumeration).
-CollectionCount()					Returns a numerical value representing how many times a given
-							generation has been swept.
-GetGeneration()						Returns the generation to which an object currently belongs.
-GetTotalMemory()					Returns the estimated amount of memory (in bytes) currently
-							allocated on the managed heap. A Boolean parameter specifies
-							whether the call should wait for garbage collection to occur before
-							returning.
+--------------------------------------------------------------------------------------------------------------------------------										
+System.GC Member							Description						|
+--------------------------------------------------------------------------------------------------------------------------------
+AddMemoryPressure()					Allows you to specify a numerical value that represents the calling	|
+RemoveMemoryPressure()					object's "urgency level" regarding the garbage collection process.	|
+							Be aware that these methods should alter pressure in tandem, and,	|
+							thus, never remove more pressure that the total amount you		|
+							have added.								|
+Collect()						Forces the GC to perform a garbage collection. This method has been	|
+							overloaded to specify a generation to collect, as well as the mode	|
+							of collection (via the GCCollecionMode enumeration).			|
+CollectionCount()					Returns a numerical value representing how many times a given		|
+							generation has been swept.						|
+GetGeneration()						Returns the generation to which an object currently belongs.		|
+GetTotalMemory()					Returns the estimated amount of memory (in bytes) currently		|
+							allocated on the managed heap. A Boolean parameter specifies		|
+							whether the call should wait for garbage collection to occur before	|
+							returning.								|
+MaxGeneration						Returns the maximum number of generations supported on the target	|
+							system. Under Microsoft's .NET 4.0, there are three possible		|
+							generations: 0, 1, and 2.						|
+SuppressFinalize()					Set a flag indicating that the specified object should not have		|
+							its Finalize() method called.						|
+WaitForPendingFinalizers()				Suspends the current thread until all finalizable objects have been	|
+							finalized. This method is typically called directly after		|
+							invoking GC.Collect().							|
+--------------------------------------------------------------------------------------------------------------------------------
 						
+In some rare circumstances, it may be beneficial to programmatically force a garbage collection using GC.Collect().
+Here are two common situations where you might consider interacting with the collection process:
+- your application is about to enter into a block of code that you don't want interrupted by a possible garbage collection
+- your applcation has just finished allocating an extremely large number of objects and you want to remove as much 
+of the acquired memory as soon as possible
+
+When you manually force a garbage collection, you should always make a call to GC.WaitForPendingFinalizers().
+With this approach, you can rest assured that all finalizable objects have had a chance to perform any necessary cleanup
+before your program continues. Under the hood, GC.WaitForPendingFinalizers() will suspend the calling thread during the
+collection process. This is a good thing, as it ensures your code does not invoke methods on an objects currently being destroyed!
+
+When you override Finalize() for your custom classes, you establish a specific location to perform any necessary cleanup logic
+for your type. Given that this member is defined as protected, it is not possible to directly call an object's Finalize()
+method from a class instance via the dot operator. Rather, the garbage collector will call an object's Finalize() method
+(if supported) before removing the object from memory.
+
+It is illegal to override Finalize() on structure types. This makes perfect sense given that structures are value types, which are
+never allocated on the heap to begin with and, therefore, are not garbage collected! However, if you create a structure that
+contains unmanaged resources that need to be cleaned up, you can implement the IDisposable interface.
+
+The only time you would need to design a class that can cleanup after itself is when you are using unmanaged resources (such as
+raw OS file handles, raw unmanaged database connections, chunks of unmanaged memory, or other unmanaged resources).
+
+The only compelling reason to override Finalize() is if your C# class is using unmanaged resources via PInvoke or complex COM 
+interoperability tasks (typically via various members defined by the System.Runtime.InteropServices.Marshall type).
+The reason is that under these scenarios you are manipulating memory that the CLR cannnot manage.
+
+C# finalizers look similar to constructors in that they are named identically to the class they are defined within.
+In addition, finalizers are prefixed with a tilde symbol (~). Unlike a constructor, however, a finalizer never takes an access
+modifier (they are implicitly protected), never takes parameters, and can't be overloaded (only one finalizer per class).
+
+When you allocate an object onto the managed heap, the runtime automatically determines whether your object supports a custom
+Finalize() method. If so, the object is marked as finalizable, and a pointer to this object is stored on an internal queue named
+the finalization queue. The finalization queue is a table maintained by the garbage collector that points to every object that must
+be finalized before it is removed from the heap.
+When the garbage collector determines it is time to free an object from memory, it examines each entry on the finalization queue
+and copies the object off the heap to yet another managed structure termed the finalization reachable table (often abbreaviated as
+freachable and pronounced "eff-reachable"). At this point, a separate thread is spawned to invoke the Finalize() method for each
+object on the freachable table at the next garbage collection. Given this, it will take, at the least, two garbage collections to 
+truly finalize the object.
+The bottom line is that while finalization of an object does ensure an object can clean up unmanaged resources, 
+it is still nondeterministic in nature and, because of the extra behind-the-curtains processing, considerably slower.
+
+When you do implement the IDisposable interface, the assumption is that when the object user is finished using the object, 
+the object user manually calls Dispose() before allowing the object reference to drop out of scope. In this way, an object can
+perform any necessary cleanup of unmanaged resources without incurring the hit of being placed on the finalization queue and 
+without waiting for the garbage collector to trigger the class’s finalization logic. 
+Structures and class types can both implement IDisposable (unlike overriding Finalize(), which is reserved for class types),
+as the object user (not the garbage collector) invokes the Dispose() method.
+
+It is a good idea to call Dispose() on any object you directly create if the object supports IDisposable. The assumption you should 
+make is that if the class designer chose to support the Dispose() method, the type has some cleanup to perform. 
+If you forget, memory will eventually be cleaned up (so don’t panic), but it could take longer than necessary.
+
+The C# using keyword now has a double meaning: importing namespaces and invoking a Dispose() method. Nevertheless, when you
+are working with .NET types that support the IDisposable interface, this syntactical construct will ensure that the object “being used” 
+will automatically have its Dispose() method called once the using block has exited. Also, be aware that it is possible 
+to declare multiple objects of the same type within a using scope. As you would expect, the compiler will inject code 
+to call Dispose() on each declared object.
 
 
 
@@ -1592,9 +1660,7 @@ GetTotalMemory()					Returns the estimated amount of memory (in bytes) currently
 
 
 
-
-
-p.711
+p.717
 
 
 
