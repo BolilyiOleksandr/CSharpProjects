@@ -1020,7 +1020,6 @@ where T : NameOfInterface		The type parameter <T> must implement the interface s
 					comma-delimited list.								|
 ------------------------------------------------------------------------------------------------------------------------
 
-
 		Chapter 10 Delegates, Events, and Lambda Expressions
 
 In the .NET Framework, callbacks are accomplished in a type-safe and object-oriented manner using delegates. In essence,
@@ -1638,6 +1637,99 @@ will automatically have its Dispose() method called once the using block has exi
 to declare multiple objects of the same type within a using scope. As you would expect, the compiler will inject code 
 to call Dispose() on each declared object.
 
+After an object has been “disposed,” it’s still possible for the client to invoke members on it, as it is still in memory. 
+Therefore, a robust resource wrapper class would also need to update each member of the class with additional coding logic that says, 
+in effect, “If I am disposed, do nothing and return from the member.”
+
+The base class libraries provide a useful generic class named Lazy<>, defined in the System namespace of mscorlib.dll. 
+This class allows you to define data that will not be created unless your code base actually uses it. As this is a generic class, you
+must specify the type of item to be created on first use, which can be any type with the .NET base class libraries or 
+a custom type you have authored yourself.
+Lazy object instantiation is useful not only to decrease allocation of unnecessary objects. You can also use this technique if 
+a given member has expensive creation code, such as invoking a remote method, communication with a relational database, or what not.
+
+
+				PART V Programming with .NET Assemblies
+
+		Chapter 14 Building and Configuring Class Libraries
+
+Technically speaking, you are not required to use the C# using keyword when reffering to types defined in external namespaces. You could
+use the fully qualified name of the type, which is the type's name prefixed with the defining namespace.
+
+The C# using keyword also lets you create an alias for a type's fully qualified name. When you do so, you define a token that is
+substituted fro the type's full name at compile time. Defining aliases provides a second way to resolve name clashes.
+The alternative using syntax also lets you create an alias for a lengthy namespace.
+Be aware that overuse of C# aliases can result in a confusing code base. If other programmers on your team are unaware of your custom
+aliases, they could assume the alliase refer to types in the .NET base class libraries and become quite confused when they can't
+find these tokens in the .NET Framework SDK documentation!
+
+When organizing your types, you are free to define namespaces within other namespaces. The .NET base class libraries do so in
+numerous places to provide deeper levels of type organization.
+
+.NET applications are constructed by piecing together any number of assemblies. Simply put, an assembly is a versioned, 
+self-describing binary file hosted by the CLR. Now, despite that .NET assemblies have the same file extensions (*.exe or *.dll)
+as previous Windows binaries, that have little in common with those files under the hood.
+
+As you might now, a code library (also termed a class library) is a *.dll that contains types intended to be used by external
+application.
+
+Recall that a type's fully qualified name is composed by prefixing the type's namespace (e.g., System) to its name (e.g., Console).
+Assemblies are regarded as self-describing, in part because they record every external assembly they must have access to in order
+to function correctly.
+
+Assemblies can be deployed as "private" or "shared". Private assemblies reside in the same directory (or possibly a subdirectory)
+as the client application that uses them. Shared assemblies, on the other hand, are libraries intended to be consumed by numerous
+applications on a single machine and are deployed to a specific directory termed the global assembly cache, or GAC.
+
+A .NET assembly (*.dll or *.exe) consists of the following elements:
+- a Windows file header
+- a CLR file header
+- CIL code
+- type metadata
+- an assembly manifest
+- optional embedded resources
+
+The Windows file header establishes the fact that the assembly can be loaded and manipulated by the Windows family of operating
+system. This header data also identifies the kind of application (console-based, GUI-based, ot *.dll code library) to be hosted
+by Windows.
+
+The CLR file header is a block of data that all .NET assemblies must support (and do support, courtesy of the C# compiler) to be
+hosted by the CLR. In a nutshell, this header defines numerous flags that enable the runtime to understand the layout of the 
+managed file.
+
+An assembly contains CIL code, which, as you recall, is a platform- and CPU-agnostic intermediate language. At runtime, 
+the internal CIL is compiled on the fly using a just-in-time (JIT) compiler, according to platform- and CPU-specific
+instructions. Given this design, .NET assemblies can indeed execute on a variety of architectures, devices, and operating systems.
+An assembly also contains metadata that completely describes the format of the contained types, as well as the format of 
+external types referenced by this assembly. The .NET runtime uses this metadata to resolve the location of types (and their members)
+within the binary, lay out types in memory, and facilitate remote method invocations.
+An assembly must also contain an associated manifest (also referred to as assembly metadata). The manifest documents each module
+within the assembly, establishes the version of the assembly, and also documents any external assemblies referenced by the current
+assembly. 
+
+When you reference private assemblies in new applications, the IDE responds by placing a copy of the library in the client
+application's output directory.
+
+The .NET runtime resolves the location of a private assembly using a technique called probing, which is much less invasive than
+it sounds. Probing is the process of mapping an external assembly request to the location of the requested binary file.
+Strictly speaking, a request to load an assembly may be either implicit or explicit. An implicit load request occurs when
+the CLR consults the manifest to resolve the location of an assembly defined using the .assembly extern tokens.
+An explicit load request occurs programmatically using the Load() or LoadFrom() method of the System.Reflection.Assembly
+class type, typically for the purposes of late binding and dynamic invocation of type members.
+
+Technically speaking, if a copy of the requested assembly cannot be found within the client's application directory,
+the CLR will also attempt to locate a client subdirectory with the same name as the assembly's friendly name. If the requested
+assemlby resides within this subdirectory, the CLR will load the assembly into memory.
+
+Remember, that *.config file must be prefixed with the same name as the related client application.
+
+A shared assembly is a collection of types intended for reuse among projects. The most obvious difference
+between shared and private assemblies is that a single copy of a shared assembly can be used by several
+applications on the same machine.
+Deciding whether a code library should be deployed as a private or shared library is yet another design issue
+to contend with, and this will be based on many project-specific details. As a rule of thumb, when you are
+building libraries that need to be used with a wide variety of applications, shared assemblies can be quite
+helpful in that they can be updated to new version easily.
 
 
 
@@ -1660,7 +1752,93 @@ to call Dispose() on each declared object.
 
 
 
-p.717
+
+
+
+
+
+
+
+
+
+
+
+p.754
+
+
+
+				PART VI Introducing the .NET Base Class libraries
+
+		Chapter 19 Multithreaded, Parallel, and Async Programming
+
+Under the .NET platform, there is not a direct one-to-one correspondence between application domains and threads. In fact,
+a given AppDomain can have numerous threads executing within it at any given time. Furthermore, a particular thread is 
+not confined to a single application domain during its lifetime. Threads are free to cross application domain boundaries
+as the Windows OS thread scheduler and the .NET CLR see fit.
+Although active threads can be moved between AppDomain boundaries, a given thread can execute within only a single
+application domain at any point in time (in other words, it is impossible for a single thread to be doing work in more
+than one AppDomain at once).
+
+One of the many "joys" (read: painful aspects) of multithreaded programming is that you have little control over how the 
+underlying operating system or the CLR uses its threads. For example, if you craft a block of code that creates a new thread
+of execution, you cannot guarantee that the thread executes immediately. Rather, such code only instructs the OS/CLR to execute
+the thread as soon as possible (which is typically when the thread scheduler gets around it).
+Furthermore, given that the threads can be moved between application and contextual boundaries as required by the CLR, you must
+be mindful of which aspects of your application are thread-volatile (e.g., subject to multithreaded access) and which operations
+are atomic (thread-volatile operations are the dangerous ones!);
+
+To protect an application's resources from possible corruption, .NET developers must use any number of threading primitives
+(such as locks, monitors, and the [Synchronization] attribute or language keyword support) to control access among the
+executive threads.
+
+Using types defined within the System.Threading namespace, the Task Parallel Library (TPL), and the C# async and await keywords,
+you are able to work with multiple threads with minimal fuss and bother.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.998
 
 
 
