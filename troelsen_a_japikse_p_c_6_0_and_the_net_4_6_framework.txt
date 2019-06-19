@@ -81,7 +81,7 @@ Using verbatim string, you disable the processing of a literal's escape characte
 A reference type is an object allocated on the garbage-collected managed heap.
 
 The string data type is indeed a reference type, the equality operators have been redefined to compare the values
-of string objects, not the object in memory to which ther refer.
+of string objects, not the object in memory to which they refer.
 
 The C# equality operators perform a case-sensitive, character-by-character equality test on string objects.
 
@@ -378,12 +378,12 @@ the constructor invoked originally by the caller will finish executing any remai
 A C# class may define any number of static members, which are declared using the static keyword. When you do so, the member in question must be invoked
 directly from the class level, rather than from an object reference variable.
 
-Simply put, static members are items that are deemed (by the class designer) to be so commonplace that there is no need to create an instance of the class
+Simply put, static members are items that are deemed (by the class designer) to be so common place that there is no need to create an instance of the class
 before invoking the member. While any class can define static members, they are quite commonly found within utility classes. By definition,
 a utility class is a class that does not maintain any object-level stats and is not created with the new keyword. Rather, a utility class exposes all functionality
 as class-level (aka static) members.
 
-The static keyword cam be appliedto the following:
+The static keyword cam be applied to the following:
 - data of a class
 - methods of a class
 - properties of a class
@@ -396,7 +396,7 @@ When you define static data of a class, the memory is shared by all objects of t
 It is a compiler error for a static member to reference nonstatic members in its implementation. On a related note, it is an error to use the this keyword
 on a static member because this implies an object!
 
-Simply put, a static constructor os a special constructor that is an ideal place to initialize the values of static data when the value is not known
+Simply put, a static constructor is a special constructor that is an ideal place to initialize the values of static data when the value is not known
 at compile time (e.g., you need to read in the value from an external file, read in the values from a database, generate a random, or whatnot).
 
 Here are a few points of interest regarding static constructors:
@@ -549,7 +549,7 @@ The "has-a" relationship is also known as the containment / delegation model or 
 Exposing the functionality of the contained object to the outside world requires delegation.
 Delegation is simply the act of adding public members to the containing class that use the contained object's functionality.
 
-The followinf traits of nesting types are:
+The following traits of nesting types are:
 - nested types allow you to gain complete control over the access level of the inner type because they may be declared privately 
   (recall that non-nested classes cannot be declared using the private keyword)
 - because a nested type is a member of the containing class, it can access private members of the containing class
@@ -564,12 +564,12 @@ The sealed keyword can be applied to the method in order to prohibit override it
 
 You can use the abstract keyword in the class definition to create an abstract base class.
 At first glance, it might seem strange to define a class that you cannot directly create an instance of. Recall, however, that base classes (abstract or not)
-are useful, in that they contain all the common data and functionality of derived types. Also understand that although you cannnot directly create an 
+are useful, in that they contain all the common data and functionality of derived types. Also understand that although you cannot directly create an 
 instance of an abstract class, it is still assembled in memory when derived classes are created. Thus, it is perfectly fine (and common) for abstract
 classes to define any number of constructors that are called indirectly when derived classes are allocated.
 
 When a class has been defined as an abstract base class (via the abstract keyword), it may define any number of abstract members. Abstract members can be used
-whenever you want to define a member that does not supply a defalt implementation but must be accounted for by each derived class. By doing so, you enforce a
+whenever you want to define a member that does not supply a default implementation but must be accounted for by each derived class. By doing so, you enforce a
 polymorphic interface on each descendant, leaving them to contend with the task of providing the details behind your abstract methods.
 The usefulness of abstract methods becomes crystal clear when you once again remember that subclasses are never required to override virtual methods.
 Abstract methods can be defined only in abstract classes. If you attempt to do otherwise, you will be issued a compiler error.
@@ -586,7 +586,7 @@ to effectively ignore the parent's version (again, in the real world, this can b
 You can also apply the new keyword to any member type inherited from a base class (field, constant, static member, or property).
 Finally, be aware that it is possible to trigger the base class implementation of a shadowed member using an explicit cast.
  
-The ultimate base class in the system is System.Object. Therefore, everything 'is-an" Object and can be treated as such. Given this fact, it is legal
+The ultimate base class in the system is System.Object. Therefore, everything "is-an" Object and can be treated as such. Given this fact, it is legal
 to store an instance of any type within an object variable.
 The first law of casting between class types is that when two classes are related by an "is-a" relantionship, it is always safe to store a derived object
 within a base class reference. Formally, this is called an implicit cast, as "it just works", given the laws of inheritance.
@@ -712,9 +712,9 @@ could trigger numerous possible exceptions.
 
 When you are authoring multiple catch blocks, you must be aware that when an exceptions is thrown, it will be processed by the first appropriate catch.
 The rule of thumb to keep in mind is to make sure your catch blocks are structured such that the first catch is the most specific exception
-(i.e., the most derived type in an exception-type inheritance chain), leaving the final catch for the most general (i.e., the base clase of a given
+(i.e., the most derived type in an exception-type inheritance chain), leaving the final catch for the most general (i.e., the base class of a given
 exception inheritance chain).
-Where at all possible , always favor catching specific exception classes, rather than a general System.Exception.
+Where at all possible, always favor catching specific exception classes, rather than a general System.Exception.
 Remember, a final catch block that deals with System.Exception tends to be very general indeed.
 C# also supports a "general" catch scope that does not explicitly receive the exception object thrown by a given member.
 
@@ -787,7 +787,7 @@ without needing to use try/catch logic.
 
 You may construct methods that take interfaces as parameters.
 
-If you attempt to pass in a type not supporting th necessary interface, you receive a compile-time error.
+If you attempt to pass in a type not supporting the necessary interface, you receive a compile-time error.
 Interfaces can also be used as method return values.
 The same interface can be implemented by numerous types, even if they are not within the same class hierarchy and do not hace a common parent class
 beyond System.Object.
@@ -943,13 +943,13 @@ System.Collections can typically hold anything whatsoever because their members 
 Here is a short list of the benefits generic containers provide over their nongeneric counterparts:
 
 	1. Generics provide better performance because they do not result in boxing or unboxing penalties when storing value types
-	2. Generics are type safe because they can contain only the type of type you specify
+	2. Generics are type safe because they can contain only the "type of type" you specify
 	3. Generics greatly reduce the need to build custom collection types because you specify the "type of type" when creating
 	   the generic container
 
 Only classes, structures, interfaces, and delegates can be written generically; enum types cannot.
 
-Typically T is used to represen types, TKey or K is used for keys, and TValue or V is used for values.
+Typically T is used to represent types, TKey or K is used for keys, and TValue or V is used for values.
 
 Key Interfaces Supported by Classes of System.Collections.Generic
 ------------------------------------------------------------------------------------------------------------
@@ -1045,7 +1045,7 @@ The delegate defines three public methods during the run-time. Invoke() is perha
 each method maintained by the delegate object in a synchronous manner, meaning the caller must wait for the call
 to complete before continuing on its way. 
 BeginInvoke() and EndInvoke() provide the ability to call the current method asynchronously on a separate thread of execution.
-The most common reasong developers create secondary threads of execution is to invoke methods that require time to complete.
+The most common reasons developers create secondary threads of execution is to invoke methods that require time to complete.
 
 C# delegate type definition results in a sealed class with three compiler-generated methods whose parameter and return types
 are based on the delegate's declaration.
@@ -1243,7 +1243,7 @@ functionality of a type but do not want to subclass (or cannot subclass if the t
 purposes of polymorphism.
 
 You would never want to abandon the use of strongly typed classes/structures simply for the sake of doing so,
-given anonymous types' numerous limitations, which include the following:
+given anonymous types numerous limitations, which include the following:
 - you don't control the name of the anonymous type
 - anonymous types always extend System.Object
 - the fields and properties of an anonymous type are always read-only
@@ -1458,7 +1458,7 @@ the garbage collector will destroy an object when it is no longer needed. The ne
 "How does the garbage collector determine when an object is no longer needed?" The short (i.e., incomplete) answer is that
 the garbage collector removes an object from the heap only if it is unreachable by any part of your code base.
 
-In fact, tracking down memory leaks in one of the most time-consuming (and tedious) aspects of programming in unmanaged
+In fact, tracking down memory leaks is one of the most time-consuming (and tedious) aspects of programming in unmanaged
 environments. By allowing the garbage collector to take charge of destroying objects, the burden of memory management has
 been lifted from your shoulders and placed onto those of the CLR.
 
@@ -1482,7 +1482,7 @@ of garbage collection is also quite simple. If the managed heap does not have su
 object, a garbage collection will occur.
 
 When you assign object reference to null, the compiler generates CIL code that ensures the reference no longer points
-to any object. What you must understand, however, is that assigning a refernce to null does not in any way force the 
+to any object. What you must understand, however, is that assigning a reference to null does not in any way force the 
 garbage collector to fire up at that exact moment and remove the object from the heap. The only thing you have 
 accomplished is explicitly clipping the connection between the reference and the object it previously pointed to.
 Given this point, setting reference to null under C# is far less consequential that doing so in other C-based
@@ -1519,9 +1519,9 @@ removed because the sufficient heap space was acquired)
 - Generation 2 - identifies an object that has survived more that one sweep of the garbage collector	
 
 If all generation 0 objects have been evaluated but additional memory is still required, generation 1 objects are then
-investgated for reachability and collected accordingly. Surviving generation 1 objects are then promoted to generation 2.
+investigated for reachability and collected accordingly. Surviving generation 1 objects are then promoted to generation 2.
 If the garbage collector still requires additional memory, generation 2 objects are evaluated. At this point, if a 
-generation 2 object survices a garbage collection, it remains a generation 2 object, given the predefined upper limit
+generation 2 object survives a garbage collection, it remains a generation 2 object, given the predefined upper limit
 of object generations.
 The bottom line is that by assigning a generation value to objects on the heap, newer objects (such as a local variables)
 will be removed quickly, while older objects (such as a program's main window) are not "bothered" as often.
@@ -1628,7 +1628,7 @@ Structures and class types can both implement IDisposable (unlike overriding Fin
 as the object user (not the garbage collector) invokes the Dispose() method.
 
 It is a good idea to call Dispose() on any object you directly create if the object supports IDisposable. The assumption you should 
-make is that if the class designer chose to support the Dispose() method, the type has some cleanup to perform. 
+make is that if the class designer choose to support the Dispose() method, the type has some cleanup to perform. 
 If you forget, memory will eventually be cleaned up (so don’t panic), but it could take longer than necessary.
 
 The C# using keyword now has a double meaning: importing namespaces and invoking a Dispose() method. Nevertheless, when you
@@ -1657,7 +1657,7 @@ Technically speaking, you are not required to use the C# using keyword when reff
 use the fully qualified name of the type, which is the type's name prefixed with the defining namespace.
 
 The C# using keyword also lets you create an alias for a type's fully qualified name. When you do so, you define a token that is
-substituted fro the type's full name at compile time. Defining aliases provides a second way to resolve name clashes.
+substituted for the type's full name at compile time. Defining aliases provides a second way to resolve name clashes.
 The alternative using syntax also lets you create an alias for a lengthy namespace.
 Be aware that overuse of C# aliases can result in a confusing code base. If other programmers on your team are unaware of your custom
 aliases, they could assume the alliase refer to types in the .NET base class libraries and become quite confused when they can't
@@ -1713,7 +1713,7 @@ application's output directory.
 The .NET runtime resolves the location of a private assembly using a technique called probing, which is much less invasive than
 it sounds. Probing is the process of mapping an external assembly request to the location of the requested binary file.
 Strictly speaking, a request to load an assembly may be either implicit or explicit. An implicit load request occurs when
-the CLR consults the manifest to resolve the location of an assembly defined using the .assembly extern tokens.
+the CLR consults the manifest to resolve the location of an assembly defined using the assembly extern tokens.
 An explicit load request occurs programmatically using the Load() or LoadFrom() method of the System.Reflection.Assembly
 class type, typically for the purposes of late binding and dynamic invocation of type members.
 
@@ -1731,6 +1731,145 @@ to contend with, and this will be based on many project-specific details. As a r
 building libraries that need to be used with a wide variety of applications, shared assemblies can be quite
 helpful in that they can be updated to new version easily.
 
+A hash code is a numerical value that is statistically unique for a fixed input. Thus, if you modify any
+aspect of a .NET assembly (even a single character in a string literal), the compiler yields a different
+hash code.
+
+		Chapter 15 Type Reflection, Late Binding, and Attribute-Based Programming
+
+The ability to fully describe types (classes, interfaces, structures, enumerations, and delegates) using
+metadata is a key element of the .NET platform. If you open any of the *.dll or *.exe assemblies using
+ildasm.exe and press Ctrl+M, you would find the relevant type metadata.
+
+Always be aware that all strings are clearly documented in the assembly metadata. This could have huge
+security consequences if you were to use string literals to capture passwords, credit card numbers, or
+other sensitive information.
+
+In .NET universe, reflection is the process of runtime type discovery. Using reflection services, you are
+able to programmatically obtain the same metadata information displayed by ildasm.exe using a friendly
+object model. For example, through reflection, you can obtain a list of all types contained within a given
+*.dll or *.exe assembly, including the methods, fields, properties, and events defined by a given type.
+You can also dynamically discover the set of interfaces supported by a given type, the parameters of a 
+method, and other related details (base classes, namespace information, manifest data, and so forth).
+
+A Sampling of Members of the System.Reflection Namespace
+----------------------------------------------------------------------------------------------------------------
+Type							Meaning in Life						|
+----------------------------------------------------------------------------------------------------------------
+Assembly					This abstract class contains a number of members that allow	|
+						you to load, investigate, and manipulate an assembly.		|
+AssemblyName					This class allows you to discover numerous details behind	|
+						an assembly's identity (version information, culture		|
+						information, and so forth).					|
+EventInfo					This abstract class holds information for a given event.	|
+FieldInfo					This abstract class holds information for a given field.	|
+MemberInfo					This is the abstract base class that defines common behavior	|
+						for the EventInfo, FieldInfo, MethodInfo, and PropertyInfo.	|
+MethodInfo					This abstract class contains information for a given method.	|
+Module						This abstract claas allows you to access a given module		|
+						within a multiple assembly.					|
+ParameterInfo					This class holds information for a given parameter.		|
+PropertyInfo					This abstract class holds information for a given property.	|
+----------------------------------------------------------------------------------------------------------------
+
+The System.Type class defines a number of members that can be used to examine a type's metadata, a great number
+of which return types from the System.Reflection namespace.
+
+Select Members of System.Type
+----------------------------------------------------------------------------------------------------------------
+Member						Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+IsAbstract				These properties (among others) allow you to discover a number		|			
+IsArray					of basic traits about the Type you are referring to (e.g., if it is an	|				
+IsClass					abstract entity, an array, a nested class, and so forth).		|
+IsCOMObject													|
+IsEnum														|
+IsGenericTypeDefinition												|
+IsGenericParameter												|
+IsInterface													|
+IsPrimitive													|
+IsNestedPrivate													|
+IsNestedPublic													|
+IsSealed													|
+IsValueType													|
+GetConstructors()			These methods (among others) allow you to obtain an array		|
+GetEvents()				representing the items (interface, method, property, etc.) you are	|
+GetFields()				interested in. Each method returns a related array (e.g.,		|
+GetInterfaces()				GetFields() returns a FieldInfo array, GetMethods()			|
+GetMembers()				returns a MethodInfo array, etc.). Be aware that each of these		|
+GetMethods()				methods has a singular form (e.g., GetMethod(),				|
+GetNestedTypes()			GetProperty(), etc.) that allows you to retrieve a specific item	|
+GetProperties()				by name, rather than an array of all related items.			|
+FindMembers() 				This method returns a MemberInfo array based on search criteria.	|
+GetType() 				This static method returns a Type instance given a string name.		|
+InvokeMember() 				This method allows “late binding” for a given item.			|
+----------------------------------------------------------------------------------------------------------------
+
+You can not directly create a Type object using the new keyword, as Type is an abstract class.
+You can obtain an information about the type using the C# typeof operator, like so:
+
+Type t = typeof(object);
+
+Unlike System.Object.GetType(), the typeof operator is helpful in that you do not need to first create an object
+instance to extract type information. However, your code base must still have compile-time knowledge of the type
+you are interested in examining, as typeof expects the strongly typed name of the type.
+
+To obtain type information in a more flexible manner, you may call the static GetType() member of the System.Type
+class and specify the fully qualified string name of the type you are interested in examining. 
+The Type.GetType() method has been overloaded to allow you to specify two Boolean parameters, one of which controls
+whether an exception should be thrown if the type cannot be found, and the other of which establishes the case 
+sensitivity of the string.
+
+Type t = Type.GetType("object", false, true);
+
+Formally speaking, the act of loading external assemblies on demand is known as a dynamic load.
+System.Reflection defines a class named Assembly. Using this class, you are able dynamically load an assembly, as well
+as discover properties about the assembly itself. Using the assembly type, you are able to dynamically load private
+or shared assemblies, as well as load an assembly located at an arbitrary location.
+
+Late binding is a technique in which you are able to create an instance of a given type and invoke its members
+at runtime without having hard-coded compile-time knowledge of its existence. The System.Activator class is the key
+to the .NET late-binding process. Notice that the Activator.CreateInstance() method returns a System.Object.
+
+The .NET platform provides a way for programmers to embed additional metadata into an assembly using attributes. 
+In a nutshell, attributes are nothing more than code annotations that can be applied to a given type 
+(class, interface, structure, etc.), member (property, method, etc.), assembly, or module.
+ 
+A Tiny Sampling of Predefined Attributes
+--------------------------------------------------------------------------------------------------------------------------------
+Attibute						Meaning in Life								|
+--------------------------------------------------------------------------------------------------------------------------------
+[CLSCompliant] 					Enforces the annotated item to conform to the rules of the Common		|
+						Language Specification (CLS). Recall that CLS-compliant types are		|
+						guaranteed to be used seamlessly across all .NET programming languages.		|
+[DllImport]					Allows .NET code to make calls to any unmanaged C- or C++-based code		|
+						library, including the API of the underlying operating system. 			|
+						Do note that [DllImport] is not used when communicating with COM-based		|
+						software.									|
+[Obsolete]					Marks a deprecated type or member. If other programmers attempt to use		|
+						such an item, they will receive a compiler warning describing 			|
+						the error of their ways.							|
+[Serializable] 					Marks a class or structure as being “serializable,” meaning it is able to	|
+						persist its current state into a stream.					|
+[NonSerialized] 				Specifies that a given field in a class or structure should not be 		|
+						persisted during the serialization process.					|
+[ServiceContract] 				Marks a method as a contract implemented by a WCF service.			|
+--------------------------------------------------------------------------------------------------------------------------------
+
+To apply multiple attributes to a single item, simply use a comma-delimited list or you can also apply multiple attributes
+on a single item by stacking each attributes.
+As a naming convention, all .NET attributes (including custom attributes you may create yourself) are suffixed with the 
+Attribute token. However, to simplify the process of applying attributes, the C# language does not require you to type in
+the Attribute suffix.
+When you supply constructor parameters to an attribute, the attribute is not allocated into memory until the parameters are
+reflected upon by another type or an external tool. The string data defined at the attribute level is simply stored within
+the assembly as a blurb of metadata.
+
+You should understand the following key point regarding .NET attributes:
+- attributes are classes that derive from System.Attribute
+- attributes result in embedded metadata
+- attributes are basically useless until another agent reflects upon them
+- attributes are applied in C# using square brackets
 
 
 
@@ -1754,16 +1893,7 @@ helpful in that they can be updated to new version easily.
 
 
 
-
-
-
-
-
-
-
-
-
-p.754
+p.846
 
 
 
