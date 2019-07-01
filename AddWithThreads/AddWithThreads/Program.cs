@@ -10,32 +10,37 @@ namespace AddWithThreads
     internal class Program
     {
         private static AutoResetEvent waitHandle = new AutoResetEvent(false);
+
         private static void Main(string[] args)
         {
-            Console.WriteLine("***** Adding with Thread objects *****");
-            Console.WriteLine("ID of thread in Main(): {0}", Thread.CurrentThread.ManagedThreadId);
-
-            var ap = new AddParams(10, 10);
-            var t = new Thread(new ParameterizedThreadStart(Add));
-            t.Start(ap);
-            Thread.Sleep(5);
-
-            waitHandle.WaitOne();
-            Console.WriteLine("Other thread is done!");
+            AddAsync();
 
             Console.ReadLine();
         }
-        private static void Add(object data)
+
+        private static async Task AddAsync()
         {
-            if (data is AddParams)
+            Console.WriteLine("***** Adding with Thread objects *****");
+            Console.WriteLine("ID of thread in Main: {0}", Thread.CurrentThread.ManagedThreadId);
+
+            var ap = new AddParams(10, 10);
+            await Sum(ap);
+
+            Console.WriteLine("Other thread is done!");
+        }
+
+        private static async Task Sum(object data)
+        {
+            await Task.Run(() =>
             {
-                Console.WriteLine("ID of thread in Add(): {0}", Thread.CurrentThread.ManagedThreadId);
+                if (data is AddParams)
+                {
+                    Console.WriteLine("ID of thread in Add(): {0}", Thread.CurrentThread.ManagedThreadId);
 
-                var ap = (AddParams)data;
-                Console.WriteLine("{0} + {1} is {2}", ap.a, ap.b, ap.a + ap.b);
-
-                waitHandle.Set();
-            }
+                    var ap = (AddParams)data;
+                    Console.WriteLine("{0} + {1} is {2}", ap.a, ap.b, ap.a + ap.b);
+                }
+            });
         }
     }
 
@@ -43,10 +48,11 @@ namespace AddWithThreads
     {
         public int a, b;
 
-        public AddParams(int numb1, int numb2)
+        public AddParams(int intA, int intB)
         {
-            a = numb1;
-            b = numb2;
+            a = intA;
+            b = intB;
         }
     }
+
 }
