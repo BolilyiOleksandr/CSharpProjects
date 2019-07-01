@@ -1871,35 +1871,259 @@ You should understand the following key point regarding .NET attributes:
 - attributes are basically useless until another agent reflects upon them
 - attributes are applied in C# using square brackets
 
+For security reasons, it is considered a .NET best practice to design all custom attributes as sealed.
 
+By default, custom attributes can be applied to just about any aspect of your code (methods, classes, properties, and so on).
+When you may want to build a custom attribute that can be applied only to select code elements, you will need to apply
+the [AttributeUsage] attribute on the definition of your custom attribute. The [AttributeUsage]	attribute allows you 
+to supply any combination of values (via an OR operation) from the AttributeTarget enumeration.
 
+Select Assembly-Level Attributes
+----------------------------------------------------------------------------------------------------------------------------------------
+Attribute					Meaning in Life										|
+----------------------------------------------------------------------------------------------------------------------------------------
+[AssemblyCompany]				Holds basic company information.							|
+[AssemblyCopyright]				Holds any copyright information for the product or assembly				|
+[AssemblyCulture]				Provides information on what cultures or languages the assembly supports		|
+[AssemblyDescription]				Holds a friendly description of the product or modules that make up the assembly	|
+[AssemblyKeyFile]				Specifies the name of the file containing the key pair used to sign the assembly	|
+						(i.e., establish a strong name)								|
+[AssemblyProduct]				Provides product information								|
+[AssemblyTradeMark]				Provides trademark information								|
+[AssemblyVersion]				Specifies the assembly's version information, in the format 				|
+						<major.minor.build.revision>								|
+----------------------------------------------------------------------------------------------------------------------------------------
 
+If you want to make use of early binding, you'll require the client application to have a compile-time definition of the attribute.
 
+When to make use of reflection, dynamic loading, late binding, and custom attributes?
+1) An extendable application must provide some input mechanism to allow the user to specify the module to plug in 
+(such as a dialog box or command-line flag). This requires dynamic loading.
+2) An extendable application must be able to determine whether the module supports the correct functionlity (such as a
+set of required interfaces) to be plugged into the environment. This requires reflection.
+3) An extendable application must obtain a reference to the required infrastructure (such as a set of interface types)
+and invoke the members to trigger the underlying functionality. This may require late binding.
 
+		Chapter 16 Dynamic Types and the Dynamic Language Runtime
 
+Keyword dynamic allows you to incorporate scripting-like behaviors into the strongly typed world of type safety,
+semicolons, and curly brackets. Using this loose typing, you can greatly simplify some complex coding tasks and also
+gain the ability to interoperate with a number of dynamic languages, which are .NET savvy.
 
+From a high level, you can consider the dynamic keyword a specialized form of System.Object, in that any value can be
+assigned to a dynamic data type. Dynamic data is not statically typed. As far as the C# compiler is concerned, 
+a data point declared with the dynamic keyword can be assigned any initial value at all and can be reassigned to
+any new (and possibly unrelated) value during its lifetime.
+Another obvious distinction between calling members on dynamic data and strongly typed data is that when you apply 
+the dot operator to a piece of dynamic data, you will not see the expected Visual Studio IntelliSense. 
+The IDE will allow you to enter any member name you could dream up.
 
+The dynamic keyword can be used as a return value, a parameter, or a member of a class/structure.
+A dynamic data item cannot make use of lambda expressions or C# anonymous methods when calling a method.
+Also it has a limited use within LINQ to Objects and other LINQ technologies.
 
+A dynamic runtime allows a dynamic language the ability to discover types completely at runtime with no 
+compile-time checks.
 
+DLR - dynamic language runtime
+RCW - runtime callable wrapper
 
+		Chapter 17 Processes, AppDomains, and Object Contexts
 
+Application domains (or simply AppDomains) are logical subdivisions within a given process that host a set of related
+.NET assemblies.
+While it is true that many of your day-to-day programming tasks might not involve directly working with processes,
+AppDomains, or objects contexts, understanding these topics is important when working with numerous .NET APIs,
+including Windows Communications Foundation (WCF), multithreading and parallel processing, and object serialization.
 
+The concept of a "process" existed within Windows-based operating systems well before the release of the .NET platform.
+In simple terms, a process is a running program. However, formally speaking, a process is an operating system-level
+concept used to describe a set of resources (such as external code libraries and the primary thread) and the necessary
+memory allocations used by a running application. For each *.exe loaded into memory, the OS creates a separate and
+isolated process for the use during its lifetime.
+Using this approach to application isolation, the result is a much more robust and stable runtime environment,
+given that the failure of the process does not affect the functioning of another. Furthermore, data in one process
+cannot be directly accessed by another process, unless you make use of a distributed computing programming API such
+as Windows Communication Foundation. Given these points, you can regard the process as a fixed, safe boundary for a
+running application.
+Now, every Windows process is assigned a unique process identifier (PID) and may be independently loaded and 
+unloaded by the OS as necessary (as well as programmatically).
 
+A thread is a path of execution within a process. Formally speaking, the first thread created by a process's
+entry point is termed the primary thread. Any .NET executable program (Console Application, Windows service,
+WPF application, etc.) marks its entry point with the Main() method. When this method is invoked, 
+the primary thread is created automatically.
+Processes that contain a single primary thread of execution are intrinsically thread safe, given the fact that
+there is only one thread that can access the data in the application at a given time. However, a single-threaded
+process (especially one that is GUI-based) will often appear a bit unresponsive to the user if this single thread
+is performing a complex operation (such as printing out a lengthy text file, performing a mathematically 
+intensive calculation, or attempting to connect to a remote server located thousands of miles away).
+Given this potential drawback of single-threaded applications, the Winfows API (as well as .NET platform) makes
+it possible for the primary thread to spawn additional secondary threads (also termed worker thread) using a 
+handful of Windows API functions such as CreateThread(). Each thread (primary or secondary) becomes a unique path
+of execution in the process and has concurrent access to all shared points of data within the process.
+Multithreaded processes provide the illusion that numerous activities are happening at more or less the same time.
+However, using too many threads in a single process can actually degrade performance, as the CPU must switch
+between the active threads in the process (which takes time).
+A single CPU will execute one thread for a unit of time (called a time slice) based in part on the thread's 
+priority level. When a thread's time slice is up, the existing thread is suspended to allow another thread
+to perform its business. For a thread to remember what was happening before it was kicked out of the way, each 
+thread is given the ability to write to Thread Local Storage (TLS) and is provided with a separate call stack.
 
+Select Members of the System.Diagnostics Namespace
+---------------------------------------------------------------------------------------------------------------------
+Process-Centric Types of the				Meaning in Life						     |
+System.Diagnostics Namespace											     |
+---------------------------------------------------------------------------------------------------------------------
+Process							The Process class provides access to local and remote 	     |
+							processes and also allows you yo programatically start	     |
+							and stop processes.					     |
+ProcessModule						This type represents a module (*.dll or *.exe) that is	     |
+							loaded into a particular process. Understand that the        |
+							ProcessModule type can represent any module - COM-based,     |
+							.NET-based, or traditional C-based binaries.		     |
+ProcessModuleCollection					This provides a strongly typed collection of ProcessModule   |
+							objects.						     |
+ProcessStartInfo					This specifies a set of values used when starting a process  |
+							via the Process.Start() method.				     |
+ProcessThread						This type represents a thread within a given process.	     |
+							Be aware that ProcessThread is a type used to diagnose a     |
+							process's thread set and is not used to spawn new threads    |
+							of execution within a process.				     |
+ProcessThreadCollection					This provides a strongly typed collection of ProcessThread   |
+							objects.						     |
+---------------------------------------------------------------------------------------------------------------------
 
+Select Properties of the Process Type
+------------------------------------------------------------------------------------------------------------------------
+Property					Meaning in Life								|
+------------------------------------------------------------------------------------------------------------------------
+ExitTime					This property gets the timestamp associated with the process		|
+						that has terminated (represented with a DateTime type).			|
+Handle						This property returns the handle (represented by an IntPtr)		|
+						associated to the process by the OS. This can be helpful when		|
+						building .NET applications that need to communicate with		|
+						unmanaged code.								|
+Id						This property gets the PID for the associated process.			|
+MachineName					This property gets the name of the computer the associated process	|
+						is running on.								|
+MainWindowTitle					MainWindowTitle gets the caption of the main window of the process	|
+						(if the process does not have a main window, you receive an empty	|
+						string).								|
+Modules						This property provides access to the strongly typed			|
+						ProcessModuleCollection type, which represents the set of modules	|
+						(*.dll or *.exe) loaded within the current process.			|
+ProcessName					This property gets the name of the process (which, as you would		|
+						assume, is the name of the application itself).				|
+Responding					This property gets a value indicating whether the user interface	|
+						of the process is responding to user input (or is currently "hung")	|
+StartTime					This property gets the time that the associated process was started	|
+						(via a DateTime type).							|
+Threads						This property gets the set of threads that are running in the		|
+						associated process (represented via a collection of ProcessThread	|
+						objects).								|
+------------------------------------------------------------------------------------------------------------------------
 
+Select Methods of the Process Type
+--------------------------------------------------------------------------------------------------------------------
+Method					Meaning in Life								    |
+--------------------------------------------------------------------------------------------------------------------
+CloseMainWindow()			This method closes a process that has a user interdface by sending a close  |
+					message to its main window.						    |
+GetCurrentProcess()			This static method returns a new Process object that represents the	    |
+					currently active process.						    |
+GetProcesses()				This static method returns an array of new Process objects running on a	    |
+					given machine.								    |
+Kill()					This method immediately stops the associated process.			    |
+Start()					This method starts a process.						    |
+--------------------------------------------------------------------------------------------------------------------
+	
+Select Members of the ProcessThread Type
+------------------------------------------------------------------------------------------------------------------------
+Member					Meaning in Life									|
+------------------------------------------------------------------------------------------------------------------------
+CurrentPriority				Gets the current priority of the thread						|
+Id					Get the unique identifier of the thread						|
+IdealProcessor				Sets the preferred processor for this thread to run on				|
+PriorityLevel				Get or sets the priority level of the thread					|
+ProcessorAffinity			Sets the processor on which the associated thread can run			|
+StartAddress				Gets the memory address of the function that the operating system called	|
+					that started this thread							|
+StartTime				Gets the time that the operating system started the thread			|
+ThreadState				Gets the current state of this thread						|
+TotalProcessorTime			Gets the local amount of time that this thread has spent using the processor	|
+WaitReason				Gets the reason that the thread is waiting					|
+------------------------------------------------------------------------------------------------------------------------
 
+A .NET executable is hosted by a logical partition within a process termed as application domain.
 
+Select Methods of AppDomain
+------------------------------------------------------------------------------------------------------------------------
+Method					Meaning in Life									|
+------------------------------------------------------------------------------------------------------------------------
+CreateDomain()				This static method allows you to create a new AppDomain in the current		|
+					process										|
+CreateInstance()			This creates an instance of a type in an external assembly, after loading	|																																																																																					
+					said assembly into the calling application domain.				|
+ExecuteAssembly()			This method executes an *.exe assembly within an applicaton domain, given its	|
+					file name.									|
+GetAssemblies()				This method gets the set of .NET assemblies that have beem loaded into this	|
+					application domain (COM-based or C-based binaries are ignored).			|
+GetCurrentThreadId()			This static method returns the ID of the active thread in the current		|
+					application domain.								|
+Load()					This method is used to dynamically load an assembly into the current		|
+					application domain.								|
+Unload()				This is another static method that allows you to unload a specified AppDomain	|
+					within a given process.								|
+------------------------------------------------------------------------------------------------------------------------
 
+Select Properties of AppDomain
+------------------------------------------------------------------------------------------------------------------------
+Property				Meaning in Life									|
+------------------------------------------------------------------------------------------------------------------------
+BaseDirectory				This gets the directory path that the assembly resolver uses to probe for	|
+					assemblies.									|
+CurrentDomain				This static property gets the application domain for the currently		|
+					executing thread								|
+FriendlyName				This gets the friendly name of the current application domain.			|
+MonitoringIsEnabled			This gets or sets a value that indicates whether CPU and memory monitoring	|
+					of application domains is enabled for the current process. Once monitoring	|
+					is enabled for a process, it cannot be disabled.				|																																																																																																																																																																																																																																															
+SetupInformation			This gets the configuration details for a given application domain, 		|
+					represented by an AppDomainsSetup object.					|
+------------------------------------------------------------------------------------------------------------------------
 
+Select Events of the AppDomain Type
+------------------------------------------------------------------------------------------------------------------------
+Event					Meaning in Life									|
+------------------------------------------------------------------------------------------------------------------------
+AssemblyLoad				This occurs when an assembly is loaded into memory.				|
+AssemblyResolve				This event will fire when the assembly resolver cannot find the location	|
+					of a required assembly.								|
+DomainUnload				This occurs when an AppDomain is about to be unloaded from the hosting		|
+					process.									|
+FirstChanceException			This event allows you to be notified that an exception has been thrown		|
+					from the application domain, before the CLR will begin looking for a fitting	|
+					catch statement.								|
+ProcessExit				This occurs on the default application domain when the default application	|
+					domain's parent process exits.							|
+UnhandledException 			This occurs when an exception is not caught by an exception handler.		|
+------------------------------------------------------------------------------------------------------------------------
 
-p.846
+		Chapter 18 Understanding CIL and the Role of Dynamic Assemblies
 
-
+CIL directives are used to inform the CIL compiler how to define the namespace(s), type(s), and member(s) that will
+populate an assembly. Many CIL directives can be further specified with various CIL attributes to qualify how a directive
+should be processed. Once a .NET assembly, namespace, and type set have been defined in terms of CIL using various
+directives and related attributes, the final remaining task is to provide the type's implementation logic - this is a 
+job for operations code, or simply opcodes.
 
 				PART VI Introducing the .NET Base Class libraries
 
 		Chapter 19 Multithreaded, Parallel, and Async Programming
+
+There are three recent techniques .NET developers can use to build multithreaded software, specifically the 
+Task Parallel Library (TPL), Parallel LINQ (PLINQ), and the new intrinsic asynchronous keywords of C# (async and await).
 
 Under the .NET platform, there is not a direct one-to-one correspondence between application domains and threads. In fact,
 a given AppDomain can have numerous threads executing within it at any given time. Furthermore, a particular thread is 
@@ -1924,6 +2148,238 @@ executive threads.
 Using types defined within the System.Threading namespace, the Task Parallel Library (TPL), and the C# async and await keywords,
 you are able to work with multiple threads with minimal fuss and bother.
 
+To allow the calling thread to discover whether the asynchronously invoked method has completed its work, the IAsyncResult
+interface provides the IsCompleted property. Using this member, the calling thread is able to determine whether the
+asynchronous call has indeed completed before calling EndInvoke().
+If the method has not completed, IsCompleted returns false, and the calling thread is free to carry on its work.
+If IsCompleted returns true, the calling thread is able to obtain the result in the "least blocking manner" possible.
+
+Core Types of the System.Threading Namespace
+--------------------------------------------------------------------------------------------------------------------------------
+Type						Meaning in Life									|
+--------------------------------------------------------------------------------------------------------------------------------
+Interlocked					This type provides atomic operations for variables that are shared by 		|
+						multiple threads.								|
+Monitor						This type provides the synchronization of threading objects using locks and	|
+						wait/signals. The C# lock keyword uses a Monitor object under the hood.		|
+Mutex						This synchronization primitive can be used for synchronization between		|
+						application domain boundaries.							|
+ParameterizedThreadStart			This delegate allows a thread to call methods that take any number of		|
+						arguments.									|
+Semaphore					This type allows you to limit the number of threads that can access		|
+						a resource, or a particular type of resource, concurrently.			|
+Thread						This type represents a thread that executes within the CLR. Using this type,	|
+						you are able to spawn additional threads in the originatinf AppDomain.		|
+ThreadPool					This type allows you to interact with the CLR-maintained thread pool		|
+						within a given process.								|
+ThreadPriority					This enum represents a thread's priority level (Highest, Normal, etc.).		|
+ThreadStart					This delegate is used to specify the method to call for a given thread.		|
+						Unlike the ParameterizedThreadStart delegate, targets of ThreadStart		|
+						must always have the same prototype.						|
+ThreadState					This enum specifies the valid states a thread may take (Running,		|
+						Aborted, etc.).									|
+Timer						This type provides a mechanism for executing a method at specified		|
+						intervals.									|
+TimerCallback					This delegate type is used in conjunction with Timer types.			|
+--------------------------------------------------------------------------------------------------------------------------------
+
+The most primitive of all types in the System.Threading namespace is Thread. This class represents an object-oriented wrapper
+around a given path of execution within a particular AppDomain. This type also defines a number of methods (both static and
+istance level) that allow you to create new threads within the current AppDomain, as well as to suspend, stop, and destroy
+a particular thread.
+
+Key Static Members of the Thread Type
+--------------------------------------------------------------------------------------------------------------------------------
+Static Member			Meaning in Life											|
+--------------------------------------------------------------------------------------------------------------------------------
+CurrentContext			This read-only property returns the context in which the thread is currently running.		|
+CurrentThread			This read-only property returns a reference to the currently running thread.			|
+GetDomain()			These methods return a reference to the current AppDomain or the ID of the domain in which	|
+GetDomainID()			the current thread is running.									|
+Sleep()				This method suspends the current thread for a specified time.					|
+--------------------------------------------------------------------------------------------------------------------------------
+
+Select Instance-Level Members of the Thread Type
+--------------------------------------------------------------------------------------------------------------------------------
+Instance-Level Member				Meaning in Life									|
+--------------------------------------------------------------------------------------------------------------------------------
+IsAlive						Returns a Boolean that indicates whether this thread has been started 		|
+						(and has not yet terminated or aborted).					|
+IsBackground					Gets or sets a value indicating whether this thread is a "background thread".	|
+Name						Allows you to establish a friendly text name of the thread.			|
+Priority					Gets or sets the priority of a thread, which may be assigned a value from	|
+						the ThreadPriority enumeration.							|
+ThreadState					Gets the state of this thread, which may be assigned a value from the 		|
+						ThreadState enumeration.							|
+Abort()						Instructs the CLR to terminate the thread as soon as possible.			|
+Interrupt()					Interrupts (e.g., wakes) the current thread from a suitable wait period.	|
+Join()						Blocks the calling thread until the specified thread (the one on which Join() 	|
+						is called) exists.								|
+Resume()					Resumes a thread that has been previously suspended.				|
+Start()						Instructs the CLR to execute the thread ASAP.					|
+Suspend()					Suspends the thread. If the thread is already suspended, a call to Suspend()	|
+						has no effect.									|
+--------------------------------------------------------------------------------------------------------------------------------		
+
+Aborting or suspending an active thread is generally considered a bad idea. When you do so, there is a chance (however small)
+that a thread could "leak" its workload when disturbed or terminated.
+
+One simple, and thread-safe, way to force a thread to wait until another is completed is to use the AutoResetEvent class.
+In the thread that need to wait (such as a Main() method), create an instance of this class and pass in false to the 
+consturctor to signify you have not yet been notified. Then, at the point at which you are willing to wait, 
+call the WaitOne() method.
+
+Let's formalize the disctinction between foreground threads and background threads:
+- Foreground threads have the ability to prevent the current application from terminating. The CLR will not shut down an application
+(which is to say, unload the hosting AppDomain) until all foreground thread have ended.
+- Background threads (sometimes called daemon threads) are viewed by the CLR as expendable paths of execution that can be ignored
+at any point in time (even if they are currently laboring over some unit of work). Thus, if all foreground threads have
+terminated, any and all background threads are automatically killed when the application domain unloads.
+It is important to note that foreground and background threads are not synonymous with primary and worker threads. By default,
+every thread you create via the Thread.Start() method is automatically a foreground thread. Again, this means that the AppDomain
+will not unload until all threads of execution have completed their units of work. In most cases, this is exactly the behavior
+you require.
+
+When you build multithreaded applications, your program needs to ensure that any piece of shared data is protected against the
+possibility of numerous threads changing its value. Given that all threads in an AppDomain have concurrent access to the 
+shared data of the application, imagine that might happen if multiple threads were accessing the same point of data.
+
+The first technique you can use to synchronize access to shared resources is the C# lock keyword. This keyword allows you
+to define a scope of statements that must be synchronized between threads. By doing so, incoming threads cannot interrupt
+the current thread, thus preventing it from finishing its work. The lock keyword requires you to specify a token
+(an object reference) that must be acquired by a thread to enter within the lock scope. When you are attempting to lock down
+a private instance-level method, you can simply pass in reference to the current type. However, if you are locking down
+a region of code within a public method, it is safer (and a best practice) to declare a private object member variable to
+server as the lock token.
+
+Once a thread enters into a lock scope, the lock token is inaccessible by other threads until the lock is released after
+the lock scope has exited. Thus, if thread A has obtained the lock token, other threads are unable to enter any scope that
+uses the same lock token until thread A relinquishes the lock token.
+
+If you are attempting to lock down the code in a static method, simply declare private static object member variable
+to serve as the lock token.
+
+The C# lock statement is really just a shorthand notation for working with the System.Threading.Monitor class.
+
+First, notice that the Monitor.Enter() method is the ultimate recipient of the thread token you specified as the argument
+to the lock keyword. Next, all code within a lock scope is wrapped within a try block. The corresponding finally clause
+ensures that the thread token is released (via the Monitor.Exit() method), regardless of any possible runtime exception.
+
+Although it always is hard to believe until you look at the underlying CIL code, assingments and simple arithmetic operations
+are not atomic.
+
+Select Static Members of the System.Threading.Interlocked Type
+------------------------------------------------------------------------------------------------------------------------
+Member						Meaning in Life								|
+------------------------------------------------------------------------------------------------------------------------
+CompareExchange()				Safely tests two values for equality and, if equal, exchanges one 	|
+						of the values with a third.						|
+Decrement()					Safely decremenents a value by 1.					|
+Exchange()					Safely swaps two values.						|
+Increment()					Safely increments a value by 1.						|
+------------------------------------------------------------------------------------------------------------------------
+	
+The class-level attribute [Synchronization] effectively locks down all instance member code of the object for thread safety.
+When the CLR allocates objects attributed with [Synchronization], it will place the object within a synchronized context.
+
+When you invoke a method asynchronously using delegate types (via the BeginInvoke() method), the CLR does not literally
+create a new thread. For purposes of efficiency, a delegate's BeginInvoke() method leverages a pool of worker delegates
+that is maintained by the runtime. To allow you to interact with this pool of waiting threads, the System.Threading
+namespace provides the ThreadPool class type.
+If you want to queue a method call for processing by a worker thread in the pool, you can use the
+ThreadPool.QueueUserWorkItem() method.
+
+You might be wondering if it would be advantegous to use the CLR-maintained thread pool rather than explicitly creating
+Thread objects. Consider these benefits of leveraging the thread pool:
+- the thread pool manages threads efficiently by minimize the number of threads that must be created, started, and
+  stopped
+- by using the thread pool, you can focus on your business problem rather than the application's threading 
+  infrastructure
+
+However, using manual thread management is preferred in some cases:
+- if you require foreground threads or must set the thread priority. Pooled threads are always background threads
+  with default priority (ThreadPriority.Normal)
+- if you require a thread with a fixed identity in order to abort it, suspend it, or discover it by name
+
+Beginning with the release of .NET 4.0, Microsoft introduced a new approach to multithreaded application development
+using a parallel programming library termed Task Parallel Library (TPL). Collectively speaking, the types of
+System.Threading.Tasks are referred to as the Task Parallel Library. Using the System.Threading.Tasks, you can
+build fine-grained, scalable parallel code without having to work directly with threads or the thread pool.
+Be aware that the C# async and await keywords use various members of the System.Threading.Tasks namespace.
+
+The TPL will automatically distribute your application's workload across available CPUs dynamically, using
+the CLR thread pool. The TPL handles the partitioning of the work, thread scheduling, state management, and other
+low-level details. The end result is that you can maximize the performance of your .NET applications, while being
+shielded from many of complexities of directly working with threads.
+
+A key class of the TPL is System.Threading.Tasks.Parallel.
+The first way to use the TPL is to perform data parallelism. Simply put, this term refers to the task of iterating
+over an array or collection in a parallel manner using the Parallel.For() or Parallel.ForEach() method.
+
+When you are building a multithreaded graphical user interface (GUI) application, secondary threads can never directly
+access user interface controls. The reason is that controls (buttons, text boxes, labels, progress bars, etc.) have 
+thread affinity with the thread that created them.
+
+One approach that you can use to allow the secondary thread to access the controls in a thread-safe manner is yet 
+another delegate centric technique, specifically an anonymous delegate.
+
+The Task class allows you to easily invoke a method on a secondary thread and can be used as a simple alternative
+to working with asynchronous delegates.
+
+LINQ queries that are designed to run in parallel are termed PLINQ queries.
+Like parallel code authored using the Parallel class, PLINQ has the option of ignoring your request to process
+the collection in parallel if need be. The PLINQ framework has been optimized in numerous ways, which includes
+determining whether a query would, in fact, perform faster in a synchronous matter.
+At runtime, PLINQ analyzes the overall structure of the query, and if the query is likely to benefit from 
+parallelization, it will run concurrently. However, if parallelizing a query would hurt performance, PLINQ just
+runs the query sequentially. If PLINQ has a choice between a potentially expensive parallel algorithm or an
+inexpensive sequential algorithm, it chooses the sequential algorithm by default.
+
+Select Members of the ParallelEnumerable Class
+------------------------------------------------------------------------------------------------------------------------
+Member					Meaning in Life									|
+------------------------------------------------------------------------------------------------------------------------
+AsParallel()				Specifies that the rest of the query should be parallelized, if possible.	|
+WithCancellation()			Specifies that PLINQ should periodically monitor the state of the provided	|
+					cancellation token and cancel execution if it is requested.			|
+WithDegreeOfParallelism()		Specifies the maximum number of processors that PLINQ should use 		|
+					to parallelize the query.							|
+ForAll()				Enables results to be processed in parallel without first merging back		|
+					to the consumer thread, as would be the case when enumerating a LINQ		|
+					result using the foreach keyword.						|
+------------------------------------------------------------------------------------------------------------------------
+
+The async keyword of C# is used to qualify that a method, lambda expression, or anonymous method should be called in an
+asynchronous manner automatically. Simply by marking a method with the async modifier, the CLR will create a new thread 
+of execution to handle the task at hand. Furthermore, when you are calling an async method, the await keyword will
+automatically pause the current thread from any further activity until the task is complete, leaving the calling thread
+free to continue on its merry way.
+
+The await token is in charge of extracting out the internal return value contained in the Task object.
+An "awaitable" method is simply a method that returns a Task<T>.
+Given that methods that return Task objects can now be called in a nonblocking manner via the async and await tokens,
+Microsoft recommends (as a best practice) that any method returning Task be marked with an Async suffix. In this way,
+developers who know the naming convention receive a visual reminder that the await keyword is required, if they
+intend to invoke the method within an asynchronous context.
+
+Event handlers for GUI controls (such as your button Click handler) that use the async/await keywords do not follow
+this naming convention.
+
+It is completely permissible for a single async method to have multiple await contexts within its implementation.
+
+Let's summarize the key points:
+- methods (as well as lambda expressions or anonymous methods) can be marked with the async keyword to enable
+  the method to do work in a nonblocking manner
+- methods (as well as lambda expressions or anonymous methods) marked with the async keyword will run in a blocking
+  manner until the await keyword is encountered
+- a single async method can have multiple await contexts
+- when the await expression is encountered, the calling thread is suspended until the awaited task is completer.
+  In the meantime, control is returned to the caller of the method.
+- the await keyword will hide the returned Task object from view, appearing to directly return the underlying
+  return value. Methods with no return value simply return void.
+- as a naming convention, methods that are to be called asynchronously should be marked with the Async suffix
+
+The Main() method of an executable cannot be marked with the async keyword.
 
 
 
@@ -1942,33 +2398,7 @@ you are able to work with multiple threads with minimal fuss and bother.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-p.998
+p.1072
 
 
 
