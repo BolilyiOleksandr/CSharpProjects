@@ -414,9 +414,7 @@ It is now possible to define a C# using directive, which will import all static 
 All object-oriented languages must contend with three core principles, often called the pillars of object-oriented programming (OOP).
 
 1) Encapsulation - how does this language hide an object's internal implementation details and preserve data integrity?
-
 2) Inheritance - how does this language promote code reuse?
-
 3) Polymorphism - how does this language let you treat related objects in a similar way?
 
 A class's polymorphic interface is constructed using any number of virtual or abstract members.
@@ -453,7 +451,6 @@ Rather, class data is defined as private. If the object user wants to alter the 
 You should get in the habit of defining private data, which is indirectly manipulated using one of two main techniques:
 
 a) you can define a pair of public accessor (get) and mutator (set) methods
-
 b) you can define a public .NET property
 
 Although you can encapsulate a piece of field data using traditional get and set methods, .NET languages prefer to enforce 
@@ -642,7 +639,7 @@ GetType()			This method returns a Type object that fully describes the object yo
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 A hash code is a numerical value that represents an object as a particular state.
-To be more specific, the System.Collections.Hasttable class calls GetHashCode() internally to gain a general idea where the object is located, 
+To be more specific, the System.Collections.Hashtable class calls GetHashCode() internally to gain a general idea where the object is located, 
 but a subsequent (internal) call to Equals() determines the exact match.
 
 		Chapter 7 Understanding Structured Exception Handling
@@ -736,7 +733,7 @@ holds true.
 		Chapter 8 Working with Interfaces
 
 An interface is nothing more than a named set of abstract members. The abstact methods are pure protocol in that they do not provide 
-a default implemmentation. An interface expresses a behavior that a given class or structure may choose to support. A class or structure
+a default implementation. An interface expresses a behavior that a given class or structure may choose to support. A class or structure
 can support as many interfaces as necessary.
 
 By covention, .NET interfaces are prefixed with a capital letter I. 
@@ -789,7 +786,7 @@ You may construct methods that take interfaces as parameters.
 
 If you attempt to pass in a type not supporting the necessary interface, you receive a compile-time error.
 Interfaces can also be used as method return values.
-The same interface can be implemented by numerous types, even if they are not within the same class hierarchy and do not hace a common parent class
+The same interface can be implemented by numerous types, even if they are not within the same class hierarchy and do not have a common parent class
 beyond System.Object.
 
 When you have an array of a given interface, the array can contain any class or structure that implements that interface.
@@ -837,7 +834,7 @@ public interface IComparable
 	int CompareTo(object o);
 }
 
-The generic version of this interface (IComparable<T>) provides a more type-safe manner to hangle comparisons between objects.
+The generic version of this interface (IComparable<T>) provides a more type-safe manner to handle comparisons between objects.
 
 CompareTo() Return Values
 -----------------------------------------------------------------------------------------------------------
@@ -875,7 +872,7 @@ Unlike a simple C# array, collection classes are built to dynamically resize the
 collection classes offer increased type safety and are highly optimized to process the contained data in a memory-efficient manner.
 A collection class can belong to one of two broad categories:
 
-- Nongeneric collectios (primarily found in the System.Collections namespace)
+- Nongeneric collections (primarily found in the System.Collections namespace)
 - Generic collections (primarily found in the System.Collections.Generic namespace)
 
 Nongeneric collections are typically designed to operate on System.Object types and are, therefore, loosely typed containers (however, some nongeneric
@@ -990,10 +987,10 @@ Stack<T>				ICollection (nongeneric),	This is a generic implementation     |
 					IEnumerable<T>			of a last-in, first-out (LIFO) list. |
 -------------------------------------------------------------------------------------------------------------
 
-With the introduction of generics, the C# default keyword has been given a dual identity. In addition to its use within a switch construct,
-it can also be used to set a type parameter to its default value. This is helpful because a generic type does not know the actual
-placeholders up front, which means it cannot safety assume what the default value will be. The defaults for a type parameter
-are as follows:
+With the introduction of generics, the C# default keyword has been given a dual identity. In addition to its use within
+a switch construct, it can also be used to set a type parameter to its default value. This is helpful because
+a generic type does not know the actual placeholders up front, which means it cannot safety assume what 
+the default value will be. The defaults for a type parameter are as follows:
 - Numeric values have a default value of 0
 - Reference types have a default value of null
 - Fields of a structure are set to 0 (for value types) or null (for reference types)
@@ -1217,7 +1214,7 @@ when a type defines an implicit conversion routine, it is legal for the caller t
 cast syntax!
 
 .NET 3.5 introduced the concept of extension methods, which allow you to add new methods or properties to
-a class or structure, withour modifying the original type in any direct manner.
+a class or structure, without modifying the original type in any direct manner.
 
 When you define extension methods, the first restriction is that they must be defined within a static class
 and, therefore, each extension method must be declared within the static keyword. The second point is that
@@ -1334,7 +1331,7 @@ System.Core.dll						Defines the types that represents the core LINQ API.		     
 							This is the one assembly you must have access to if you want	     |
 							to use any LINQ API, including LINQ to Objects.			     |
 System.Data.DataSetExtensions.dll			Defines a handful of types to integrate ADO.NET types into	     |
-							the LINQ programming paragigm (LINQ to DataSet).		     |
+							the LINQ programming paradigm (LINQ to DataSet).		     |
 System.Xml.Linq.dll					Provides functionality for using LINQ with XML document		     |
 							data (LINQ to XML).						     |
 -----------------------------------------------------------------------------------------------------------------------------
@@ -1381,7 +1378,7 @@ join, on, equals, into					Performs joins based on specified key. Remember, thes
 							relational database.						     |
 orderby, ascending, descending				Allows the resulting subset to be ordered in ascending or	     |
 							descending order.						     |
-group,by						Yields a subset with data grouped by a specified value.		     |
+group, by						Yields a subset with data grouped by a specified value.		     |
 -----------------------------------------------------------------------------------------------------------------------------
 
 The syntactical correctness of a LINQ query expression is validated at compile time, and you need to remember that the ordering
@@ -1391,7 +1388,7 @@ operators. Here is the general template to follow:
 var result = from matchingItem in container select matchingItem;
 
 The item after the from operator represents an item that matches the LINQ query criteria, which can be named anything you choose.
-The item adter the in operator represents the data container to search (an array, collection, XML document, etc.).
+The item after the in operator represents the data container to search (an array, collection, XML document, etc.).
 
 To obtain a specific subset from a container, you can use the where operator. When doing so, the general template now becomes
 the following code:
@@ -1412,7 +1409,7 @@ sequence. Any time you need to determine the number of items returned from a LIN
 extension method of the Enumerable class.
 You can reverse the items within a result set quite simply using the Reverse<>() extension method of the Enumerable class.
 A query expression can take an orderby operator to sort items in the subset by a specific value. By default, the order
-will be ascending; thus, ordering by a string would be alphabetical, ordering by numerical data would be lowes to highest,
+will be ascending; thus, ordering by a string would be alphabetical, ordering by numerical data would be lowest to highest,
 and so forth. If you need to view the results in a descending order, simply include the descending operator.
 
 The Enumerable class supports a set of extension methods that allows you to use two (or more) LINQ queries as the basis
@@ -1428,7 +1425,7 @@ which could be exactly what you want in some cases. However, in other cases, you
 in your data. To do so, simply call the Distinct() extension method.
 
 LINQ queries can also be designed to perform various aggregation operations on the result set. The Count() extension
-method is one such aggregation example. Other possibilities include obtaining an average, maximum, minumum, or sum
+method is one such aggregation example. Other possibilities include obtaining an average, maximum, minimum, or sum
 of values using the Max(), Min(), Average(), or Sum() members of the Enumerable class.
 
 Keep the following points in mind regarding how LINQ query expressions are represented under the covers:
@@ -1448,11 +1445,11 @@ new keyword returns a reference to the object on the heap, not the actual object
 a local variable in a method scope, it is stored on the stack for further use in your application. When you want to invoke
 members on the object, apply the C# dot operator to the stored reference.
 
-The structures are value types that are always allocated directly on the stack abd are never placed on the .NET managed heap.
+The structures are value types that are always allocated directly on the stack and are never placed on the .NET managed heap.
 Heap allocation occurs only when you are creating instances of classes.
 
 When you are building your C# application, you are correct to assume that the .NET runtime environment (aka the CLR) will
-take care of the managed heap withour your direct intervention. In fact, the golden rule of .NET memory management is
+take care of the managed heap without your direct intervention. In fact, the golden rule of .NET memory management is
 simple. Allocate a class instance onto the managed heap using the new keyword and forget about it. Once instantiated, 
 the garbage collector will destroy an object when it is no longer needed. The next obvious question, of course, is, 
 "How does the garbage collector determine when an object is no longer needed?" The short (i.e., incomplete) answer is that
@@ -1502,7 +1499,7 @@ are still reachable (i.e., rooted) by the application. To do so, the CLR will bu
 each reachable object on the heap. The garbage collector will never graph the same object twice.
 
 Strictly speaking, the garbage collector uses two distinct heaps, one of which is specifically used to store large objects.
-This heap is less frequently consulted during the collection cycle, givem possible performance penalties involved with
+This heap is less frequently consulted during the collection cycle, given possible performance penalties involved with
 relocation large objects. Regardless, it is safe to consider the managed heap as a single region of memory.
 
 When the CLR is attempting to locate unreachable objects, it does not literally examine every object places on the 
@@ -1515,7 +1512,7 @@ that have only recently been placed on the heap (such as an object allocated wit
 unreachable rather quickly. Given these assumptions, each object on the heap belongs to one of the following generations:
 - Generation 0 - identifies a newly allocated object that has never been marked for collection
 - Generation 1 - identifies an object that has survived a garbage collection (i.e., it was marked for collection but was
-removed because the sufficient heap space was acquired)
+  removed because the sufficient heap space was acquired)
 - Generation 2 - identifies an object that has survived more that one sweep of the garbage collector	
 
 If all generation 0 objects have been evaluated but additional memory is still required, generation 1 objects are then
@@ -1580,7 +1577,7 @@ WaitForPendingFinalizers()				Suspends the current thread until all finalizable 
 In some rare circumstances, it may be beneficial to programmatically force a garbage collection using GC.Collect().
 Here are two common situations where you might consider interacting with the collection process:
 - your application is about to enter into a block of code that you don't want interrupted by a possible garbage collection
-- your applcation has just finished allocating an extremely large number of objects and you want to remove as much 
+- your application has just finished allocating an extremely large number of objects and you want to remove as much 
 of the acquired memory as soon as possible
 
 When you manually force a garbage collection, you should always make a call to GC.WaitForPendingFinalizers().
@@ -1637,7 +1634,7 @@ will automatically have its Dispose() method called once the using block has exi
 to declare multiple objects of the same type within a using scope. As you would expect, the compiler will inject code 
 to call Dispose() on each declared object.
 
-After an object has been “disposed,” it’s still possible for the client to invoke members on it, as it is still in memory. 
+After an object has been “disposed”, it’s still possible for the client to invoke members on it, as it is still in memory. 
 Therefore, a robust resource wrapper class would also need to update each member of the class with additional coding logic that says, 
 in effect, “If I am disposed, do nothing and return from the member.”
 
@@ -2169,7 +2166,7 @@ ParameterizedThreadStart			This delegate allows a thread to call methods that ta
 Semaphore					This type allows you to limit the number of threads that can access		|
 						a resource, or a particular type of resource, concurrently.			|
 Thread						This type represents a thread that executes within the CLR. Using this type,	|
-						you are able to spawn additional threads in the originatinf AppDomain.		|
+						you are able to spawn additional threads in the originating AppDomain.		|
 ThreadPool					This type allows you to interact with the CLR-maintained thread pool		|
 						within a given process.								|
 ThreadPriority					This enum represents a thread's priority level (Highest, Normal, etc.).		|
@@ -2226,7 +2223,7 @@ that a thread could "leak" its workload when disturbed or terminated.
 
 One simple, and thread-safe, way to force a thread to wait until another is completed is to use the AutoResetEvent class.
 In the thread that need to wait (such as a Main() method), create an instance of this class and pass in false to the 
-consturctor to signify you have not yet been notified. Then, at the point at which you are willing to wait, 
+constructor to signify you have not yet been notified. Then, at the point at which you are willing to wait, 
 call the WaitOne() method.
 
 Let's formalize the disctinction between foreground threads and background threads:
@@ -2249,8 +2246,8 @@ to define a scope of statements that must be synchronized between threads. By do
 the current thread, thus preventing it from finishing its work. The lock keyword requires you to specify a token
 (an object reference) that must be acquired by a thread to enter within the lock scope. When you are attempting to lock down
 a private instance-level method, you can simply pass in reference to the current type. However, if you are locking down
-a region of code within a public method, it is safer (and a best practice) to declare a private object member variable to
-server as the lock token.
+a region of code within a public method, it is safer (and a best practice) to declare a private object member variable 
+to serve as the lock token.
 
 Once a thread enters into a lock scope, the lock token is inaccessible by other threads until the lock is released after
 the lock scope has exited. Thus, if thread A has obtained the lock token, other threads are unable to enter any scope that
@@ -2381,6 +2378,236 @@ Let's summarize the key points:
 
 The Main() method of an executable cannot be marked with the async keyword.
 
+		Chapter 20 File I/O and Object Serialization
+
+Key Members of the System.IO Namespace
+----------------------------------------------------------------------------------------------------------------
+Nonabstract I/O Class Type			Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+BinaryReader					These classes allow you to store and retrieve primitive data	|
+BinaryWriter					types (integers, Booleans, strings, and whatnot) as a binary	|
+						value).								|
+BufferedStream					This class provides temporary storage for a stream of bytes 	|
+						that you can commit to storage at later time.			|
+Directory					You use these classes to manipulate a machine's directory	|
+DirectoryInfo					structure. The Directory type exposes functionality using	|
+						static members, while the DirectoryInfo type exposes similar	|
+						functionality from a valid object reference.			|
+DriveInfo					This class provides detailed information regarding the drives	|
+						that a given machine uses.					|
+File						You use these classes to manipulate a machine's set of files.	|
+FileInfo					The File type exposes functionality using static members,	|
+						while the FileInfo type exposes similar functionality from	|
+						a valid object reference.					|
+FileStream					This class gives you random file access (e.g., seeking 		|
+						capabilities) with data represented as a stream of bytes.	|
+FileSystemWatcher				This class allows you to monitor the modification of external	|
+						files in a specified directory.					|
+MemoryStream					This class provides random access to streamed data stored	|
+						in memory rather than in a physical file.			|
+Path						This class performs operations on System.String types that	|
+						contain file or directory path information in a 		|
+						platform-neutral manner.					|
+StreamReader					You use these classes to store (and retrieve) textual		|			
+StreamWriter					information to (or from) a file. These types do not support	|
+						random file access.						|
+StringReader					Like the StreamReader/StreamWriter classes, these classes also	|
+StringWriter					work with textual information. However, the underlying storage	|
+						is a string buffer rather than a physical file.			|
+----------------------------------------------------------------------------------------------------------------
+
+System.IO provides four classes that allow you to manipulate individual files, as well as interact with a 
+machine's directory structure. The first two types, Directory and File, expose creation, deletion, copying, and
+moving operations using various static members. The closely related FileInfo and DirectoryInfo types expose 
+similar functionality as instance-level methods (therefore, you must allocate them with the new keyword).
+FileInfo and DirectoryInfo typically serve as better choices for obtaining full details of a file or directory
+(e.g., time created or read/write capabilities) because their members tend to return strongly typed objects.
+In contrast, the Directory and File class members tend to return simple string values rather than strongly
+typed objects.
+
+FileSystemInfo Properties
+----------------------------------------------------------------------------------------------------------------
+Property			Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+Attributes			Gets or sets the attributes associated with the current file that are		|
+				represented by the FileAttributes enumeration (e.g., is the file or		|
+				directory read-only, encrypted, hidden, or compresed?).				|
+CreationTime			Gets or sets the time of creation for the current file or directory.		|
+Exists				Determines whether a given file or directory exists.				|
+Extension			Retrieves a file's extension.							|
+FullName			Gets the full path of the directory or file.					|
+LastAccessTime			Gets or sets the time the current file or directory aws last accessed.		|
+LastWriteTime			Gets or sets the time when the current file or directory was last written to.	|
+Name				Obtains the name of the current file or directory.				|
+----------------------------------------------------------------------------------------------------------------
+
+Key Members of the DirectoryInfo Type
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+Create()			Create a directory (or set of subdirectories) when given a path name		|
+CreateSubdirectory()												|
+Delete()			Deletes a directory and all its contents					|
+GetDirectories()		Returns an array of DirectoryInfo objects that represent all subdirectories	|
+				in the current directory							|
+GetFiles()			Retrieves an array of FileInfo objects that represent a set of files in the	|
+				given directory									|
+MoveTo()			Moves a directory and its contents to a new path				|
+Parent				Retrieves the parent directory of this directory				|
+Root				Gets the root portion of a path							|
+----------------------------------------------------------------------------------------------------------------
+
+FileInfo Core Members
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+AppendText()			Creates a StreamWriter object that appends text to a file			|
+CopyTo()			Copies an existing file to a new file						|
+Create()			Creates a new file and returns a FileStream object to interact with the newly	|
+				created file.									|
+CreateText()			Creates a StreamWriter object that writes a new text file			|
+Delete()			Deletes the file to which a FileInfo instance is bound				|
+Directory			Gets an instance of the parent directory					|
+DirectoryName			Gets the full path to the parent directory					|
+Length				Gets the size of the current file						|
+MoveTo()			Moves a specified file to a new location, providing the option to specify	|
+				a new file name									|
+Name				Gets the name of the file							|
+Open()				Opens a new file with various read/write and sharing privileges			|
+OpenRead()			Creates a read-only FileStream object						|
+OpenText()			Creates a StreamReader object that reads from an existing text file		|
+OpenWrite()			Creates a write-only FileStream object						|
+----------------------------------------------------------------------------------------------------------------
+
+Members of the FileMode Enumeration
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+CreateNew			Informs the OS to make a new file. If it already exists, an IOException is 	|
+				thrown.										|
+Create				Informs the OS to make a new file. If it already exists, it will be 		|
+				overwritten.									|
+Open				Opens an existing file. If the file does not exist, a FileNotFoundException	|
+				is thrown.									|
+OpenOrCreate			Opens the file if it exists; otherwise, a new file is created.			|
+Truncate			Opens an existing file and truncates the file to 0 bytes in size.		|
+Append				Opens a file, moves to the end of the file, and begins write operation 		|
+				(you can use this flag only with a write-only stream). 				|
+				If the file does not exist, a new file is created.				|
+----------------------------------------------------------------------------------------------------------------
+
+Method of the File Type
+----------------------------------------------------------------------------------------------------------------
+Method				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+ReadAllBytes()			Opens the specified file, returns the binary data as an array of bytes,		|
+				and then closes the file							|
+ReadAllLines()			Opens a specified file, returns the character data as an array of strings,	|
+				and then closes the file							|
+ReadAllText()			Opens a specified file, returns the characted data as a System.String, and	|
+				then closes the file.								|
+WriteAllBytes()			Opens the specified file, writes out the byte array, and then closes the file.	|
+WriteAllLines()			Opens a specified file, writes out an array of strings, and then closes		|
+				the file									|
+WriteAllText()			Opens a specified file, writes the character data from a specified string, and	|
+				then closes the file								|
+----------------------------------------------------------------------------------------------------------------
+
+In the world of I/O manipulation, a stream represents a chunk of data flowing between a source and destination.
+Streams provide a common way to interact with a sequence of bytes, regardless of what kind of device (e.g., file,
+network, connection, or printer) stores or displays the bytes in question.
+
+The concept of a stream is not limited to file I/O. To be sure, the .NET libraries provide stream access to
+networks, memory locations, and other srtream-centric abstractions.
+
+Abstract Stream Members
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+CanRead				Determined whether the current stream supports reading, seeking, and/or		|
+CanWrite			writing										|
+CanSeek														|
+Close()				Closes the current stream and releases any resources (such as sockets and file	|
+				handles) associated with the current stream. Internally, this method is aliased	|
+				to the Dispose() method; therefore, closing a stream is functionally 		|
+				equivalent to disposing a stream.						|
+Flush()				Updates the underlying data source or repository with the current state of the	|
+				buffer and then clears the buffer. If a stream does not implement a buffer,	|
+				this method does nothing.							|
+Length				Returns the length of the stream in bytes.					|
+Position			Determines the position in the current stream.					|
+Read()				Reads a sequence of bytes (or a single byte) from the current stream and 	|
+ReadByte()			advances the current position in the stream by the number of bytes read.	|
+ReadAsync()													|
+Seek()				Sets the position in the current stream.					|
+SetLength()			Sets the length of the current stream.						|
+Write()				Writes a sequence of bytes (or a single byte) to the current stream and 	|
+WriteByte()			advances the current position in this stream by the number of bytes written.	|
+WriteAsync()													|
+----------------------------------------------------------------------------------------------------------------
+
+Core Members of TextWriter
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+Close()				This method closes the writer and frees any associated resources. In the 	|
+				process, the buffer is automatically flushed (again, this member is		|
+				functionally equivalent to calling the Dispose() method).			|
+Flush()				This method clears all buffers for the current writer and causes any 		|
+				buffered data to be written to the underlying devide; however, it does not	|
+				close the writer.								|
+NewLine				This property indicates the newline constant for the derived writer class.	|
+				The default line terminator for the Windows OS is a carriage return, 		|
+				followed by a line feed (\r\n).							|
+Write()				This overloaded method writes data to the text stream without a newline		|
+WriteAsync()			constant.									|
+WriteLine()			This overloaded method writes data to the text stream with a newline constant.	|
+WriteLineAsync()												|
+----------------------------------------------------------------------------------------------------------------
+
+TextReader Core Members
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+Peek()				Returns the next available character (expressed as an integer) without		|
+				actually changing the position of the reader. A value of -1 indicates you 	|
+				are at the end of the stream.							|
+Read()				Reads data from an input stream.						|
+ReadAsync()													|
+ReadBlock()			Reads a specified maximum number of characters from the current stream and	|
+ReadBlockAsync()		writes the data to a buffer, beginning at a specified index.			|
+ReadLine()			Reads a line of characters from the current stream and returns the data as a 	|
+ReadLineAsync()			string (a null string indicates EOF).						|
+ReadToEnd()			Reads all characters from the current position to the end of the stream and	|
+ReadToEndAsync()		returns them as a single string.						|
+----------------------------------------------------------------------------------------------------------------
+
+BinaryWriter Core Members
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+BaseStream			This read-only property provides access to the underlying stream used with 	|
+				the BinaryWriter object.							|
+Close()				This method closes the binary stream.						|
+Flush()				This methods flushes the binary stream.						|
+Seek()				This method sets the position in the current stream.				|
+Write()				This method writes a value to the current stream.				|
+----------------------------------------------------------------------------------------------------------------
+
+BinaryReader Core Members
+----------------------------------------------------------------------------------------------------------------
+Member				Meaning in Life									|
+----------------------------------------------------------------------------------------------------------------
+BaseStream			This read-only property provides access to the underlying stream used with 	|
+				the BinaryReader object.							|
+Close()				This method closes the binary reader.						|
+PeekChar()			This method returns the next available character without advancing the 		|
+				position in the stream.								|
+Read()				This method reads a given set of bytes or characters and stores them in the	|
+				incoming array.									|
+ReadXXXX()			The BinaryReader class defines numerous read methods that grab the next type	|
+				from the stream (e.g., ReadBoolean(), ReadByte(), and ReadInt32()).		|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -2398,9 +2625,26 @@ The Main() method of an executable cannot be marked with the async keyword.
 
 
 
-p.1072
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.1105
 
 
 
