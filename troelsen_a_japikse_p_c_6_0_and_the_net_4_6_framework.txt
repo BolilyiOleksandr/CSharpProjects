@@ -2609,6 +2609,18 @@ ReadXXXX()			The BinaryReader class defines numerous read methods that grab the 
 				from the stream (e.g., ReadBoolean(), ReadByte(), and ReadInt32()).		|
 ----------------------------------------------------------------------------------------------------------------
 
+The term serialization describes the process of persisting (and possibly transferring) the state of an object
+into a stream (e.g., file stream and memory stream). The persisted data sequence contains all the necessary information
+you need to reconstruct (or deserialize) the state of the object for use later.
+
+The CLR will account for all related objects to ensure that data is persisted correctly when an object is
+serialized. This set of related objects is referred to as an object graph. Objects graph provide a simple way
+to document how a set of items refer to each other.
+
+To make an object available to .NET serialization services, all you need to do is decorate each related class
+(or structure) with the [Serialization] attribute. If you determine that a given type has some member data that
+should not (or perhaps cannot) participate in the serialization scheme, you can mark such fields with the 
+[NonSerialized] attribute.
 
 
 
@@ -2622,32 +2634,4 @@ ReadXXXX()			The BinaryReader class defines numerous read methods that grab the 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-p.1105
-
-
-
-
-
-
+p.1108
