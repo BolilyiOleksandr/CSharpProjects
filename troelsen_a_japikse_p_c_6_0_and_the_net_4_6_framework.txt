@@ -2630,6 +2630,23 @@ Finally, if you want to persist a tree of objects as an XML document, you can us
 Simple Object Access Protocol (SOAP) defines a standard process in which you can invoke methods in a platform-
 and OS-neutral manner.
 
+Select Attributes of the System.Xml.Serialization Namespace
+----------------------------------------------------------------------------------------------------------------
+.NET Attribute					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+[XmlAttribute]				You can use this .NET attribute on a public field or property in a 	|
+					class to tell XmlSerializer to serialize the data as an XML attribute	|
+					(rather than a subelement).						|
+[XmlElement]				The field or property will be serialized as an XML element named as 	|
+					you so choose.								|
+[XmlEnum]				This attribute provides the element name of an enumeration member.	|	
+[XmlRoot]				This attribute controls how the root element will be constructed	|
+					(namespace and element name).						|
+[XmlText]				The property or field will be serialized as XML text 			|
+					(i.e., the content between the start tag and the end tag of the root	|
+					element).								|
+[XmlType]				This attribute provides the name and namespace of the XML type.		|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -2638,4 +2655,29 @@ and OS-neutral manner.
 
 
 
-p.1113
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.1124
