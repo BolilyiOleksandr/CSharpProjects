@@ -2648,6 +2648,58 @@ Select Attributes of the System.Xml.Serialization Namespace
 [XmlType]				This attribute provides the name and namespace of the XML type.		|
 ----------------------------------------------------------------------------------------------------------------
 
+System.Runtime.Serialization Namespace Core Types
+----------------------------------------------------------------------------------------------------------------
+Type					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+ISerializable				You can implement this interface on a [Serializable] type to control	|
+					its serialization and deserialization.					|
+ObjectIDGenerator			This type generates IDs for members in an object graph.			|
+[OnDeserialized]			This attribute allows you to specify a method that will be called 	|
+					immediately after the object has been deserialized.			|
+[OnDeserializing]			This attribute allows you to specify a method that will be called	|
+					before the deserialization process.					|
+[OnSerialized]				This attribute allows you to specify a method that willbe called 	|
+					immediately after the object has been serialized.			|
+[OnSerializing]				This attribute allows you to specify a method that will be called	|
+					before the serialization process.					|
+[OptionalField]				This attribute allows you to define a field on a type that can be	|
+					missing from the specified stream.					|
+[SerializationInfo]			In essence, this class is a property bag that maintains name-value	|
+					pairs representing the state of an object during the serialization 	|
+					process.								|
+----------------------------------------------------------------------------------------------------------------
+
+Objects that are marked [Serializable] have the option of implementing the ISerializable interface.
+
+		Chapter 21 ADO.NET Part I: The Connected Layer
+
+The .NET platform defines a number of namespaces that allow you to interact with relational database systems.
+Collectively speaking, these namespaces are known as ADO.NET.
+
+ADO - Active Data Objects
+
+From a programmatic point of view, the bulk of ADO.NET is represented by a core assembly named System.Data.dll.
+
+You can use the ADO.NET libraries in three conceptually unique manners: connected, disconnected, or through an ORM,
+such as Entity Framework. 
+
+When you use the connected layer, your code base explicitly connects to and disconnects
+from the underlying data store. When you use ADO.NET in this manner, you typically interact with the data store
+using connection objects, command objects, and data reader objects.
+
+The disconnected layer allows you to manipulate a set of DataTable objects (contained within a DataSet) that
+functions as a client-side copy of the external data. When you obtain a DataSet using a related data adapter object,
+the connection is automatically opened and closed on your behalf. As you would guess, this approach helps free up
+connections for other callers quickly and goes a long way toward increasing the scalability of your systems.
+After a caller receives a DataSet, it is able to traverse and manipulate the contents without incurring the cost
+of network traffic. Also, if the caller wants to submit the changes back to the data store, the data adapter
+(in conjunction with a set of SQL statements) is used to update the data source; at this point the connection
+is reopened for the database updates to occur and then closed again immediately.
+
+Using Entity Framework (EF), you are able to interact with a relational database using client-side objects that
+encapsulates a number of low-level database specifics from view. As well, the EF programming model allows you
+to interact with relational databases using strongly typed LINQ queries, using the grammar of LINQ to Entities.
 
 
 
@@ -2672,12 +2724,4 @@ Select Attributes of the System.Xml.Serialization Namespace
 
 
 
-
-
-
-
-
-
-
-
-p.1124
+p.1137
