@@ -2622,6 +2622,13 @@ To make an object available to .NET serialization services, all you need to do i
 should not (or perhaps cannot) participate in the serialization scheme, you can mark such fields with the 
 [NonSerialized] attribute.
 
+The BinaryFormatter type serializes your object's state to a stream using a compact binary format.
+The SoapFormatter type persists an object's state as a SOAP message (the standard XML format for passing messages
+to/from a SOAP-based web service).
+Finally, if you want to persist a tree of objects as an XML document, you can use the XmlSerialize type.
+
+Simple Object Access Protocol (SOAP) defines a standard process in which you can invoke methods in a platform-
+and OS-neutral manner.
 
 
 
@@ -2631,7 +2638,4 @@ should not (or perhaps cannot) participate in the serialization scheme, you can 
 
 
 
-
-
-
-p.1108
+p.1113
