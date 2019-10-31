@@ -1,4 +1,4 @@
-				PART II - Core C# Programming
+﻿				PART II - Core C# Programming
 
 		Chapter 3 - Core C# Programming Constructs, Part I
 
@@ -2701,6 +2701,92 @@ Using Entity Framework (EF), you are able to interact with a relational database
 encapsulates a number of low-level database specifics from view. As well, the EF programming model allows you
 to interact with relational databases using strongly typed LINQ queries, using the grammar of LINQ to Entities.
 
+ADO.NET does not provide a single set of objects that communicate with multiple database management systems (DBMSs).
+Rather, ADO.NET supports multiple data providers, each of which is optimized to interact with a specific DBMS.
+The first benefit of this approach is that you can program a specific data provider to access any unique features
+of a particular DBMS. The second benefit is that a specific data provider can connect directly to the underlying
+engine of the DBMS in question without an intermediate mapping layer standing between the tiers.
+
+The Core Object of an ADO.NET Data Provider
+----------------------------------------------------------------------------------------------------------------
+Type of Object		Base Class	Relevant Interfaces	Meaning in Life					|
+----------------------------------------------------------------------------------------------------------------
+Connection		DbConnection	IDbConnection		Provides the ability to connect to and		|
+								disconnect from the data store. Connection	|
+								objects also provide access to a related	|
+								transaction object.				|
+Command			DbCommand	IDbCommand		Represents a SQL query or a stored procedure.	|
+								Command objects also provide access to the	|
+								provider's data reader object.			|
+DataReader		DbDataReader	IDataReader,		Provides forward-only, read-only access to data	|
+					IDataRecord		using a server-side cursor.			|
+DataAdapter		DbDataAdapter	IDataAdapter,		Transfers DataSets between the caller and the 	|
+					IDbDataAdapter		data store. Data adapters contain a connection	|
+								and a set of four internal command objects	|
+								used to select, insert, update, and delete	|
+								information from the data store.		|
+Parameter		DbParameter	IDataParameter,		Represents a named parameter within a 		|
+					IDbDataParameter	parameterized query.				|
+Transaction		DbTransaction	IDbTransaction		Encapsulates a database transaction.		|
+----------------------------------------------------------------------------------------------------------------
+
+Select Additional ADO.NET-Centric Namespaces
+----------------------------------------------------------------------------------------------------------------
+Namespace				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Microsoft.SqlServer.Server		This namespace provides types that facilitate CLR and SQL Server 2005	|
+					and later integration services.						|
+System.Data				This namespace defines the core ADO.NET types used by all data		|
+					providers, including common interfaces and numerous types that 		|
+					represent the disconnected layer (e.g., DataSet and DataTable).		|
+System.Data.Common			This namespace contains types shared between all ADO.NET data 		|
+					providers, including the common abstract base classes.			|
+System.Data.Sql				This namespace contains types that allow you to discover Microsoft	|
+					SQL Server instances installed on the current local network.		|
+System.Data.SqlTypes			This namespace contains native data types used by Microsoft SQL Server.	|
+					You can always use the corresponding CLR data types, but the SqlTypes	|
+					are optimized to work with SQL Server (e.g., if your SQL Server		|
+					database contains an integer value, you can represent it using either	|
+					int or SqlTypes.SqlInt32).						|
+----------------------------------------------------------------------------------------------------------------
+
+Core Members of the System.Data Namespace					
+----------------------------------------------------------------------------------------------------------------
+Namespace				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Constraint				Represents a constaint for a given DataColumn object.			|
+DataColumn				Represents a single column within a DataTable object.			|
+DataRelation				Represents a parent-child relationship between two DataTable objects.	|
+DataRow					Represents a single row within a DataTable object.			|
+DataSet					Represents an in-memory cache of data consisting of any number of	|
+					interrelated DataTable objects.						|
+DataTable				Represents a tabular block of in-memory data.				|
+DataTableReader				Allows you to treat a DataTable as a fire-hose cursor (forward only,	|
+					read-only data access).							|
+DataView				Represents a customized view of a DataTable for sorting, filtering,	|
+					searching, editing, and navigation.					|
+IDataAdapter				Defines the core behavior of a data adapter object.			|
+IDataParameter				Defines the core behavior of a parameter object.			|
+IDataReader				Defines the core behavior of a data reader object.			|
+IDbCommand				Defines the core behavior of a command object.				|
+IDbDataAdapter				Extends IDataAdapter to provide additional functionality of a data	|
+					adapter object.								|
+IDbTransaction				Defines the core behavior of a transaction object.			|
+----------------------------------------------------------------------------------------------------------------
+
+When you refer to a connection object under ADO.NET, you're actually referring to a specific DbConnection-derived type;
+there is no class literally named Connection. The same idea holds true for a command object, data adapter object, and
+so forth.
+
+The IDbConnection type is implemented by a data provider's connection object. This interface defines a set of members
+used to configure a connection to a specific data store.
+
+You can use the members defined by IDbTransaction to interact programmatically with a transactional session and 
+the underlying data store.
+
+IDbCommand interface allows programmatic manipulation of SQL statements, stored procedures, and parameterized queries.
+
+You use data adapters to push and pull DataSets to and from a given data store.
 
 
 
@@ -2718,10 +2804,4 @@ to interact with relational databases using strongly typed LINQ queries, using t
 
 
 
-
-
-
-
-
-
-p.1124
+p.1153
