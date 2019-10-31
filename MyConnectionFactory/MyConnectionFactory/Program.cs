@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.Odbc;
 using System.Data.OleDb;
+using System.Configuration;
 
 namespace MyConnectionFactory
 {
@@ -10,7 +11,7 @@ namespace MyConnectionFactory
     {
         SqlServer,
         OleDb,
-        Odbc, 
+        Odbc,
         None
     }
     internal static class Program
@@ -18,8 +19,23 @@ namespace MyConnectionFactory
         private static void Main(string[] args)
         {
             Console.WriteLine("***** Very Simple Connection Factory *****\n");
-            var myConnection = GetConnection(DataProvider.SqlServer);
-            Console.WriteLine($"Your connection is a {myConnection.GetType().Name}");
+
+            var dataProviderString = ConfigurationManager.AppSettings["provider"];
+            var dataProvider = DataProvider.None;
+            if (Enum.IsDefined(typeof(DataProvider), dataProviderString))
+            {
+                dataProvider = (DataProvider)Enum.Parse(typeof(DataProvider), dataProviderString);
+            }
+            else
+            {
+                Console.WriteLine("Sorry, no provider exists!");
+                Console.ReadLine();
+                return;
+            }
+
+            var myConnection = GetConnection(dataProvider);
+            Console.WriteLine($"Your connection is a {myConnection?.GetType().Name ?? "unrecognized type"}");
+
             Console.ReadLine();
         }
 
