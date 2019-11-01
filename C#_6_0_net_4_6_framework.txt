@@ -2788,7 +2788,12 @@ IDbCommand interface allows programmatic manipulation of SQL statements, stored 
 
 You use data adapters to push and pull DataSets to and from a given data store.
 
-
+DbCommand - the abstract base class for all command classes.
+DbConnection - the abstract base class for all connection classes.
+DbDataAdapter - the abstract base class for all data adapter classes.
+DbDataReader - the abstract base class for all data reader classes.
+DbParameter - the abstract base class for all parameter classes.
+DbTransaction - the abtsract base class for all transaction classes.
 
 
 
