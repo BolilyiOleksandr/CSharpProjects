@@ -2752,7 +2752,7 @@ System.Data.SqlTypes			This namespace contains native data types used by Microso
 
 Core Members of the System.Data Namespace					
 ----------------------------------------------------------------------------------------------------------------
-Namespace				Meaning in Life								|
+Member					Meaning in Life								|
 ----------------------------------------------------------------------------------------------------------------
 Constraint				Represents a constaint for a given DataColumn object.			|
 DataColumn				Represents a single column within a DataTable object.			|
@@ -2795,6 +2795,54 @@ DbDataReader - the abstract base class for all data reader classes.
 DbParameter - the abstract base class for all parameter classes.
 DbTransaction - the abtsract base class for all transaction classes.
 
+Members of the DbConnection Type
+----------------------------------------------------------------------------------------------------------------
+Member					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+BeginTransaction()			You use this method to begin a database transaction.			|
+ChangeDatabase()			You use this method to change the database on an open connection.	|
+ConnectionTimeout			This read-only proprety returns the amount of time to wait while	|
+					establishing a connection before terminating and generating an error	|
+					(the default value is 15 seconds). If you would like to change the	|
+					default specify a Connect Timeout segment in the connection string	|
+					(e.g., Connect Timeout = 30).						|
+Database				This read-only property gets the name of the database maintained by the	|
+					connection object.							|
+DataSource				This read-only property gets the location of the database maintained by	|
+					the connection object.							|
+GetSchema()				This method returns a DataTable object that contains schema information	|
+					from the data source.							|
+State					This read-only property gets the current state of the connection, which	|
+					is represented by the ConnectionState enumeration.			|
+----------------------------------------------------------------------------------------------------------------
+
+The Microsoft-supplied ADO.NET data providers support connection string builder objects, which allow you to establish
+the name-value pairs using strongly typed properties.
+
+Membes of the DbCommand Type
+Members of the DbConnection Type
+----------------------------------------------------------------------------------------------------------------
+Member					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+CommandTimeout				Gets or sets the time to wait while executing the command before	|
+					terminating the attempt and generating an error. The default is 	|
+					30 seconds.								|
+Connection				Gets or sets the DbConnection used by this instance of the DbCommand.	|
+Parameters				Gets the collection of DbParameter objects used for a 			|
+					parameterized query.							|
+Cancel()				Cancels the execution of a command.					|
+ExecuteReader()				Executes a SQL query and returns the data provider's DbDataReader	|
+					objects, which provides forward-only, read-only access for the result	|
+					of the query.								|
+ExecuteNonQuery()			Executes a SQL nonquery(e.g., an insert, update, delete,		|
+					or create table).							|
+ExecuteScalar()				A lightweight version of the ExecuteReader() method that was designed	|
+					specifically for singleton queries (e.g., obtaining a record count).	|
+Prepare()				Creates a prepared (or compiled) version of the command on the data	|
+					source. As you might know, a prepared query executes slightly faster	|
+					and is useful when you need to execute the same query multiple times	|
+					(typically with different parameters each time).			|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -2809,4 +2857,8 @@ DbTransaction - the abtsract base class for all transaction classes.
 
 
 
-p.1176
+
+
+
+
+p.1184
