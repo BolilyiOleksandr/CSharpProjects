@@ -2858,6 +2858,31 @@ that represents the number of rows affected, not a new set of records.
 As you might know, building a SQL statement using string concatenation can be risky from a security point of view
 (think: SQL injenction attack). The preferred way to build command text is to use a parameterized query.
 
+You can use a parameterized query to treat SQL parameters as objects, rather than as a simple blob of text.
+Treating SQL queries in a more object-oriented manner helps reduce the number of typos (given strongly typed 
+properties); plus, parameterized queries typically execute much faster than a literal SQL string because they are 
+parsed exactly once (rather that each time the SQL string is assigned to the CommandText property).
+Parameterized queries also help protect against SQL injection attacks (as well-known data access security issue).
+
+Key Members of the DbParameter Type
+----------------------------------------------------------------------------------------------------------------
+Member					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+DbType					Gets or sets the native data type of the parameter, represented as a	|
+					CLR data type								|
+Direction				Gets or sets whether the parameter is input-only, output-only, 		|
+					bidirectional, or a return value parameter				|
+IsNullable				Gets or sets whether the parameter accepts null values			|
+ParameterName				Gets or sets the name of the DbParameter				|
+Size					Gets or sets the maximum parameter size of the data in bytes; this is	|
+					useful only for textual data						|
+Value					Gets or sets the value of the parameter					|
+----------------------------------------------------------------------------------------------------------------
+
+Recall that a stored procedure is a named block of SQL code stored in the database. You can construct stored procedures
+so they return a set of rows or scalar types or do anything else that makes sense (e.g., insert, update, or delete);
+you can also have them take any number of optional parameters. The end result is a unit of work that behaves like
+a typical function, except that it is located on a data store rather than a binary business object.
 
 
 
@@ -2870,4 +2895,9 @@ As you might know, building a SQL statement using string concatenation can be ri
 
 
 
-p.1189
+
+
+
+
+
+p.1200
