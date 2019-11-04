@@ -2855,6 +2855,9 @@ Technically speaking, a nonquery is a SQL statement that does not return a resul
 are queries, while Insert, Update, and Delete statements are not. Given this, ExecuteNonQuery() returns an int
 that represents the number of rows affected, not a new set of records.
 
+As you might know, building a SQL statement using string concatenation can be risky from a security point of view
+(think: SQL injenction attack). The preferred way to build command text is to use a parameterized query.
+
 
 
 
