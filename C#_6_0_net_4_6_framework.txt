@@ -2820,7 +2820,6 @@ The Microsoft-supplied ADO.NET data providers support connection string builder 
 the name-value pairs using strongly typed properties.
 
 Membes of the DbCommand Type
-Members of the DbConnection Type
 ----------------------------------------------------------------------------------------------------------------
 Member					Meaning in Life								|
 ----------------------------------------------------------------------------------------------------------------
@@ -2844,6 +2843,17 @@ Prepare()				Creates a prepared (or compiled) version of the command on the data
 					(typically with different parameters each time).			|
 ----------------------------------------------------------------------------------------------------------------
 
+You obtain data reader objects from the command object using a call to ExecuteReader(). The data reader represents
+the current record it has read from the database. The data reader has an indexer method (e.g., [] syntax in C#)
+that allows you to access a column in the current record. You can access the column either by name or by
+zero-based integer.
+
+Always remember that a data reader can process only SQL Select statements; you cannot use them to modify an existing
+database table using Insert, Update, or Delete requests.
+
+Technically speaking, a nonquery is a SQL statement that does not return a result set. Thus, Select statements
+are queries, while Insert, Update, and Delete statements are not. Given this, ExecuteNonQuery() returns an int
+that represents the number of rows affected, not a new set of records.
 
 
 
@@ -2857,8 +2867,4 @@ Prepare()				Creates a prepared (or compiled) version of the command on the data
 
 
 
-
-
-
-
-p.1184
+p.1189

@@ -25,21 +25,24 @@ namespace AutoLotDataReader
 
                 ShowConnectionStatus(connection);
 
-                const string sql = "SELECT * FROM Inventory";
+                const string sql = "SELECT * FROM Inventory; SELECT * FROM Customers;";
                 var myCommand = new SqlCommand(sql, connection);
 
                 using (var myDataReader = myCommand.ExecuteReader())
                 {
-                    while (myDataReader.Read())
+                    do
                     {
-                        Console.WriteLine("***** Record *****");
-                        for (var i = 0; i < myDataReader.FieldCount; i++)
+                        while (myDataReader.Read())
                         {
-                            Console.WriteLine($"{myDataReader.GetName(i)} = {myDataReader.GetValue(i)}");
-                        }
+                            Console.WriteLine("***** Record *****");
+                            for (var i = 0; i < myDataReader.FieldCount; i++)
+                            {
+                                Console.WriteLine($"{myDataReader.GetName(i)} = {myDataReader.GetValue(i)}");
+                            }
 
-                        Console.WriteLine();
-                    }
+                            Console.WriteLine();
+                        }
+                    } while (myDataReader.NextResult());
                 }
             }
 
