@@ -161,10 +161,58 @@ namespace AutoLotDal.ConnectedLayer
                 command.Parameters.Add(param);
 
                 command.ExecuteNonQuery();
-                carPetName = (string) command.Parameters["@petName"].Value;
+                carPetName = (string)command.Parameters["@petName"].Value;
             }
 
             return carPetName;
+        }
+
+        public void ProcessCreditRisk(bool throwEx, int custId)
+        {
+            string fName;
+            string lName;
+            var cmdSelect = new SqlCommand($"SELECT * FROM Customers where CustId = {custId}", _sqlConnection);
+
+            using (var dataReader = cmdSelect.ExecuteReader())
+            {
+                if (dataReader.HasRows)
+                {
+                    dataReader.Read();
+                    fName = (string)dataReader["FirstName"];
+                    lName = (string)dataReader["LastName"];
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            var cmdRemove = new SqlCommand($"DELETE FROM Customers WHERE CustId = {custId}", _sqlConnection);
+            var cmdInsert = new SqlCommand($"INSERT INTO CreditRisks(FirstName, LastName) VALUES ('{fName}', '{lName}'",
+                _sqlConnection);
+            SqlTransaction transaction = null;
+
+            try
+            {
+                transaction = _sqlConnection.BeginTransaction();
+                cmdInsert.Transaction = transaction;
+                cmdRemove.Transaction = transaction;
+
+                cmdInsert.ExecuteNonQuery();
+                cmdInsert.ExecuteNonQuery();
+
+                if (throwEx)
+                {
+                    throw new Exception("Sorry! Database error! Transaction failed...");
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                transaction?.Rollback();
+            }
         }
 
     }
