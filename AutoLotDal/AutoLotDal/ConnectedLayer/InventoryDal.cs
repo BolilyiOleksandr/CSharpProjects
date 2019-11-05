@@ -171,7 +171,7 @@ namespace AutoLotDal.ConnectedLayer
         {
             string fName;
             string lName;
-            var cmdSelect = new SqlCommand($"SELECT * FROM Customers where CustId = {custId}", _sqlConnection);
+            var cmdSelect = new SqlCommand($"SELECT * FROM Customers WHERE CustId = {custId}", _sqlConnection);
 
             using (var dataReader = cmdSelect.ExecuteReader())
             {
@@ -188,7 +188,7 @@ namespace AutoLotDal.ConnectedLayer
             }
 
             var cmdRemove = new SqlCommand($"DELETE FROM Customers WHERE CustId = {custId}", _sqlConnection);
-            var cmdInsert = new SqlCommand($"INSERT INTO CreditRisks(FirstName, LastName) VALUES ('{fName}', '{lName}'",
+            var cmdInsert = new SqlCommand($"INSERT INTO CreditRisks(FirstName, LastName) VALUES('{fName}', '{lName}')",
                 _sqlConnection);
             SqlTransaction transaction = null;
 
@@ -199,7 +199,7 @@ namespace AutoLotDal.ConnectedLayer
                 cmdRemove.Transaction = transaction;
 
                 cmdInsert.ExecuteNonQuery();
-                cmdInsert.ExecuteNonQuery();
+                cmdRemove.ExecuteNonQuery();
 
                 if (throwEx)
                 {
