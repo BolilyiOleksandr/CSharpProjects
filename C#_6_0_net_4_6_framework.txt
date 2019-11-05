@@ -2884,6 +2884,22 @@ so they return a set of rows or scalar types or do anything else that makes sens
 you can also have them take any number of optional parameters. The end result is a unit of work that behaves like
 a typical function, except that it is located on a data store rather than a binary business object.
 
+A transaction is a set of database operations that must either all work or all fails as a collective unit.
+If any part of the transaction fails, the entire operation is rolled back to the original state. On the other hand,
+if all steps succeed, the transaction is committed.
+
+A - atomic (all or nothing)
+C - consistent (data remains stable throughout the transaction)
+I - isolated (transactions do not step on each other's feet)
+D - durable (transaction are saved and logged)
+
+The IsolationLevel property of a transaction object allows you to specify how aggressively a transaction should be
+guarded against the activities of other parallel transactions. By default, transactions are isolated completely 
+until committed.
+
+Beyond the members defined by the IDbTransaction interface, the SqlTransaction type defines an additional member
+named Save(), which allows you to define save points. This concept allows you to roll back a failed transaction
+up until a named point, rather than rolling back the entire transaction.
 
 
 
@@ -2898,6 +2914,4 @@ a typical function, except that it is located on a data store rather than a bina
 
 
 
-
-
-p.1200
+p.1209

@@ -62,7 +62,7 @@ namespace AutoLotDal.ConnectedLayer
 
         public void InsertAuto(NewCar car)
         {
-            var sql = "INSERT INTO Inventory" + "(Make, Color, PetName) VALUES" + $"('{car.Make}', '{car.Color}', '{car.PetName}')";
+            var sql = "INSERT INTO Inventory" + "(Make, Color, PetName) VALUES" + $"('{car.Make}','{car.Color}','{car.PetName}')";
             using (var command = new SqlCommand(sql, _sqlConnection))
             {
                 command.ExecuteNonQuery();
