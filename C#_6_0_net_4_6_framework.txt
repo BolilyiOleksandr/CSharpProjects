@@ -3070,8 +3070,21 @@ TableName				Gets or sets the name of the table. This same property might also b
 					specified as a constructor parameter.					|
 ----------------------------------------------------------------------------------------------------------------
 
-
-
+Core Members of the DbDataAdapter Class
+----------------------------------------------------------------------------------------------------------------
+Member					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Fill()					Executes a SQL SELECT command (as specified by the SelectCommand	|
+					property) to query the database for data and loads the data into 	|
+					a DataTable.								|
+SelectCommand				Establishes the SQL commands that you will issue to the data store	|
+InsertCommand				when the Fill() and Update() methods are called.			|
+UpdateCommand													|
+DeleteCommand													|
+Update()				Executes SQL INSERT, UPDATE, and DELETE commands (as specified by the	|
+					InsertCommand, UpdateCommand, and DeleteCommand properties) to persist	|
+					DataTable change to the database.					|
+----------------------------------------------------------------------------------------------------------------
 
 
 
