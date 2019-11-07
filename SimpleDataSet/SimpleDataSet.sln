@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDataSet", "SimpleDataSet\SimpleDataSet.csproj", "{A33EDC56-2CD9-4F78-82B4-A2A66AA1946E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A33EDC56-2CD9-4F78-82B4-A2A66AA1946E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33EDC56-2CD9-4F78-82B4-A2A66AA1946E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33EDC56-2CD9-4F78-82B4-A2A66AA1946E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33EDC56-2CD9-4F78-82B4-A2A66AA1946E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6EF4CAF-8DA6-4021-8898-CB398C1FDABB}
+	EndGlobalSection
+EndGlobal

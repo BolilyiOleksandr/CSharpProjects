@@ -2752,7 +2752,7 @@ System.Data.SqlTypes			This namespace contains native data types used by Microso
 
 Core Members of the System.Data Namespace					
 ----------------------------------------------------------------------------------------------------------------
-Member					Meaning in Life								|
+Type					Meaning in Life								|
 ----------------------------------------------------------------------------------------------------------------
 Constraint				Represents a constaint for a given DataColumn object.			|
 DataColumn				Represents a single column within a DataTable object.			|
@@ -2866,7 +2866,7 @@ Parameterized queries also help protect against SQL injection attacks (as well-k
 
 Key Members of the DbParameter Type
 ----------------------------------------------------------------------------------------------------------------
-Member					Meaning in Life								|
+Property				Meaning in Life								|
 ----------------------------------------------------------------------------------------------------------------
 DbType					Gets or sets the native data type of the parameter, represented as a	|
 					CLR data type								|
@@ -2901,6 +2901,174 @@ Beyond the members defined by the IDbTransaction interface, the SqlTransaction t
 named Save(), which allows you to define save points. This concept allows you to roll back a failed transaction
 up until a named point, rather than rolling back the entire transaction.
 
+		Chapter 22 ADO.NET Part II: The Disconnected Layer
+
+Properties of the DataSet
+----------------------------------------------------------------------------------------------------------------
+Property				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+CaseSensitive				Indicates whether string comparisons in DataTable objects are case	|
+					sensitive (or not). The default is false (string comparisons are not	|
+					case sensitive by default).						|
+DataSetName				Represents the friendly name of this DataSet. Typically, you establish	|
+					this value as a constructor parameter.					|
+EnforceConstraints			Gets or sets a value indicating whether constraint rules are followed	|
+					when attempting any update operations (the default is true).		|
+HasErrors				Gets a value indicating whether there are errors in any of the rows in	|
+					any of the DataTables of the DataSet.					|
+RemotingFormat				Allows you to define how the DataSet should serialize its content	|
+					(binary or XML, which is the default).					|
+----------------------------------------------------------------------------------------------------------------
+
+Select Methods of the DataSet
+----------------------------------------------------------------------------------------------------------------
+Methods					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+AcceptChanges()				Commits all the changes made to this DataSet since it was loaded or	|
+					the last time AcceptChanges() was called.				|
+Clear()					Completely clears the DataSet data by removing every row in each	|
+					DataTable.								|
+Clone()					Clones the structure, but not the data, of the DataSet, including all	|
+					DataTables, as well as all relations and any constraints.		|
+Copy()					Copied both the structure and data for this DataSet.			|
+GetChanges()				Returns a copy of the DataSet containing all changes made to it since	|
+					it was last loaded or since AcceptChanges() was called. This method	|
+					is overloaded so that you can get just the new rows, just the modified	|
+					rows, or just the deleted rows.						|
+HasChanges()				Gets a value indicating whether the DataSet has changes, including new,	|
+					deleted, or modified rows.						|
+Merge()					Merges this DataSet with a specified DataSet.				|
+ReadXml()				Allows you to define the structure of a DataSet object and populate it	|
+					with data, based on XML schema and data read from a schema.		|
+RejectChanges()				Rolls back all the changes made to this DataSet since it was created or	|
+					since the last time AcceptChanges() was called.				|
+WriteXml()				Allows you to write out the contents of a DataSet into a valid stream.	|
+----------------------------------------------------------------------------------------------------------------
+
+A GUID (aka a globally uniqui identifier) is a statically unique 128-bit number.
+
+Properties of the DataColumn
+----------------------------------------------------------------------------------------------------------------
+Property				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+AllowDBNull				You use this property to indicate whether a row can specify null values	|
+					in this column. The default value is true.				|
+AutoIncrement				You use these properties to configure the autoincrement behavior for a	|
+AutoIncrementSeed			given column. This can be helpful when you want to ensure unique values	|
+AutoIncrementStep			in a given DataColumn (such as a primary key). By default, a DataColumn	|
+					does not support autoincrement behavior.				|
+Caption					This property gets or sets the caption you want to display for this	|
+					column. This allows you to define a user-friendly version of a literal	|
+					database column name.							|
+ColumnMapping				This property determines how a DataColumn is represented when a DataSet	|
+					is saved as an XML document using the DataSet.WriteXml() method.	|
+					You can specify that the data column should be written out as an XML	|
+					element, an XML attribute, simple text content, or ignored altogether.	|
+ColumnName				This property gets or sets the name of the column in the Columns	|
+					collection (meaning how it is represented internally by the DataTable).	|
+					If you do not set the ColumnName explicitly, the default values are 	|
+					Column with (n+1) numerical suffixes (e.g., Column1, Column2, Column3).	|
+DataType				This property defines the data type (e.g., Boolean, string, or float)	|
+					stored in the column.							|
+DefaultValue				This property gets or sets the default value assigned to this column	|
+					when you insert new rows.						|
+Expression				This property gets or sets the expression used to filter rows,		|
+					calculate a column's value, or create an aggregate column.		|
+Ordinal					This property gets the numerical position of the column in the		|
+					Columns collection maintained by the DataTable.				|
+ReadOnly				This property determines whether the column is read-only, once a row	|
+					has been added to the table. The default is false.			|
+Table					This property gets the DataTable that contains this DataColumn.		|
+Unique					This property gets or sets a value indicating whether the value in	|
+					each row of the column must be unique or if repeating values are 	|
+					permissible. If you assign a column a primary key constraint, then 	|
+					you must set the Unique property to true.				|
+----------------------------------------------------------------------------------------------------------------
+
+Key Members of the DataRow Type
+----------------------------------------------------------------------------------------------------------------
+Members					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+HasErrors()				The HasErrors property returns a Boolean value indicating whether	|
+GetColumnsInError()			there are errors in a DataRow. If so, you can use the			|
+GetColumnError()			GetColumnsInError() method to obtain the offending columns and		|
+ClearErrors()				GetColumnError() to obtain the error description. Similarly, you can	|
+RowError				use the ClearErrors() method to remove each error listing for the row.	|
+					The RowError property allows you to configure a textual description	|
+					of the error for a given row.						|
+ItemArray				This property gets or sets all the column values for this row using	|
+					an array of objects.							|
+RowState				You use this property to pinpoint the current state of the DataRow	|
+					in the DataTable containing the DataRow, using values of the RowState	|
+					enumeration (e.g., a row can be flagged as new, modified, unchanged,	|
+					or deleted).								|
+Table					You use this property to obtain a reference to the DataTable		|
+					containing this DataRow.						|
+AcceptChanges()				These methods commit or reject all changes made to this row since the	|
+RejectChanges()				last time AcceptChanges() was called.					|
+BeginEdit()				These methods begin, end, or cancel an edit operation on a DataRow	|
+EndEdit()				object.									|
+CancelEdit()													|
+Delete()				This method marks a row you want to remove when the AcceptChanges()	|
+					method is called.							|
+IsNull()				This method gets a value indicating whether the specified column	|
+					contains the null value.						|
+----------------------------------------------------------------------------------------------------------------
+
+You cannot create a direct instance of the DataRow type because there is no public constructor.
+If you pass the DataRow's indexer method an invalid column name or ordinal position, you will receive a runtime
+exception.
+
+Values of the DataRowState Enumeration
+----------------------------------------------------------------------------------------------------------------
+Value					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Added					The row has been added to a DataRowCollection, and AcceptChanges()	|
+					has not been called.							|
+Deleted					The row has been marked for deletion using the Delete() method of the	|
+					DataRow, and AcceptChanges() has not been called.			|
+Detached				The row has been created but is not part of any DataRowCollection.	|
+					A DataRow is in this state immediately after it has been created, 	|
+					but before it is added to a collection. It is also in this state	|
+					if it has been removed from a collection.				|
+Modified				The row has been modified, and AcceptChanges() has not been called.	|
+Unchanged				The row has not changed since AcceptChanges() was last called.		|
+----------------------------------------------------------------------------------------------------------------
+
+Values of the DataRowVersion Enumeration
+----------------------------------------------------------------------------------------------------------------
+Value					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Current					This represents the current value of a row, even after changes has	|
+					been made.								|
+Default					This is the default version of DataRowState. For a DataRowState value	|
+					of Added, Modified, or Deleted, the default version is Current.		|
+					For a DataRowState value of Detached, the version is Proposed.		|
+Original				This represents the value first inserted into a DataRow or the value	|
+					the last time AcceptChanges() was called.				|
+Proposed				This is the value of a row currently being edited because of a call	|
+					to BeginEdit().								|
+----------------------------------------------------------------------------------------------------------------
+
+Key Members of the DataTable Type
+----------------------------------------------------------------------------------------------------------------
+Member					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+CaseSensitive				Indicates whether string comparisons within the table are case		|
+					sensitive. The default value is false.					|
+ChildRelations				Returns the collection of child relations for this DataTable (if any).	|
+Constraints				Gets the collection of constraints maintained by the table.		|
+Copy()					A method that copies the schema and data of a given DataTable into	|
+					a new instance.								|
+DataSet					Gets the DataSet that contains this table (if any).			|
+DefaultView				Gets a customized view of the table that might include a filtered view	|
+					or a cursor position.							|
+ParentRelations				Gets the collection of parent relations for this DataTable.		|
+PrimaryKey				Gets or sets an array of columns that function as primary key for the	|
+					data table.								|
+TableName				Gets or sets the name of the table. This same property might also be	|
+					specified as a constructor parameter.					|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -2914,4 +3082,13 @@ up until a named point, rather than rolling back the entire transaction.
 
 
 
-p.1209
+
+
+
+
+
+
+
+
+
+p.1242
