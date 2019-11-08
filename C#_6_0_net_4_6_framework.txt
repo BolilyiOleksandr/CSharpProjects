@@ -3086,6 +3086,7 @@ Update()				Executes SQL INSERT, UPDATE, and DELETE commands (as specified by th
 					DataTable change to the database.					|
 ----------------------------------------------------------------------------------------------------------------
 
+		Chapter 23 ADO.NET Part III: Entity Framework
 
 
 
@@ -3104,4 +3105,4 @@ Update()				Executes SQL INSERT, UPDATE, and DELETE commands (as specified by th
 
 
 
-p.1304
+p.1313
