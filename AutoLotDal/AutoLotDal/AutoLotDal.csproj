@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectedLayer\InventoryDal.cs" />
+    <Compile Include="DisconnectedLayer\InventoryDalDc.cs" />
     <Compile Include="Models\NewCar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
