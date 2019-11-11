@@ -3088,6 +3088,98 @@ Update()				Executes SQL INSERT, UPDATE, and DELETE commands (as specified by th
 
 		Chapter 23 ADO.NET Part III: Entity Framework
 
+The strongly types classes are called entities. Entities are a conceptual model of a physical database that maps
+to your business domain. Formally speaking, this model is termed an entity data model (EDM).
+The EDM is a client-side set of classes that are mapped to a physical database by Entity Framework convention
+and configuration. You are free to restructure your entity classes to fit your needs, and the EF runtime will map
+your unique names to the correct database schema.
+
+The EF API sits on top of the existing ADO.NET infrastructure.
+
+The DbContext class represents a combination of the Unit of Work and Repository patterns that can be used to query
+from a database and group together changes that will be written back as a single unit of work.
+DbContext provides a number of core services to child classes, including the ability to save all changes (which
+results in a database update), tweak the connection string, delete objects, call stored procedures, and handle
+other fundamental details.
+
+Common Members of DbContext
+----------------------------------------------------------------------------------------------------------------
+Member of DbContext			Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+DbContext				Constructor used by default in the derived context class. The string	|
+					parameter is either the database name or the connection string		|
+					stored in the *.config file.						|
+Entry					Retrieves the System.Data.Entity.Infrastructure.DbEntityEntry object	|
+Entry<TEntity>				providing access to information and the ability to perform actions	|
+					on the entity.								|
+GetValidationErrors			Validates tracked entries and returns a collection of 			|
+					System.Data.Entity.Validation.DbEntityValidationResults.		|
+SaveChanges				Saves all changes made in this context to the database. Returns the	|
+SaveChangesAsync			number of affected entities.						|
+Configuration				Provides access to the configuration properties of the context.		|
+Database				Provides a mechanism for creation/deletion/existence checks for the	|
+					underlying database, executes stored procedures and raw SQL statements	|	
+					against the underlying data store, and exposes transaction functionality|
+----------------------------------------------------------------------------------------------------------------
+
+Events in DbContext
+----------------------------------------------------------------------------------------------------------------
+Events of DbContext			Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+ObjectMaterialized			Fires when a new entity object is created from the data store as part	|
+					of a query or load operation						|
+SavingChanges				Occurs when changes are being saved to the data store but prior to the	|
+					data being persisted							|
+----------------------------------------------------------------------------------------------------------------
+
+The DbContext class provides the core functionality when working with EF Code First.
+
+To add tables into your context, you add a DbSet<T> for each table in your object model. To enable lazy loading,
+the properties in the context need to be virtual.
+
+Common Members of DbSet<T>
+----------------------------------------------------------------------------------------------------------------
+Member of DbSet<T>			Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Add					Allows you to insert a new object (or range of objects) into the	|
+AddRange				collection. They will be marked with the Added state and will be	|
+					inserted into the database when SaveChanges (or SaveChangesAsync) is	|
+					called on the DbContext.						|
+Attach					Associates an object with the DbContext. This is commonly used in	|
+					disconnected applications like ASP.NET/MVC.				|
+Create					Creates a new instance of the specified entity type.			|
+Create<T>													|
+Find					Finds a data row by the primary key and returns an object representing	|
+FindAsync				that row.								|
+Remove					Marks an object (or range of objects) for deletion.			|
+RemoveRange													|
+SqlQuery				Creates a raw SQL query that will return entities in this set.		|
+----------------------------------------------------------------------------------------------------------------
+
+The DbContext automatically tracks the state for any object within its context.
+
+Entity State Enumeration Values
+----------------------------------------------------------------------------------------------------------------
+Value					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Detached				The object exists but is not being tracked. An entity is in this	|
+					state immediately after it has been created and before it is added	|
+					to the object context.							|
+Unchanged				The object has not been modified since it was attached to the context	|
+					or since the last time that the SaveChanges() method was called.	|
+Added					The object is new and has been added to the object context, and the	|
+					SaveChanges() method has not been called.				|
+Deleted					The object has been deleted from the object context but not yet removed	|
+					from the data store.							|
+Modified				One of the scalar properties on the object was modified, and the	|
+					SaveChanges() method has not been called.				|
+----------------------------------------------------------------------------------------------------------------
+
+CRUD - create, read, update, delete operations
+
+
+
+ 
 
 
 
@@ -3102,7 +3194,4 @@ Update()				Executes SQL INSERT, UPDATE, and DELETE commands (as specified by th
 
 
 
-
-
-
-p.1313
+p.1325
