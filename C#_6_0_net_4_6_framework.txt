@@ -3177,9 +3177,34 @@ Modified				One of the scalar properties on the object was modified, and the	|
 
 CRUD - create, read, update, delete operations
 
+You can change the entity name, as well as property names of the entity, by using special .NET attributes 
+referred to as data annotations.
+
+All the designer-generated classes have been declared with the partial keyword, which allows you to implement
+a class across multiple C# code files. This is especially useful when working with the EF programming model because
+it means you can add additional methods to your entity classes that help you model your business domain better.
+
+Remember, that you are hitting a database each time you apply a LINQ query to the object context!
+Recall that when you want to obtain an independent copy of data, which can be the target of new LINQ queries,
+you want to use immediate execution with the ToList<T>(), ToArray<T>(), ot ToDictionary<K, V>() extension methods
+(among others).
+
+Navigation properties allow you to capture JOIN operations in the Entity Framework programming model (without the 
+need to author complex SQL statements). To account for these foreign key relationships, each class in your model
+contains virtual properties that connect your classes together.
+
+There are three ways that EF loads data into models. Lazy and Eager fetching are based on settings on the context,
+and the third, Explicit, is developer controlled.
+
+Lazy loading - the virtual modified allows EF to lazy load the data. This means that EF loads the bare minimum 
+for each object and then retrieves additional details when properties are asked for in code.
+
+Eager loading - sometimes you want to load all related records.
+
+Explicit loading - loads a collection or class that is referenced by a navigation property. If lazy loading is
+disabled, then you need to either eager load related objects or explicitly load them.
 
 
- 
 
 
 
@@ -3188,10 +3213,4 @@ CRUD - create, read, update, delete operations
 
 
 
-
-
-
-
-
-
-p.1325
+p.1343
