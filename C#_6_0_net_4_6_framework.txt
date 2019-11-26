@@ -3204,6 +3204,7 @@ Eager loading - sometimes you want to load all related records.
 Explicit loading - loads a collection or class that is referenced by a navigation property. If lazy loading is
 disabled, then you need to either eager load related objects or explicitly load them.
 
+	Chapter 24 Introducing LINQ to XML
 
 
 
@@ -3213,4 +3214,22 @@ disabled, then you need to either eager load related objects or explicitly load 
 
 
 
-p.1343
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.1409
