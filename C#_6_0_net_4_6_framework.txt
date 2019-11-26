@@ -3206,6 +3206,53 @@ disabled, then you need to either eager load related objects or explicitly load 
 
 	Chapter 24 Introducing LINQ to XML
 
+The LINQ to XML API is an alternative manner to create, manipulate, and query XML documents, which uses a much more
+functional approach that the System.Xml DOM model.
+
+Select Members of hte System.Xml.Linq Namespace
+----------------------------------------------------------------------------------------------------------------
+Member of System.Xml.Linq		Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+XAttribute				Represents an XML attribute on a given XML element.			|
+XCData					Represents a CDATA section in the XML document. Information in a CDATA	|
+					section represents data in an XML document that must be included but	|
+					does not conform to the rules of XML grammars (for example, 		|
+					script code).								|
+XComment				Represents an XML document.						|
+XDeclaration				Represents the opening declaration of an XML document.			|
+XDocument				Represents the entirety of an XML document.				|
+XElement				Represents a given element within an XML document, including the root	|
+					element.								|
+XName					Represents the name of an XML element or XML attribute.			|
+XNamespace				Represents an XML namespace.						|
+XNode					Represents the abstract concept of a node (element, comment,		|
+					document type, processing instruction, or text node) in the XML tree.	|
+XProcessingInstruction			Represents an XML processing instruction.				|
+XStreamingElement			Represents elements in an XML tree that support deferred streaming	|
+					output.									|
+----------------------------------------------------------------------------------------------------------------
+
+Select Members of the LINQ to XML Extensions Class
+----------------------------------------------------------------------------------------------------------------
+Member of Extensions			Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Ancestors<T>()				Returns a filtered collection of elements that contains the		|
+					ancestors of every node in the source collection.			|
+Attributes()				Returns a filtered collection of the attributes of every element	|
+					in the source collection.						|
+DescendantNodes<T>()			Returns a collection of the descendant nodes of every document and	|
+					element in the source collection.					|
+Descendants<T>				Returns a filtered collection of elements that contains the		|
+					descendant elements of every element and document in the source		|
+					collection.								|
+Elements<T>				Returns a collection of the child elements of every element and 	|
+					document in the source collection.					|
+Nodes<T>				Returns a collection of the child nodes of every document and element	|
+					in the source collection.						|
+Remove()				Removes every attribute in the source collection from its parent	|
+					element.								|
+Remove<T>()				Remoces all occurences of a given node from the source collection.	|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -3225,11 +3272,4 @@ disabled, then you need to either eager load related objects or explicitly load 
 
 
 
-
-
-
-
-
-
-
-p.1409
+p.1419
