@@ -3254,6 +3254,7 @@ Remove()				Removes every attribute in the source collection from its parent	|
 Remove<T>()				Remoces all occurences of a given node from the source collection.	|
 ----------------------------------------------------------------------------------------------------------------
 
+	Chapter 25 Introducing Windows Communication Foundation
 
 
 
@@ -3271,5 +3272,4 @@ Remove<T>()				Remoces all occurences of a given node from the source collection
 
 
 
-
-p.1430
+p.1434
