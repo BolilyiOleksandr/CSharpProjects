@@ -3256,6 +3256,38 @@ Remove<T>()				Remoces all occurences of a given node from the source collection
 
 	Chapter 25 Introducing Windows Communication Foundation
 
+Windows Communication Foundation (WCF) is the name of the API designed specifically for the process of building
+distributed systems. WCF provides a single, unified, and extendable programming object model that you can use
+to interact with a number of diverse distributed technologies.
+
+The Windows operating system has historically provided many APIs for building distributed systems. While it is
+true that most people consider a distributed system to involve at least two networked computers, this term in the
+broader sense can refer to two executables that need to exchange data, even if they happen to be running on the
+same physical machine. Using this definition, selecting a distributed API for your current programming task
+typically involves asking the followint pivotal question:
+   Will this system be used exclusively in house, or will external users require access to the application's 
+   functionality?
+If you build a distributed system for in-house use, you have a far greater chance of ensuring that each connected
+computer is running the same operating system and using the same programming framework (e.g., .NET, COM, or the
+Java platform). Running in-house systems also means that you can leverage your existing security system for
+purposes of authentication, authorization, and so forth. In this situation, you might be willing to select a
+particular distributed API that will tie you to a specific operating system/programming framework for the 
+purpose of performance.
+In contrast, if you build a system that others must reach from outside of your walls, you have a whole other set
+of issues to contend with. First, you will most likely not be able to dictate to external users which 
+operating system(s) they can use, which programming framework(s) they can use, or how they configure their
+security settings.
+Second, if you happen to work for a larger company or in a university setting that uses numerous operating
+systems and programming technologies, an in-house application suddenly faces the same challenges as an
+outward-facing application. In either of these cases, you need to limit yourself to a more flexible distributed
+API to ensure the furthest reach of your application.
+
+WCF (and the technologies it encompasses) has nothing to do with building an HTML-based web site. While it is
+true that web applications can be considered distributed because two machines are typically involved in the 
+exchange, WCF is about establishing connections between machines to share the functionality of remote components-
+not for displaying HTML in a web browser.
+
+WSDL - Web Sevice Description Language
 
 
 
@@ -3272,4 +3304,26 @@ Remove<T>()				Remoces all occurences of a given node from the source collection
 
 
 
-p.1434
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.1442
