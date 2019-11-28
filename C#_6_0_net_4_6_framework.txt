@@ -3364,6 +3364,9 @@ System.ServiceModel.Security		This defines numerous types to control aspects of 
 					layers.									|
 ----------------------------------------------------------------------------------------------------------------
 
+The App.config file of the WCF Sevice Library project is also useful because it shows you the bare-bones
+settings used to configure a WCF host application. In fact, you can copy and paste much of this code into the
+configuration file of your production service.
 
 
 
@@ -3391,4 +3394,4 @@ System.ServiceModel.Security		This defines numerous types to control aspects of 
 
 
 
-p.1444
+p.1448
