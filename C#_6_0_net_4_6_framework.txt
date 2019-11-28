@@ -3455,10 +3455,36 @@ or MSMQ based). From a high level, WCF addresses can specify the following bits 
 scheme://<MachineName>[:Port]/Path
 http://localhost:8080/MyWCFService
 
+Various Named Properties of the [ServiceContract] Attribute
+----------------------------------------------------------------------------------------------------------------
+Property				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+CallbackContract			Establishes whether this service contract requires callback 		|
+					functionality for two-way message exchange (e.g., duplex bindings).	|
+ConfigurationName			Locates the service element in an application configuration file.	|
+					The default is the name of the service implementation class.		|
+ProtectionLevel				Allows you to specify the degree to which the contract binding requires	|
+					encryption, digital signatures, or both for endpoints that expose the	|
+					contract.								|
+SessionMode				Establishes whether sessions are allowed, not allowed, or required by	|
+					this service contract.							|
+----------------------------------------------------------------------------------------------------------------
 
-
-
-
+Various Named Properties of the [OperationContract] Attribute
+----------------------------------------------------------------------------------------------------------------
+Property				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+AsyncPattern				Indicates whether the operation is implemented asynchronously using	|
+					a Begin/End method pair on the service. This allows the service to	|
+					offload processing to another server-side thread; this has nothing	|
+					to do with the client calling the method asynchronously!		|
+IsInitiating				Specifies whether this operation can be the initial operation in a 	|
+					session.								|
+IsOneWay				Indicates whether the operation consists of only a single input message	|
+					(and no associated input).						|
+IsTerminating				Specifies whether the WCF runtime should attempt to terminate the	|
+					current session after the operation completes.				|
+----------------------------------------------------------------------------------------------------------------
 
 
 
