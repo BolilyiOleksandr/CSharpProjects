@@ -3289,6 +3289,36 @@ not for displaying HTML in a web browser.
 
 WSDL - Web Sevice Description Language
 
+Consider the following list of major WCF features:
+- support for strongly typed as well as untyped messages. This approach allows .NET applications to share custom
+types efficiently, while software created using other platforms (such as Java) can consume streams of loosely
+typed XML.
+- support for several bindings (e.g., raw HTTP, TCP, MSMQ, WebSockets, named pipes, and so on) allows you to choose
+the most appropriate plumbing to transport message data.
+- support for the latest-and-greatest web service specifications (WS-*).
+- a fully integrated security model encompassing both native Windows/.NET security protocols and numerous
+neutral-security techniques, as well as support for one-way or stateless message.
+- support for session-like stae management techniques, as well as support for one-way or stateless messages.
+
+Yet another benefit of WCF is that it is based on the design principles established by service-oriented
+architecture (SOA). SOA is a way to design a distributed system where several autonomous services work in 
+conjunction by passing messages across boundaries (either networked machines or two processes on the same machine)
+using well-defined interfaces.
+
+The team that designed WCF observed the four tenets of SOA design principles.
+
+Tenet 1: Boundaries are Explicit
+This tenet reiterates that the functionality of a WCF service is expressed using well-defined interfaces
+(e.g., descriptions of each member, its parameters, and its return values). The only way that an external caller
+can communicate with a WCF service is through the interface, and the external caller remains blissfully unaware
+of the underlying implementation details.
+
+Tenet 2: Services are Autonomous
+The term autonomous entities refers to the fact that a given WCF service is (as much as possible) an island unto
+itself. An autonomous service should be implemented with regard to version, deployment, and installation issues.
+To help promote this tenet, you can fall back on a key aspect of interface-based programming. Once an interface
+is in production, it should never be changed (or you will risk breaking existing clients). When you need to
+extend the functionality of your WCF service, you author new interfaces that model the desired functionality.
 
 
 
@@ -3325,5 +3355,4 @@ WSDL - Web Sevice Description Language
 
 
 
-
-p.1442
+p.1444
