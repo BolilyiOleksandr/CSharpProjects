@@ -3320,13 +3320,49 @@ To help promote this tenet, you can fall back on a key aspect of interface-based
 is in production, it should never be changed (or you will risk breaking existing clients). When you need to
 extend the functionality of your WCF service, you author new interfaces that model the desired functionality.
 
+Tenet 3: Services Communicate via Contract, Not Implementation
+The third tenet is yet another by-product of interface-based programming. The implementation details of a 
+WCF service (e.g., the language it was written in, how it accomplishes its work, etc.) are of no concern to the
+external caller. WCF clients interact with services solely through their exposed public interfaces.
 
+Tenet 4: Service Compatability is Based on Policy
+Because CLR interface provide strongly typed contracts for all WCF clients (and can also be used to generate
+a related WSDL document based on your choice of binding), it is important to realize that interfaces and WSDL 
+alone are not expressive enough to detail aspects of what the service is capable of doing. Given this, SOA allows
+you to define policies that further qualify the semantics of the service (e.g., the expected security 
+requirements used to talk to the service). Using these policies, you can basically separate the low-level syntactic
+description of your service (the exposed interface) from the sematics details of how they work and how they need
+to be invoked.
 
+WCF is the recommended API whether you want to build an in-house application using TCP protocols, move data between
+programs on the same machine using named pipes, or expose data to the world at large using HTTP-based protocols.
 
+Core WCF Assemblies
+----------------------------------------------------------------------------------------------------------------
+Assembly				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+System.Runtime.Serialization.dll	This core assembly defines namespaces and types that you can use	|
+					for serializing and deserializing objects in the WCF framework.		|
+System.ServiceModel.dll			This core assembly contains the types used to build any sort of WCF	|
+					application.								|
+----------------------------------------------------------------------------------------------------------------
 
-
-
-
+Core WCF Namespaces
+----------------------------------------------------------------------------------------------------------------
+Namespace				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+System.Runtime.Serialization		This defines many types you use to control how data is serialized	|
+					and deserialized within the WCF framework.				|
+System.ServiceModel			This primary WCF namespace defines binding and hosting types, as well	|
+					as basic security and transactional types.				|
+System.ServiceModel.Configuration	This defines numerous types that provide programmatic access		|
+					to WCF configuration file.						|
+System.ServiceModel.Description		This defines types that provide an object model to the addresses, 	|
+					bindings, and contracts defined within WCF configuration files.		|
+System.ServiceModel.MsmqIntegration	This contains types to integrate with the MSMQ service.			|
+System.ServiceModel.Security		This defines numerous types to control aspects of the WCF security	|
+					layers.									|
+----------------------------------------------------------------------------------------------------------------
 
 
 
