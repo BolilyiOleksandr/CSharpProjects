@@ -3368,6 +3368,92 @@ The App.config file of the WCF Sevice Library project is also useful because it 
 settings used to configure a WCF host application. In fact, you can copy and paste much of this code into the
 configuration file of your production service.
 
+When you build a WCF distributed system, you will typically do so by creating the following three interrelated
+assemblies:
+- the WCF Service assembly: this *.dll contains the classes and interfaces that represent the overall 
+functionality you want to expose to external caller
+- the WCF Service host: this software module is the entity that hosts your WCF service assembly
+- the WCF client: this is the application that accesses the service's functionality through an intervening
+proxy
+
+The WCF Service assembly is a .NET class library that contains a number of WCF contracts and their implementation.
+The key difference is that the interface contracts are adorned with various attributes that control data type 
+representation, how the WCF runtime interacts with the exposed types, and so forth.
+The second assembly, the WCF Service host, can be literally any .NET executable. WCF was set up so that you can 
+expose services easily from any type of application (e.g., Windows Forms, a Windows service, and 
+WPF applications). When you build a custom host, you use the ServiceHost type and possibly a related 
+*.config file. The latter contains details regarding the server-side plumbing you want to use. However, if you
+use IIS as the host for your WCF service, you don't need to build a custom host programmatically because
+IIS will use the ServiceHost type behind the scenes.
+The final assembly represents the client that makes calls into the WCF service. This client can be any type of
+.NET application. Similar to the host, client application typically use a client-side *.config file that
+defines the client-side plumbing. You should also be aware that you can easily have a client application
+written in another framework (e.g., Java) if you build your WCF service using HTTP-based bindings.
+
+Hosts and clients communicate with each other by agreeing on the ABCs, a friendly mnemonic for remembering
+the core building blocks of a WCF application address, bindings, and contract, defined as follows:
+- address: describes the location of the service. In code, you represent this with a System.Uri type;
+however, you typically store the value in *.config file
+- binding: WCF ships with a many different bindings that specify network protocols, encoding mechanisms,
+and the transport layer
+- contract: provides a description of each method exposed from the WCF service
+
+Interdaces that represent a WCF contract are called service contracts. The classes (or structures) that
+implement them are called service types.
+
+A WCF binding can specify the following characteristics:
+- the transport layer used to move data (HTTP, MSMQ, named pipes, REST, WebSockets, and TCP)
+- the channels used by the transport (one-way, request-reply, and duplex)
+- the encoding mechanism used to deal with the data itself (e.g., XML and binary)
+- any supported web service protocols (if permitted by the binding), such as WS-Security, WS-Transaction,
+WS-Reliability, and so on
+
+The HTTP-Centric WCF Bindings
+----------------------------------------------------------------------------------------------------------------
+Binding Class			Binding Element			Meaning in Life					|
+----------------------------------------------------------------------------------------------------------------
+BasicHttpBinding		<basicHttpBinding>		You use this to build a WS-Basic Profile - 	|
+								conformant WCF service. This binding uses HTTP	|
+								as the transport and Text/XML as the default	|
+								message encoding.				|
+WSHttpBinding			<wsHttpBinding>			This is similar to BasicHttpBinding but 	|
+								provides more web service features. This binding|
+								adds support for transactions, reliable 	|
+								messaging, and WS-Addressing.			|
+WSDualHttpBinding		<wsDualHttpBinding>		This is similar to WSHttpBinding but intended	|
+								for use with duplex contracts (e.g., service	|
+								and client can send messages back and forth).	|
+								This binding supports only SOAP security and	|
+								requires reliable messaging.			|
+WSFederationHttpBinding		<wsFederationHttpBinding>	This is a secure and interoperable binding that	|
+								supports the WS-Federation protocol, enabling	|
+								organizations that are in a federation to 	|
+								authenticate and authorize users efficiently.	|
+----------------------------------------------------------------------------------------------------------------
+
+The TCP-Centric WCF Bindings
+----------------------------------------------------------------------------------------------------------------
+Binding Class			Binding Element			Meaning in Life					|
+----------------------------------------------------------------------------------------------------------------
+NetNamedPipeBinding		<netNamedPipeBinding>		Serves as a secure, reliable, optimized		|
+								binding for on-the-same-machine communication	|
+								between .NET applications.			|
+NetPeerTcpBinding		<netPeerTcpBinding>		Provides a secure binding for P2P network	|
+								applications.					|
+NetTcpBinding			<netTcpBinding>			Serves as a secure and optimized binding	|
+								suitable for cross-machine communication	|
+								between .NET applications.			|
+----------------------------------------------------------------------------------------------------------------
+
+The exact format of the WCF address will differ based on your choice of binding (HTTP based, named pipes, TCP based,
+or MSMQ based). From a high level, WCF addresses can specify the following bits of information:
+- Scheme: the transport protocol (e.g., HTTP)
+- MachineName: the fully qualified domain of the machine
+- Port: this is optional in many cases; for example, the default for HTTP bindings is port 80
+- Path: the path to the WCF service
+
+scheme://<MachineName>[:Port]/Path
+http://localhost:8080/MyWCFService
 
 
 
@@ -3387,6 +3473,7 @@ configuration file of your production service.
 
 
 
+p.1458
 
 
 
@@ -3394,4 +3481,4 @@ configuration file of your production service.
 
 
 
-p.1448
+
