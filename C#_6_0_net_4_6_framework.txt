@@ -3486,6 +3486,69 @@ IsTerminating				Specifies whether the WCF runtime should attempt to terminate t
 					current session after the operation completes.				|
 ----------------------------------------------------------------------------------------------------------------
 
+When you build a host for a WCF service type, you follow a predictable set of steps - some that rely on
+configuration and some that rely on code. Thse steps are as follows:
+- define the endpoint for the WCF service being hosted within the host's configuration file
+- programmatically use the ServiceHost type to expose the service types available from this endpoint
+- ensure the host remains running to service incoming client requests. Obviously, this step is not required
+if you host your service types using a Windows service or IIS
+
+In the world of WCF, the term endpoint represents the address, binding, and contract rolled together in a nice,
+tidy package. In XML, an endpoint is expressed using the <endpoint> element and the address, binding, and
+contract elements.
+
+Select Members of the ServiceHost Type
+----------------------------------------------------------------------------------------------------------------
+Members					Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+Authorization				This property gets the authorization level for the service behind	|
+					hosted.									|
+AddDefaultEndpoints()			This method is used to configure a WCF Service host programmatically	|
+					so it uses any number of prebuilt endpoints supplied by the framework.	|
+AddServiceEndpoint()			This method allows you to register an endpoint to the host		|
+					programmatically.							|
+BaseAddresses				This property obtains the list of registered base addresses for the	|
+					current service.							|
+BeginOpen()				These methods allow you to open and close a ServiceHost object		|
+BeginClose()				asynchronously, using the standard asynchronous .NET delegate syntax.	|
+CloseTimeout				This property allows you to set and get the time allowed for the 	|
+					service to close down.							|
+Credentials				This property obtains the security credentials used by the current	|
+					service.								|
+EndOpen() 				These methods  are the asynchronous counterparts to BeginOpen() and	|
+EndClose()				BeginClose().								|
+OpenTimeout				This property allows you to set and get the time allowed fro the 	|
+					service	to start up.							|
+State					This property gets a value that indicates the current state of the	|
+					communication object, which is represented by the CommunicationState	|
+					enum (e.g., opened, closed, and created).				|
+----------------------------------------------------------------------------------------------------------------
+
+Select Subelements of <service.serviceModel>
+----------------------------------------------------------------------------------------------------------------
+Subelement				Meaning in Life								|
+----------------------------------------------------------------------------------------------------------------
+behaviors				WCF supports various endpoint and service behaviors. In a nutshell,	|
+					a behavior allows you to qualify further the fucntionality of a host,	|
+					service, or client.							|
+bindings				This element allows you to fine-tune each of the WCF-supplied bindings	|
+					(e.g., basicHttpBinding and netMsmqBinding), as well as to specify	|
+					any custom binding used by the host.					|
+client					This element contains a list of endpoint a client uses to connect to a	|
+					service. Obviously, this is not particularly useful in a host's 	|
+					*.config file.								|
+comContracts				This element defines COM contracts enabled for WCF and COM 		|
+					interoperability.							|
+commonBehaviors				This elementcan be set only within a machine.config file. You can use 	|
+					it to define all of the behaviors used by each WCF service on a given	|
+					machine.								|
+diagnostics				This element contains settings for the diagnostics features of WCF.	|
+					The user can enable/disable tracing, performance counters, and the WMI	|
+					provider; the user can also add custom message filters.			|
+services				This element contains a collection of WCF services exposed by the host.	|
+----------------------------------------------------------------------------------------------------------------
+
+MEX - metadata exchange
 
 
 
@@ -3499,7 +3562,12 @@ IsTerminating				Specifies whether the WCF runtime should attempt to terminate t
 
 
 
-p.1458
+
+
+
+
+
+p.1473
 
 
 
