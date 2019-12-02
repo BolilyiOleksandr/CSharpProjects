@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b6128076-3f5a-4e61-bbad-c2e4ff20e700" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/MagicEightBallService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MagicEightBallService.xsd" MetadataType="Schema" ID="d32f4cf9-5ada-4a0b-b52d-15938caa764d" SourceId="1" SourceUrl="http://localhost:8080/MagicEightBallService?xsd=xsd0" />
+    <MetadataFile FileName="MagicEightBallService.wsdl" MetadataType="Wsdl" ID="16d41ac3-de3c-42da-ac14-053e463bd70f" SourceId="1" SourceUrl="http://localhost:8080/MagicEightBallService?wsdl" />
+    <MetadataFile FileName="MagicEightBallService.disco" MetadataType="Disco" ID="6154db7a-c13f-438c-8209-8383a08a1ed7" SourceId="1" SourceUrl="http://localhost:8080/MagicEightBallService?disco" />
+    <MetadataFile FileName="MagicEightBallService1.xsd" MetadataType="Schema" ID="449541f7-0fd2-4309-9e3f-cd0ea1c7e335" SourceId="1" SourceUrl="http://localhost:8080/MagicEightBallService?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
