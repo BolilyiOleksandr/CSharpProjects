@@ -3554,6 +3554,9 @@ While it is true that a desktop Windows application does not have to show a main
 require user interaction to load the executable. However, you can configure a Windows service to run even if no
 users are currently logged on to the workstation.
 
+When you create a web-centric WCF service, you will find your project contains a specific file with an *.svc
+file extension. This particular file is required for any WCF service hosted by IIS; it described the name and
+location of the service implementation within the install point.
 
 
 
