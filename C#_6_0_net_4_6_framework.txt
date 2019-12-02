@@ -3550,6 +3550,9 @@ services				This element contains a collection of WCF services exposed by the ho
 
 MEX - metadata exchange
 
+While it is true that a desktop Windows application does not have to show a main window, a typical *.exe does
+require user interaction to load the executable. However, you can configure a Windows service to run even if no
+users are currently logged on to the workstation.
 
 
 
@@ -3566,8 +3569,7 @@ MEX - metadata exchange
 
 
 
-
-p.1488
+p.1492
 
 
 
