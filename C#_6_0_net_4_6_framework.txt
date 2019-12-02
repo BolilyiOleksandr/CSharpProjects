@@ -3558,6 +3558,9 @@ When you create a web-centric WCF service, you will find your project contains a
 file extension. This particular file is required for any WCF service hosted by IIS; it described the name and
 location of the service implementation within the install point.
 
+				PART VII - Windows Presentation Foundation
+
+		Chapter 26 - Introducing Windows Presentation Foundation and XAML
 
 
 
@@ -3572,7 +3575,27 @@ location of the service implementation within the install point.
 
 
 
-p.1508
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.1517
 
 
 
