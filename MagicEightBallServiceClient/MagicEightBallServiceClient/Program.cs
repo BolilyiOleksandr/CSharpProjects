@@ -13,7 +13,7 @@ namespace MagicEightBallServiceClient
         {
             Console.WriteLine("***** Ask the Magic 8 Ball *****\n");
 
-            using (var ball = new EightBallClient())
+            using (var ball = new EightBallClient("BasicHttpBinding_IEightBall"))
             {
                 Console.Write("Your question: ");
                 var question = Console.ReadLine();
