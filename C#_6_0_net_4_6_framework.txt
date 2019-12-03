@@ -3626,6 +3626,61 @@ WindowsBase.dll					This assembly defines types that constitute the infrastuctur
 						for dependency properties and routed events.			|
 ----------------------------------------------------------------------------------------------------------------
 
+Core WPF Namespaces
+----------------------------------------------------------------------------------------------------------------
+Namespace					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+System.Windows					This is the root namespace of WPF. Here, you will find core	|
+						classes (such as Application and Window) that are required	|
+						by any WPF desktop project.					|	
+System.Windows.Controls				Contains all of the expected WPF widgets, including types to	|
+						build menu systems, tool tips, and numerous layout managers.	|
+System.Windows.Data				Contains types to work wuth the WPF data-binding engine, as	|
+						well as support for data-binding templates.			|
+System.Windows.Documents			Contains types to work with the documents API, which allows you	|
+						to integrate PDF-style functionality into your WPF 		|
+						applications, via the XML Paper Specification (XPS) protocol.	|
+System.Windows.Ink				Provides support for the Ink API, which allows you to capture	|
+						input from a stylus or mouse, respond to input getstures, and	|
+						so forth. Very useful for Tablet PC programming; hovewer, any	|
+						WPF can make use of this API.					|
+System.Windows.Markup				This namespace defines a number of types that allow XAML 	|
+						markup (and the equivalent binary format, BAML) to be parsed 	|
+						and processed programmatically.					|
+System.Windows.Media				This is the root namespace to several media-centric namespaces.	|
+						Within these namespaces you will find types to work with	|
+						animations, 3D rendering, text rendering, and other		|
+						multimedia primitives.						|
+System.Windows.Navigation			This namespace provides types to account for the navigation	|
+						logic employed by XAML browser applications (XBAPs) as well as	|
+						standard desktop applications that require a navigational page	|
+						model.								|
+System.Windows.Shapes				Defines classes that allow you to render interactive 2D graphics|
+						that automatically respond to mouse input.			|
+----------------------------------------------------------------------------------------------------------------
+
+Key Properties of the Application Type
+----------------------------------------------------------------------------------------------------------------
+Property					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+Current						This static property allows you to gain access to the		|
+						running Application object from anywhere in your code. This	|
+						can be very helpful when a window or dialog box needs to gain	|
+						access to the Application object that created it, typically	|
+						to access application-wide variables and functionality.		|
+MainWindow					This property allows you to programmatically get or set the	|
+						main window of the application.					|
+Properties					This property allows you to establish and obtain data that is	|
+						accessible throughout all aspects of a WPF application 		|
+						(windows, dialog boxes, etc.).					|
+StartupUri					This property gets or sets a URI that specifies a window or	|
+						page to open automatically when the application starts.		|
+Windows						This property returns a WindowCollection type, which provides	|
+						access to each window created from the thread that created	|
+						the Application object. This can be very helpful when you	|
+						want to iterate over each open window of an application and	|
+						alter its state (such as minimizing all windows).		|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -3641,12 +3696,7 @@ WindowsBase.dll					This assembly defines types that constitute the infrastuctur
 
 
 
-
-
-
-
-
-p.1529
+p.1538
 
 
 
