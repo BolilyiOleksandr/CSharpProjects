@@ -3562,6 +3562,69 @@ location of the service implementation within the install point.
 
 		Chapter 26 - Introducing Windows Presentation Foundation and XAML
 
+WPF - Windows Presentation Foundation
+XAML - Extensible Application Markup Language
+
+While many full-featured desktop applications have been successfully created using Windows Forms, the fact
+of matter is that this programming model is rather assymmetrical. Simply put, System.Windows.Forms.dll and
+System.Drawing.dll do not provide direct support for many additional technologies to build a feature-rich
+desktop application.
+
+Pre-WPF Solutions to Desired Functionalities
+----------------------------------------------------------------------------------------------------------------
+Desired Functionality				Technology							|
+----------------------------------------------------------------------------------------------------------------
+Building windows with controls			Windows Forms							|
+2D graphics support				GDI+ (System.Drawing.dll)					|
+3D graphics support				DirectX APIs							|
+Support for streaming video			Windows Media Player APIs					|
+Support for flow-style documents		Programmatic manipulation of PDF files				|
+----------------------------------------------------------------------------------------------------------------
+
+.NET 3.0 Solutions to Desired Functionalities
+----------------------------------------------------------------------------------------------------------------
+Desired Functionality				Technology							|
+----------------------------------------------------------------------------------------------------------------
+Building windows with controls			WPF								|
+2D graphics support				WPF								|
+3D graphics support				WPF								|
+Support for streaming video			WPF								|
+Support for flow-style documents		WPF								|
+----------------------------------------------------------------------------------------------------------------
+
+XAML is not limited to WPF applications. Any application can use XAML ti describe a tree of .NET objects, even if
+they have nothing to do with a visible user interface. For example, the Windows Workflow Foundation API uses a
+XAML-based grammar to define business processes and custom activities. As well, other .NET GUI frameworks such as
+Silverlight (on the wane, but still very much in use today), Windows Phone, and Windows 10 applications all make 
+use of XAML.
+
+The WPF programming model is quite different in that GDI is not used when rendering graphical data. All rendering
+operations (e.g., 2D graphics, 3D graphics, animations, control rendering, etc.) now make use of the DirectX API.
+The first obvious benefit is that your WPF applications will automatically take advantange of hardware and 
+software optimizations. As well, WPF applications can tap into very rich graphical services (blur effect, 
+anti-aliasing, transparency, etc.) without the complexity of programming directly against the DirectX API.
+
+Core WPF Assemblies
+----------------------------------------------------------------------------------------------------------------
+Assembly					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+PresentationCore.dll				This assembly defines numerous namespaces that constitute	|
+						the foundation of the WPF GUI layer. For example, this assembly	|
+						contains support for the WPF Ink API (for programming against	|
+						stylus input for Pocket PCs and Tablet PCs), animation		|
+						primitives, and numerous graphical rendering types.		|
+PresentationFramework.dll			This assembly contains a majority of the WPF controls,		|
+						the Application and Window classes, support for interactive 2D	|
+						graphics and numerous types used in data binding.		|
+System.Xaml.dll					This assembly provides namespaces that allow you to program 	|
+						against a XAML document at runtime. By and large, this library	|
+						is only useful if you are authoring WPF support tools or need 	|
+						absolute control over XAML at runtime.				|
+WindowsBase.dll					This assembly defines types that constitute the infrastucture	|
+						of the WPF API, including those representing WPF threading	|
+						types, security types, various type converters, and support	|
+						for dependency properties and routed events.			|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -3583,19 +3646,7 @@ location of the service implementation within the install point.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-p.1517
+p.1529
 
 
 
