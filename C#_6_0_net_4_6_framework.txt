@@ -3715,6 +3715,9 @@ x:TypeArguments					Allows you to establish an element as a generic type with a 
 						specific type parameter (e.g., List<int> vs. List<bool>).	|
 ----------------------------------------------------------------------------------------------------------------
 
+The XamlReader and XamlWriter classes provide basic functionality to manipulate XAML at runtime. If you ever
+have a need to gain full control over the XAML object model, you will want to explore the System.Xaml.dll
+assembly.
 
 
 
@@ -3726,8 +3729,7 @@ x:TypeArguments					Allows you to establish an element as a generic type with a 
 
 
 
-
-p.1595
+p.1605
 
 
 
