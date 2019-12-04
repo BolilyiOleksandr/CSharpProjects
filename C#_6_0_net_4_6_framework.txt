@@ -3682,6 +3682,38 @@ Windows						This property returns a WindowCollection type, which provides	|
 						alter its state (such as minimizing all windows).		|
 ----------------------------------------------------------------------------------------------------------------
 
+XAML is an XML-based grammar that allows you to define the state (and, to some extent, the functionality) of a 
+tree of .NET objects through markup. While XAML is frequently used when building UIs with WPF, in reality  it can
+be used to describe any tree of nonabstract .NET types (including your own custom types defined in a custom 
+.NET assembly), provided each supports a default constructor.
+Because XAML is an XML-based grammar, we gain all the benefits (and drawbacks) XML affords us. On the plus side,
+XAML files are very self-describing (as any XML document should be). By and large, each element in a XAML file
+represents a type name (such as Button, Window, or Application) within a given .NET namespace. Attributes within
+the scope of an opening element map to properties (Height, Width, etc.) and events (Startup, Click, etc.) of the
+specified type.
+
+XAML Keywords
+----------------------------------------------------------------------------------------------------------------
+XAML Keyword					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+x:Array						Represents a .NET array type in XAML.				|
+x:ClassModifier					Allows you to define the visibility of the C# class (internal	|
+						or public) denoted by the Class keyword.			|
+x:FieldModifier					Allows you to define the visibility of a type member (internal,	|
+						public, private, or protected) for any named subelement of the	|
+						root (e.g., <Button> within a <Window> element). A named	|
+						element is defined using the Name XAML keyword.			|
+x:Key						Allows you to establish a key value for a XAML item that will 	|
+						be placed into a dictionary element.				|
+x:Name						Allows you to specify the generated C# name of a given XAML	|
+						element.							|
+x:Null						Represents a null reference.					|
+x:Static					Allows you to make reference to a static member of a type.	|
+x:Type						The XAML equivalent of the C# typeof operator (it will yield	|
+						a System.Type based on the supplied name).			|
+x:TypeArguments					Allows you to establish an element as a generic type with a 	|
+						specific type parameter (e.g., List<int> vs. List<bool>).	|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -3695,9 +3727,7 @@ Windows						This property returns a WindowCollection type, which provides	|
 
 
 
-
-p.1550
-
+p.1581
 
 
 
