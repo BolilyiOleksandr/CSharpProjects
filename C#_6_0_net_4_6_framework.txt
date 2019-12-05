@@ -736,7 +736,7 @@ An interface is nothing more than a named set of abstract members. The abstact m
 a default implementation. An interface expresses a behavior that a given class or structure may choose to support. A class or structure
 can support as many interfaces as necessary.
 
-By covention, .NET interfaces are prefixed with a capital letter I. 
+By convention, .NET interfaces are prefixed with a capital letter I. 
 When you are creating your own custom interfaces, it is considered a best practice to do the same.
 
 When a class is marked as abstract, it may define any number of abstract members to provide polymorphic interface to all derived types.
