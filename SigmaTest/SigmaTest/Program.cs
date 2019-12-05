@@ -21,6 +21,8 @@ namespace SigmaTest
                     break;
                 }
             }
+
+            Console.ReadLine();
         }
 
         private static void BlackAndWhiteImages(string[] input)
@@ -30,44 +32,49 @@ namespace SigmaTest
                 var result = "EVEN";
                 var previousValue = "";
                 var currentValue = "";
+                var count = 0;
 
-                if (input[i] == null)
+                if (input[i].ToUpper() == "END")
                 {
-                    continue;
+                    break;
                 }
 
-                if (input[i].ToUpper() != "END")
+                for (var j = 0; j < input[i].Length; j++)
                 {
-                    for (var j = 0; j < input[i].Length; j++)
+                    if (input[i][j] == Convert.ToChar("."))
                     {
-                        if (input[i][j] == Convert.ToChar("*"))
+                        count++;
+                        while (input[i][j] != Convert.ToChar("*"))
                         {
-                            if (previousValue == "")
-                            {
-                                previousValue = currentValue;
-                            }
-                            else
-                            {
-                                if (previousValue != currentValue)
-                                {
-                                    result = "NOT EVEN";
-                                    break;
-                                }
-                            }
+                            currentValue += input[i][j];
+                            j++;
+                        }
 
+                        if (previousValue == "")
+                        {
                             previousValue = currentValue;
-                            currentValue = "";
-                            continue;
                         }
                         else
                         {
-                            currentValue += input[i][j];
+                            if (previousValue != currentValue)
+                            {
+                                result = "NOT EVEN";
+                                break;
+                            }
                         }
+
+                        currentValue = "";
                     }
-                    Console.WriteLine(i + 1 + " " + result);
                 }
+
+                if (count % 2 != 0)
+                {
+                    result = "NOT EVEN";
+                }
+
+                Console.WriteLine($"{i + 1} {result}");
+
             }
         }
-
     }
 }
