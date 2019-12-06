@@ -3208,7 +3208,7 @@ disabled, then you need to either eager load related objects or explicitly load 
 The LINQ to XML API is an alternative manner to create, manipulate, and query XML documents, which uses a much more
 functional approach that the System.Xml DOM model.
 
-Select Members of hte System.Xml.Linq Namespace
+Select Members of the System.Xml.Linq Namespace
 ----------------------------------------------------------------------------------------------------------------
 Member of System.Xml.Linq		Meaning in Life								|
 ----------------------------------------------------------------------------------------------------------------
@@ -3250,7 +3250,7 @@ Nodes<T>				Returns a collection of the child nodes of every document and elemen
 					in the source collection.						|
 Remove()				Removes every attribute in the source collection from its parent	|
 					element.								|
-Remove<T>()				Remoces all occurences of a given node from the source collection.	|
+Remove<T>()				Removes all occurences of a given node from the source collection.	|
 ----------------------------------------------------------------------------------------------------------------
 
 	Chapter 25 Introducing Windows Communication Foundation
