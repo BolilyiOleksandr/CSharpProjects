@@ -2752,7 +2752,7 @@ Core Members of the System.Data Namespace
 ----------------------------------------------------------------------------------------------------------------
 Type					Meaning in Life								|
 ----------------------------------------------------------------------------------------------------------------
-Constraint				Represents a constaint for a given DataColumn object.			|
+Constraint				Represents a constraint for a given DataColumn object.			|
 DataColumn				Represents a single column within a DataTable object.			|
 DataRelation				Represents a parent-child relationship between two DataTable objects.	|
 DataRow					Represents a single row within a DataTable object.			|
@@ -2799,7 +2799,7 @@ Member					Meaning in Life								|
 ----------------------------------------------------------------------------------------------------------------
 BeginTransaction()			You use this method to begin a database transaction.			|
 ChangeDatabase()			You use this method to change the database on an open connection.	|
-ConnectionTimeout			This read-only proprety returns the amount of time to wait while	|
+ConnectionTimeout			This read-only property returns the amount of time to wait while	|
 					establishing a connection before terminating and generating an error	|
 					(the default value is 15 seconds). If you would like to change the	|
 					default specify a Connect Timeout segment in the connection string	|
@@ -2814,8 +2814,8 @@ State					This read-only property gets the current state of the connection, whic
 					is represented by the ConnectionState enumeration.			|
 ----------------------------------------------------------------------------------------------------------------
 
-The Microsoft-supplied ADO.NET data providers support connection string builder objects, which allow you to establish
-the name-value pairs using strongly typed properties.
+The Microsoft-supplied ADO.NET data providers support connection string builder objects, which allow you 
+to establish the name-value pairs using strongly typed properties.
 
 Membes of the DbCommand Type
 ----------------------------------------------------------------------------------------------------------------
@@ -2854,7 +2854,7 @@ are queries, while Insert, Update, and Delete statements are not. Given this, Ex
 that represents the number of rows affected, not a new set of records.
 
 As you might know, building a SQL statement using string concatenation can be risky from a security point of view
-(think: SQL injenction attack). The preferred way to build command text is to use a parameterized query.
+(think: SQL injection attack). The preferred way to build command text is to use a parameterized query.
 
 You can use a parameterized query to treat SQL parameters as objects, rather than as a simple blob of text.
 Treating SQL queries in a more object-oriented manner helps reduce the number of typos (given strongly typed 
