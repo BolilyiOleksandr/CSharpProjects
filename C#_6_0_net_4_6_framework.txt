@@ -1201,7 +1201,7 @@ The structure constructor should be chained to the default constructor. The reas
 structure, which makes use of automatic property syntax, the default constructor must be explicitly called
 (from all custom constructors) to initialize the private backing fields (for example, if the structure
 had any additional fields/properties, this default contructor would initialize these fields to default
-values). Yes, this is a quirly rules of C#, but after all, this is an advanced topics chapter.
+values). Yes, this is a quirky rules of C#, but after all, this is an advanced topics chapter.
 
 Like the process of overloading an operator, conversion routines make use of the C# operator keyword,
 in conjunction with the explicit or implicit keyword, and must be defined as static.
@@ -1362,7 +1362,6 @@ typed variable.
 
 As you know, nongeneric types are capable of containing any combinations of items, as the members of these containers
 (again, such as ArrayList) are prototypes to receive System.Objects.
-
 
 Common LINQ Query Operators
 -----------------------------------------------------------------------------------------------------------------------------
