@@ -1644,7 +1644,6 @@ a custom type you have authored yourself.
 Lazy object instantiation is useful not only to decrease allocation of unnecessary objects. You can also use this technique if 
 a given member has expensive creation code, such as invoking a remote method, communication with a relational database, or what not.
 
-
 				PART V Programming with .NET Assemblies
 
 		Chapter 14 Building and Configuring Class Libraries
@@ -1895,7 +1894,7 @@ If you want to make use of early binding, you'll require the client application 
 When to make use of reflection, dynamic loading, late binding, and custom attributes?
 1) An extendable application must provide some input mechanism to allow the user to specify the module to plug in 
 (such as a dialog box or command-line flag). This requires dynamic loading.
-2) An extendable application must be able to determine whether the module supports the correct functionlity (such as a
+2) An extendable application must be able to determine whether the module supports the correct functionality (such as a
 set of required interfaces) to be plugged into the environment. This requires reflection.
 3) An extendable application must obtain a reference to the required infrastructure (such as a set of interface types)
 and invoke the members to trigger the underlying functionality. This may require late binding.
