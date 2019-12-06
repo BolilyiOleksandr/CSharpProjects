@@ -3263,9 +3263,9 @@ The Windows operating system has historically provided many APIs for building di
 true that most people consider a distributed system to involve at least two networked computers, this term in the
 broader sense can refer to two executables that need to exchange data, even if they happen to be running on the
 same physical machine. Using this definition, selecting a distributed API for your current programming task
-typically involves asking the followint pivotal question:
+typically involves asking the following pivotal question:
    Will this system be used exclusively in house, or will external users require access to the application's 
-   functionality?
+functionality?
 If you build a distributed system for in-house use, you have a far greater chance of ensuring that each connected
 computer is running the same operating system and using the same programming framework (e.g., .NET, COM, or the
 Java platform). Running in-house systems also means that you can leverage your existing security system for
@@ -3297,7 +3297,7 @@ the most appropriate plumbing to transport message data.
 - support for the latest-and-greatest web service specifications (WS-*).
 - a fully integrated security model encompassing both native Windows/.NET security protocols and numerous
 neutral-security techniques, as well as support for one-way or stateless message.
-- support for session-like stae management techniques, as well as support for one-way or stateless messages.
+- support for session-like state management techniques, as well as support for one-way or stateless messages.
 
 Yet another benefit of WCF is that it is based on the design principles established by service-oriented
 architecture (SOA). SOA is a way to design a distributed system where several autonomous services work in 
@@ -3397,7 +3397,7 @@ however, you typically store the value in *.config file
 and the transport layer
 - contract: provides a description of each method exposed from the WCF service
 
-Interdaces that represent a WCF contract are called service contracts. The classes (or structures) that
+Interfaces that represent a WCF contract are called service contracts. The classes (or structures) that
 implement them are called service types.
 
 A WCF binding can specify the following characteristics:
@@ -3486,7 +3486,7 @@ IsTerminating				Specifies whether the WCF runtime should attempt to terminate t
 ----------------------------------------------------------------------------------------------------------------
 
 When you build a host for a WCF service type, you follow a predictable set of steps - some that rely on
-configuration and some that rely on code. Thse steps are as follows:
+configuration and some that rely on code. These steps are as follows:
 - define the endpoint for the WCF service being hosted within the host's configuration file
 - programmatically use the ServiceHost type to expose the service types available from this endpoint
 - ensure the host remains running to service incoming client requests. Obviously, this step is not required
@@ -3516,7 +3516,7 @@ Credentials				This property obtains the security credentials used by the curren
 					service.								|
 EndOpen() 				These methods  are the asynchronous counterparts to BeginOpen() and	|
 EndClose()				BeginClose().								|
-OpenTimeout				This property allows you to set and get the time allowed fro the 	|
+OpenTimeout				This property allows you to set and get the time allowed for the 	|
 					service	to start up.							|
 State					This property gets a value that indicates the current state of the	|
 					communication object, which is represented by the CommunicationState	|
