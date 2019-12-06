@@ -2943,7 +2943,7 @@ RejectChanges()				Rolls back all the changes made to this DataSet since it was 
 WriteXml()				Allows you to write out the contents of a DataSet into a valid stream.	|
 ----------------------------------------------------------------------------------------------------------------
 
-A GUID (aka a globally uniqui identifier) is a statically unique 128-bit number.
+A GUID (aka a globally unique identifier) is a statically unique 128-bit number.
 
 Properties of the DataColumn
 ----------------------------------------------------------------------------------------------------------------
