@@ -3086,7 +3086,7 @@ Update()				Executes SQL INSERT, UPDATE, and DELETE commands (as specified by th
 
 		Chapter 23 ADO.NET Part III: Entity Framework
 
-The strongly types classes are called entities. Entities are a conceptual model of a physical database that maps
+The strongly typed classes are called entities. Entities are a conceptual model of a physical database that maps
 to your business domain. Formally speaking, this model is termed an entity data model (EDM).
 The EDM is a client-side set of classes that are mapped to a physical database by Entity Framework convention
 and configuration. You are free to restructure your entity classes to fit your needs, and the EF runtime will map
@@ -3117,7 +3117,8 @@ SaveChangesAsync			number of affected entities.						|
 Configuration				Provides access to the configuration properties of the context.		|
 Database				Provides a mechanism for creation/deletion/existence checks for the	|
 					underlying database, executes stored procedures and raw SQL statements	|	
-					against the underlying data store, and exposes transaction functionality|
+					against the underlying data store, and exposes transaction 		|
+					functionality.								|
 ----------------------------------------------------------------------------------------------------------------
 
 Events in DbContext
@@ -3184,7 +3185,7 @@ it means you can add additional methods to your entity classes that help you mod
 
 Remember, that you are hitting a database each time you apply a LINQ query to the object context!
 Recall that when you want to obtain an independent copy of data, which can be the target of new LINQ queries,
-you want to use immediate execution with the ToList<T>(), ToArray<T>(), ot ToDictionary<K, V>() extension methods
+you want to use immediate execution with the ToList<T>(), ToArray<T>(), or ToDictionary<K, V>() extension methods
 (among others).
 
 Navigation properties allow you to capture JOIN operations in the Entity Framework programming model (without the 
