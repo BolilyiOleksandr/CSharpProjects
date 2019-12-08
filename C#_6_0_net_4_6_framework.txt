@@ -3591,7 +3591,7 @@ Support for streaming video			WPF								|
 Support for flow-style documents		WPF								|
 ----------------------------------------------------------------------------------------------------------------
 
-XAML is not limited to WPF applications. Any application can use XAML ti describe a tree of .NET objects, even if
+XAML is not limited to WPF applications. Any application can use XAML to describe a tree of .NET objects, even if
 they have nothing to do with a visible user interface. For example, the Windows Workflow Foundation API uses a
 XAML-based grammar to define business processes and custom activities. As well, other .NET GUI frameworks such as
 Silverlight (on the wane, but still very much in use today), Windows Phone, and Windows 10 applications all make 
@@ -3719,6 +3719,11 @@ have a need to gain full control over the XAML object model, you will want to ex
 assembly.
 
 		Chapter 27 Programming with WPF Controls
+
+
+
+
+
 
 
 
