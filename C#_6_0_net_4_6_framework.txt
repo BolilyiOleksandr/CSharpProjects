@@ -3739,6 +3739,12 @@ WrapPanel					Positions content from left-to-right, breaking the content to	|
 						property.							|
 ----------------------------------------------------------------------------------------------------------------
 			
+If you do not define any rows or columns, the <Grid> defaults to a single cell that fills the entire surface
+of the window. Futhermore, if you do not assign a cell value for a subelement within a <Grid>, it automatically
+attaches to column 0, row 0.
+
+The Padding property controls how much extra space should surround the interior control, while Margin controls
+the extra space around the exterior of a control.
 
 
 
@@ -3761,8 +3767,7 @@ WrapPanel					Positions content from left-to-right, breaking the content to	|
 
 
 
-
-p.1615
+p.1624
 
 
 
