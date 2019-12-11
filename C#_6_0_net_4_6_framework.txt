@@ -3720,6 +3720,25 @@ assembly.
 
 		Chapter 27 Programming with WPF Controls
 
+Core WPF Panel Controls
+----------------------------------------------------------------------------------------------------------------
+Panel Control					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+Canvas						Provides a classic mode of content placement. Items stay 	|
+						exactly where you put them at design time.			|
+DockPanel					Locks content to a specified side of the panel (Top, Bottom,	|
+						Left, or Right).						|
+Grid						Arranges content within a series of cells, maintained within	|
+						a tabular grid.							|
+StackPanel					Stack content in a vertical or horizontal manner, as dictated	|
+						by the Orientation property.					|
+WrapPanel					Positions content from left-to-right, breaking the content to	|
+						the next line at the edge of the containing box. Subsequent	|
+						ordering happens sequentially from top-to-bottom or from	|
+						right-to-left, depending on the value of the Orientation	|
+						property.							|
+----------------------------------------------------------------------------------------------------------------
+			
 
 
 
@@ -3743,10 +3762,7 @@ assembly.
 
 
 
-
-
-
-p.1605
+p.1615
 
 
 
