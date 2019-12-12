@@ -3746,6 +3746,26 @@ attaches to column 0, row 0.
 The Padding property controls how much extra space should surround the interior control, while Margin controls
 the extra space around the exterior of a control.
 
+The Intrinsic WPF Control Command Objects
+----------------------------------------------------------------------------------------------------------------
+WPF Class			Command Objects				Meaning in Life				|
+----------------------------------------------------------------------------------------------------------------
+ApplicationCommands		Close, Copy, Cut, Delete, Find,		Various application-level commands	|
+				Open, Paste, Save, SaveAs, Redo,						|
+				Undo										|
+ComponentCommands		MoveDown, MoveFocusBack, MoveLeft,	Various commands common to UI		|
+				MoveRight, ScrollToEnd, 		components				|
+				ScrollToHome									|
+MediaCommands			BoostBase, ChannelUp, ChannelDown,	Various media-centric commands.		|
+				FastForward, NextTrack, Play,							|
+				Rewind, Select, Stop								|
+NavigationCommands		BrowseBack, BrowseForward,		Various commands relating to the WPF	|
+				Favorites, LastPage, NextPage, Zoom	navigation model			|
+EditingCommands			AlignCenter, CorrectSpellingError,	Various commands relating to the WPF	|
+				DecreaseFontSize, EnterLineBreak,	Documents API				|
+				EnterParagraphBreak, MoveDownByLine,						|
+				MoveRightByWord									|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -3765,9 +3785,7 @@ the extra space around the exterior of a control.
 
 
 
-
-
-p.1624
+p.1649
 
 
 
