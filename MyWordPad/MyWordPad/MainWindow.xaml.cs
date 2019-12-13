@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace MyWordPad
 {
@@ -23,6 +25,25 @@ namespace MyWordPad
         public MainWindow()
         {
             InitializeComponent();
+            SetF1CommandBinding();
+        }
+
+        private void SetF1CommandBinding()
+        {
+            var helpBinding = new CommandBinding(ApplicationCommands.Help);
+            helpBinding.CanExecute += CanHelpExecute;
+            helpBinding.Executed += HelpExecuted;
+            CommandBindings.Add(helpBinding);
+        }
+
+        private void CanHelpExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void HelpExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Look, it is not that difficult. Just type something!", "Help!");
         }
 
         private void MouseEnterExitArea(object sender, MouseEventArgs e)
@@ -59,6 +80,41 @@ namespace MyWordPad
                 LblSpellingHints.Content = spellingHints;
                 ExpanderSpelling.IsExpanded = true;
             }
+        }
+
+        private void OpenCmdExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var openDlg = new OpenFileDialog
+            {
+                Filter = "Text Files |*.txt"
+            };
+            if (true == openDlg.ShowDialog())
+            {
+                var dataFromFile = File.ReadAllText(openDlg.FileName);
+                TxtData.Text = dataFromFile;
+            }
+        }
+
+        private void OpenCmdCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void SaveCmdExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var saveDlg = new SaveFileDialog
+            {
+                Filter = "Text Files |*.txt"
+            };
+            if (true == saveDlg.ShowDialog())
+            {
+                File.WriteAllText(saveDlg.FileName, TxtData.Text);
+            }
+        }
+
+        private void SaveCmdCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
     }
 }

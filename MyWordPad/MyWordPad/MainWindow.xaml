@@ -5,20 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyWordPad"
         mc:Ignorable="d"
-        Title="My Spell Checker" Height="350" Width="525">
+        Title="My Spell Checker" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="OpenCmdExecuted" CanExecute="OpenCmdCanExecute"></CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Save" Executed="SaveCmdExecuted" CanExecute="SaveCmdCanExecute"></CommandBinding>
+    </Window.CommandBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top" HorizontalAlignment="Left" Background="White"
               BorderBrush="Black">
             <MenuItem Header="_File">
+                <MenuItem Command="ApplicationCommands.Open"></MenuItem>
+                <MenuItem Command="ApplicationCommands.Save"></MenuItem>
                 <Separator></Separator>
+                <MenuItem Header="_Exit" MouseEnter="MouseEnterExitArea" MouseLeave="MouseLeaveArea" Click="FileExit_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Exit" MouseEnter="MouseEnterExitArea" 
                       MouseLeave="MouseLeaveArea" 
                       Click="FileExit_Click">
             </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Command="ApplicationCommands.Copy"></MenuItem>
+                <MenuItem Command="ApplicationCommands.Cut"></MenuItem>
+                <MenuItem Command="ApplicationCommands.Paste"></MenuItem>
+            </MenuItem>
             <MenuItem Header="_Tools">
-                <MenuItem Header="_Spelling Hints" MouseEnter="MouseEnterToolsHintsArea" MouseLeave="MouseLeaveArea" Click="ToolsSpellingHints_Click">
-
+                <MenuItem Header="_Spelling Hints" MouseEnter="MouseEnterToolsHintsArea" 
+                          MouseLeave="MouseLeaveArea" Click="ToolsSpellingHints_Click">
                 </MenuItem>
             </MenuItem>
         </Menu>
