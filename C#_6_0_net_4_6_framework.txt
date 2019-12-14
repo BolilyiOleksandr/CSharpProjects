@@ -3804,6 +3804,7 @@ the destination of the binding operation. As you might expect, the source of a d
 itself (e.g., a Boolean property or relational data), while the destination (target) is the UI control property
 that uses the data content (e.g., a property on a CheckBox or TextBox control).
 
+	Chapter 28 WPF Graphics Rendering Services
 
 
 
@@ -3819,8 +3820,7 @@ that uses the data content (e.g., a property on a CheckBox or TextBox control).
 
 
 
-
-p.1708
+p.1724
 
 
 
