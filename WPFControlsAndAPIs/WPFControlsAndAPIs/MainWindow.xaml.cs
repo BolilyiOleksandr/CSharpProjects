@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Ink;
+using System.Windows.Annotations;
+using System.Windows.Annotations.Storage;
+using System.Windows.Markup;
 
 namespace WPFControlsAndAPIs
 {
@@ -29,6 +32,35 @@ namespace WPFControlsAndAPIs
             this.MyInkCanvas.EditingMode = InkCanvasEditingMode.Ink;
             this.InkRadio.IsChecked = true;
             this.ComboColors.SelectedIndex = 0;
+
+            PopulateDocument();
+            EnableAnnotations();
+
+            BtnSaveDoc.Click += (o, s) =>
+            {
+                using (var fStream = File.Open("documentData.xml", FileMode.Create))
+                {
+                    XamlWriter.Save(this.MyDocumentReader.Document, fStream);
+                }
+            };
+
+            BtnLoadDoc.Click += (o, s) =>
+            {
+                using (var fStream = File.Open("documentData.xaml", FileMode.Open))
+                {
+                    try
+                    {
+                        var doc = XamlReader.Load(fStream) as FlowDocument;
+                        this.MyDocumentReader.Document = doc;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error Loading Doc!");
+                    }
+                }
+            };
+
+            SetBindings();
         }
 
         private void RadioButtonClicked(object sender, RoutedEventArgs e)
@@ -51,7 +83,7 @@ namespace WPFControlsAndAPIs
         {
             //var colorToUse = (this.ComboColors.SelectedItem as ComboBoxItem)?.Content.ToString();
             var colorToUse = (this.ComboColors.SelectedItem as StackPanel)?.Tag.ToString();
-            this.MyInkCanvas.DefaultDrawingAttributes.Color = (Color) ColorConverter.ConvertFromString(colorToUse);
+            this.MyInkCanvas.DefaultDrawingAttributes.Color = (Color)ColorConverter.ConvertFromString(colorToUse);
         }
 
         private void SaveData(object sender, RoutedEventArgs e)
@@ -76,5 +108,52 @@ namespace WPFControlsAndAPIs
         {
             this.MyInkCanvas.Strokes.Clear();
         }
+
+        private void PopulateDocument()
+        {
+            this.ListOfFunFacts.FontSize = 14;
+            this.ListOfFunFacts.MarkerStyle = TextMarkerStyle.Circle;
+            this.ListOfFunFacts.ListItems.Add(
+                new ListItem(new Paragraph(new Run("Fixed documents are for WYSIWYG print ready docs!"))));
+            this.ListOfFunFacts.ListItems.Add(
+                new ListItem(new Paragraph(new Run("The API supports tables and embedded figures!"))));
+            this.ListOfFunFacts.ListItems.Add(new ListItem(new Paragraph(new Run("Flow documents are read only!"))));
+            this.ListOfFunFacts.ListItems.Add(new ListItem(
+                new Paragraph(new Run("BlockUIContainer allows you to embed WPF controls in the document!"))));
+
+            var prefix = new Run("This paragraph was generated ");
+            var b = new Bold();
+            var infix = new Run("dynamically");
+
+            infix.Foreground = Brushes.Red;
+            infix.FontSize = 30;
+            b.Inlines.Add(infix);
+
+            var suffix = new Run(" at runtime!");
+
+            this.ParaBodyText.Inlines.Add(prefix);
+            this.ParaBodyText.Inlines.Add(infix);
+            this.ParaBodyText.Inlines.Add(suffix);
+        }
+
+        private void EnableAnnotations()
+        {
+            var anoService = new AnnotationService(MyDocumentReader);
+            var anoStream = new MemoryStream();
+            var store = new XmlStreamStore(anoStream);
+            anoService.Enable(store);
+        }
+
+        private void SetBindings()
+        {
+            var b = new Binding()
+            {
+                Converter = new MyDoubleConverter(),
+                Source = this.MySb,
+                Path = new PropertyPath("Value")
+            };
+            this.LabelSbThumb.SetBinding(Label.ContentProperty, b);
+        }
+
     }
 }

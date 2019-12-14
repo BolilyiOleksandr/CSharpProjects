@@ -1,14 +1,15 @@
-﻿<Window x:Class="WPFControlsAndAPIs.MainWindow"
+﻿<Window x:Name="Window" x:Class="WPFControlsAndAPIs.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFControlsAndAPIs"
+        xmlns:a="clr-namespace:System.Windows.Annotations;assembly=PresentationFramework"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl x:Name="MyTabControl" HorizontalAlignment="Left" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" Width="774">
-            <TabItem Header="Ink API">
+            <TabItem Header="Ink API" Width="80">
                 <StackPanel Background="#FFE5E5E5">
                     <ToolBar x:Name="InkToolbar" Height="60">
                         <Border Margin="0,2,0,2.4" Width="300">
@@ -48,16 +49,52 @@
                     </InkCanvas>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Documents">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Documents" Width="80">
+                <StackPanel Background="#FFE5E5E5">
+                    <ToolBar>
+                        <Button BorderBrush="Green" Content="Add Sticky Note" 
+                                Command="a:AnnotationService.CreateTextStickyNoteCommand"></Button>
+                        <Button BorderBrush="Green" Content="Delete Sticky Notes"
+                                Command="a:AnnotationService.DeleteStickyNotesCommand"></Button>
+                        <Button BorderBrush="Green" Content="Highlight Text"
+                                Command="a:AnnotationService.CreateHighlightCommand"></Button>
+                        <Button x:Name="BtnSaveDoc" HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch" Width="75" Content="Save Doc"></Button>
+                        <Button x:Name="BtnLoadDoc" HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch" Width="75" Content="Load Doc"></Button>
+                    </ToolBar>
+                    <FlowDocumentReader x:Name="MyDocumentReader" Height="269.4">
+                        <FlowDocument>
+                            <Section Foreground="Yellow" Background="Black">
+                                <Paragraph FontSize="20">
+                                    Here are some fun facts about the WPF Documents API!
+                                </Paragraph>
+                            </Section>
+                            <List x:Name="ListOfFunFacts"></List>
+                            <Paragraph x:Name="ParaBodyText"></Paragraph>
+                        </FlowDocument>
+                    </FlowDocumentReader>
+                </StackPanel>
             </TabItem>
-            <TabItem Header="Data Binding" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="53.6">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Data Binding" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80">
+                <StackPanel Background="#FFE5E5E5">
+                    <StackPanel Width="250">
+                        <Label Content="Move the scroll bar to see the current value"></Label>
+                        <ScrollBar x:Name="MySb" Orientation="Horizontal" Height="30"
+                                       Minimum="1" Maximum="100" LargeChange="1" SmallChange="1"></ScrollBar>
+                        <Label x:Name="LabelSbThumb" Height="30" BorderBrush="Blue"
+                                   BorderThickness="2" Content="0"></Label>
+                        <Button Content="Click" Height="140" FontSize="{Binding Path=Value}"></Button>
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
-            <TabItem Header="DataGrid" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="53.6">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="TabDataGrid" Header="DataGrid">
+                <StackPanel Background="#FFE5E5E5">
+                    <DataGrid x:Name="GridInventory" Height="373"></DataGrid>
+                </StackPanel>
             </TabItem>
         </TabControl>
+        <FlowDocumentReader HorizontalAlignment="Left" Margin="849,204,-155.4,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

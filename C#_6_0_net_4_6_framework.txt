@@ -3767,6 +3767,42 @@ EditingCommands			AlignCenter, CorrectSpellingError,	Various commands relating t
 				MoveRightByWord									|
 ----------------------------------------------------------------------------------------------------------------
 
+Formally speaking, the items you add to an XPS document belong to one of two broad categories: block elements
+and inline elements. This first category, block elements, consists of classes that extend the
+System.Windows.Documents.Block base class. Examples of block elements include List, Paragraph, BlockUIContainer,
+Section, and Table. You use classes from this category to group together other content (e.g., a list containing
+paragraph data, and a paragraph containing subparagraphs for different text formatting).
+The second category, inline elements, consists of classes that extend the System.Windows.Documents.Inline base
+class. You nest inline elements within another block item (or possibly within another inline element inside a
+block element). Some common inline elements include Run, Span, LineBreak, Figure, and Floater.
+
+XPS Control Layout Managers
+----------------------------------------------------------------------------------------------------------------
+Panel Control					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+FlowDocumentReader				Displays data in a FlowDocument and adds support for zooming,	|
+						searching, and content layout in various forms.			|
+FlowDocumentScrollViewer			Displays data in a FlowDocument; hovewer, the data is presented	|
+						in a single document viewed with scrollbars. This container	|
+						does not support zooming, searching, or alternative layout	|
+						models.								|
+RichTextBox					Displays data in a FlowDocument and adds support for user	|
+						editing.							|
+FlowDocumentPageViewer				Displays the document page by page, one page at a time. Data	|
+						can also be zoomed, but not searched.				|
+----------------------------------------------------------------------------------------------------------------
+
+Controls are often the target of various data-binding operations. Simply put, data binding is the act of connecting
+control properties to data values that might change over the course of your application's lifetime. Doins so lets
+a user interface element display the state of a variable in your code. For example, you might use data binding
+to accomplish the following:
+- check a CheckBox control based on a Boolean property of a given object
+- display data in DataGrid objects from a relational database table
+- connect a Label to an integer that represents the number of files in a folder
+When you use the intrinsic WPF data-binding engine, you must be aware of the distinction between the source and 
+the destination of the binding operation. As you might expect, the source of a data-binding operation is the data
+itself (e.g., a Boolean property or relational data), while the destination (target) is the UI control property
+that uses the data content (e.g., a property on a CheckBox or TextBox control).
 
 
 
@@ -3784,9 +3820,7 @@ EditingCommands			AlignCenter, CorrectSpellingError,	Various commands relating t
 
 
 
-
-p.1684
-
+p.1708
 
 
 
