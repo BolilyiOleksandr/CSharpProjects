@@ -41,10 +41,14 @@ namespace RenderingWithShapes
                 case SelectedShape.Circle:
                     shapeToRender = new Ellipse()
                     {
-                        Fill = Brushes.Green,
                         Height = 35,
                         Width = 35
                     };
+                    var brush = new RadialGradientBrush();
+                    brush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#FF87E71B"), 0.589));
+                    brush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#FF2BA92B"), 0.013));
+                    brush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#FF34B771B"), 1));
+                    shapeToRender.Fill = brush;
                     break;
                 case SelectedShape.Rectangle:
                     shapeToRender = new Rectangle()

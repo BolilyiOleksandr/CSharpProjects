@@ -3856,8 +3856,20 @@ VisualBrush					Paints an area with a Visual-derived object (DrawingVisual,	|
 						Viewport3DVisual, and ContainerVisual)				|
 ----------------------------------------------------------------------------------------------------------------
 
-
-
+Key Descendants of the System.Windows.Media.Transform Type
+----------------------------------------------------------------------------------------------------------------
+Type						Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+MatrixTransform					Creates an arbitrary matrix transformation that is used		|
+						to manipulate objects or coordinate systems in a 2D plane	|
+RotateTransform					Rotates an object clockwise about a specified point in a 	|
+						2D (x, y) coordinate system					|
+ScaleTransform					Scales an object in the 2D (x, y) coordinate system		|
+SkewTransform					Skews an object in the 2D (x, y) coordinate system		|
+TranslateTransform				Translates (moves) an object in the 2-D (x-y) coordinate system	|
+TransformGroup					Represents a composite Transform composed of the Transform	|
+						objects								|
+----------------------------------------------------------------------------------------------------------------
 
 
 
