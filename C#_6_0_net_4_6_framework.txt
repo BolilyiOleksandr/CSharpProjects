@@ -95,7 +95,7 @@ Widening is the term used to define an implicit upward cast that does not result
 Narrowing is the logical opposite of widening, in that a larger value is stored within a smaller data type variable.
 
 When you wrap a statement (or a block of statements) within the scope of the checked keyword, the C# compiler
-emits additional CIL instrunctions that test for overflow conditions that may result when adding, multiplying,
+emits additional CIL instructions that test for overflow conditions that may result when adding, multiplying,
 subtracting, or dividing two numerical data types.
 
 C# provides the unchecked keyword to disable the throwing of an overflow exception on a case-by-case basis.
@@ -196,7 +196,7 @@ and cannot be resolved at runtime (if you attempt to do so, you'll receive compi
 To avoid ambiguity, optional parameters must always be packed onto the end of a method signature. It is a compiler error
 to have optional parameters listed before nonoptional parameters.
 
-Like other modern object-oriented languages, C# allows a method to be overloaded.Simply put, when you define a set of
+Like other modern object-oriented languages, C# allows a method to be overloaded. Simply put, when you define a set of
 identically named methods that differ by the number (or type) of parameters, the method in question is said to be
 overloaded.
 
@@ -383,7 +383,7 @@ before invoking the member. While any class can define static members, they are 
 a utility class is a class that does not maintain any object-level stats and is not created with the new keyword. Rather, a utility class exposes all functionality
 as class-level (aka static) members.
 
-The static keyword cam be applied to the following:
+The static keyword can be applied to the following:
 - data of a class
 - methods of a class
 - properties of a class
@@ -732,7 +732,7 @@ holds true.
 
 		Chapter 8 Working with Interfaces
 
-An interface is nothing more than a named set of abstract members. The abstact methods are pure protocol in that they do not provide 
+An interface is nothing more than a named set of abstract members. The abstract methods are pure protocol in that they do not provide 
 a default implementation. An interface expresses a behavior that a given class or structure may choose to support. A class or structure
 can support as many interfaces as necessary.
 
@@ -914,7 +914,7 @@ IEnumerator				Enables foreach style iteration of collection items					    |
 IList					Provides behavior to add, remove, and index items in a sequential list of objects	    |
 ------------------------------------------------------------------------------------------------------------------------------------
 
-Boxing is a mechanism to store the data in a value type within a reference variable. Boxing can be formally defined as the proess
+Boxing is a mechanism to store the data in a value type within a reference variable. Boxing can be formally defined as the process
 of explicitly assigning a value type to a System.Object variable. When you box a value, the CLR allocates a new object on the heap
 and copies the value type's value into that instance. What is returned to you is a reference to the newly allocated heap-based object.
 
@@ -3806,6 +3806,55 @@ that uses the data content (e.g., a property on a CheckBox or TextBox control).
 
 	Chapter 28 WPF Graphics Rendering Services
 
+WPF uses a particular flavor of graphical rendering that goes by the term rendering-mode graphics. Simply put,
+this means that since you are using XAML or procedural code to generate graphical renderings, it is the 
+responsibility of WPF to persist these visual items and ensure that they are correctly redrawn and refreshed 
+in an optimal manner. Thus, when you render graphical data, it is always present, even when the end user hides
+the image by resizing or minimizing the window, by covering the window with another, and so forth.
+
+Select Members of the System.Windows.Media.Geometry Type
+----------------------------------------------------------------------------------------------------------------
+Member						Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+Bounds						Establishes the current bounding rectangle containing the	|
+						geometry.							|
+FillContains()					Determines whether a given Point(or other Geometry object) is	|
+						within the bounds of a particular Geometry-derived class.	|
+						This is useful for hit-testing calculations.			|
+GetArea()					Returns the entire area a Geometry-derived type occupies.	|
+GetRenderBounds()				Returns a Rect that contains the smallest possible rectangle	|
+						that could be used to render the Geometry-derived class.	|
+Transform					Assings a Transform object to the geometry to alter the		|
+						rendering.							|
+----------------------------------------------------------------------------------------------------------------
+
+Geometry-Derived Classes
+----------------------------------------------------------------------------------------------------------------
+Geometry Class					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+LineGeometry					Represents a straight line					|
+RectangleGeometry				Represents a rectangle						|
+EllipseGeometry					Represents an ellipse						|
+GeometryGroup					Allows you to group together several Geometry objects		|
+CombinedGeometry				Allows you to merge two different Geometry objects into a 	|
+						single shape							|
+PathGeometry					Represents a figure composed of lines and curves		|
+----------------------------------------------------------------------------------------------------------------
+
+WPF Brush-Derived Types
+----------------------------------------------------------------------------------------------------------------
+Brush Type					Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+DrawingBrush					Paints an area with a Drawing-derived object (GeometryDrawing,	|
+						ImageDrawing, or VideoDrawing)					|
+ImageBrush					Pains an area with an image (represented by an ImageSource	|
+						object)								|
+LinearGradientBrush				Paints an area with a linear gradient				|
+RadialGradientBrush				Paints an area with a radial gradient				|
+SolidColorBrush					Paints a single color, set with the Color property		|
+VisualBrush					Paints an area with a Visual-derived object (DrawingVisual,	|
+						Viewport3DVisual, and ContainerVisual)				|
+----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -3826,7 +3875,11 @@ that uses the data content (e.g., a property on a CheckBox or TextBox control).
 
 
 
-p.1724
+
+
+
+
+p.1748
 
 
 
