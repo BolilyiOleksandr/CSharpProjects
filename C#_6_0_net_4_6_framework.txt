@@ -3871,6 +3871,27 @@ TransformGroup					Represents a composite Transform composed of the Transform	|
 						objects								|
 ----------------------------------------------------------------------------------------------------------------
 
+Blend Transformation Options
+----------------------------------------------------------------------------------------------------------------
+Transformation Option				Meaning in Life							|
+----------------------------------------------------------------------------------------------------------------
+Translate					Allows you to offset the location of an item on an X, Y		|	
+						position.							|
+Rotate						Allows you to rotate an item on a 360-degree angle.		|
+Scale						Allows you to grow or shrink an item by a factor in the X and	|
+						Y directions.							|
+Skew						Allows you to skew the bounding box containing the selected	|
+						item by a factor in the X and Y directions.			|
+Center Point					When you rotate or flip an object, the item moves relative to	|
+						a fixed point, called the object's center point. By default,	|
+						an object's center point is located at the object's center;	|
+						however, this transformation allows you to change an object's	|
+						center point in order to rotate or flip the object around a	|
+						different point.						|
+Flip						Flips a selected item based on an X or Y center point.		|
+----------------------------------------------------------------------------------------------------------------
+
+	Chapter 29 WPF Resources, Animations, Styles, and Templates
 
 
 
@@ -3888,10 +3909,7 @@ TransformGroup					Represents a composite Transform composed of the Transform	|
 
 
 
-
-
-
-p.1748
+p.1788
 
 
 
