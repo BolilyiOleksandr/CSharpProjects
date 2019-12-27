@@ -3893,6 +3893,7 @@ Flip						Flips a selected item based on an X or Y center point.		|
 
 	Chapter 29 WPF Resources, Animations, Styles, and Templates
 
+	Chapter 30 Notifications, Commands, Validation, and MVVM
 
 
 
@@ -3909,7 +3910,7 @@ Flip						Flips a selected item based on an X or Y center point.		|
 
 
 
-p.1780
+p.1863
 
 
 
