@@ -3895,6 +3895,18 @@ Flip						Flips a selected item based on an X or Y center point.		|
 
 	Chapter 30 Notifications, Commands, Validation, and MVVM
 
+MVVM - Model-View-ViewModel pattern
+
+The Model is the object representation of your data. Models usually have validation built in and are configured 
+as observables.
+The View is the UI of the application, and it is designed to be very lightweight.
+The ViewModel serves two purposes:
+- provides a single stop for all of the data needed by the view
+- the second job is to act as the controller for the View
+
+		Part IV ASP.NET
+
+	Chapter 31 Introducing ASP.NET Web Forms
 
 
 
@@ -3910,7 +3922,23 @@ Flip						Flips a selected item based on an X or Y center point.		|
 
 
 
-p.1863
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+p.1940
 
 
 
